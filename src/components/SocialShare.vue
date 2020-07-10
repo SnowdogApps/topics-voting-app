@@ -19,7 +19,7 @@
           <component :is="network.icon"></component>
         </span>
         <span class="share-list__item-text">
-          Share on {{ network.name }}
+          {{ $t('share.share') }} {{ network.name }}
         </span>
       </ShareNetwork>
     </li>
@@ -84,13 +84,13 @@ export default {
   flex-direction: column;
   padding: 0;
   margin: $spacer--m 0;
-  @include mq($screen-xs-min) {
+  @include mq($screen-sm-min) {
     flex-direction: row;
   }
 
   &__item {
     display: block;
-    width: 178px;
+    width: 210px;
     list-style-type: none;
   }
 

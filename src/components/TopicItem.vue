@@ -5,6 +5,18 @@
     class="topic-item"
   >
     <div class="topic-item__content">
+      <div
+        v-if="topic.authorRole === 'observer'"
+        class="topic-item__badge topic-item__badge--available"
+      >
+        {{ $t('topic.to-grab')}}
+      </div>
+      <div
+        v-if="topic.authorRole === 'speaker' && isAdmin"
+        class="topic-item__badge"
+      >
+        {{ $t('topic.c4p')}}
+      </div>
       <h1
         v-if="!listItem"
         class="topic-item__title"
@@ -36,43 +48,50 @@
       />
       <div v-if="isAdmin" class="topic-item__details">
         <h4>
-          Details:
+          {{ $t('topic.details') }}
         </h4>
         <ul class="topic-item__list">
           <li>
             <span class="bold">
-              Author ID:
+              {{ $t('topic.author-id') }}
             </span>
             {{ topic.authorId }}
           </li>
           <li>
             <span class="bold">
-              Author Name:
+              {{ $t('topic.author-name') }}
             </span>
             {{ topic.authorName }}
           </li>
           <li>
             <span class="bold">
-              Author email:
+              {{ $t('topic.author-email') }}
             </span>
             {{ topic.authorEmail }}
           </li>
           <li>
             <span class="bold">
-              Created:
+              {{ $t('topic.created') }}
             </span>
             {{ topic.createDate }}
           </li>
           <li>
             <span class="bold">
-              Status:
+              {{ $t('topic.speaker') }}
+            </span>
+            {{ topic.authorRole === 'speaker' ? $t('yes') : $t('no') }}
+          </li>
+          <li>
+            <span class="bold">
+              {{ $t('topic.status') }}
             </span>
             {{ topic.approved ? 'approved' : 'not approved' }}
             <v-button
               v-if="isAdmin && !topic.approved"
               class="topic-item__approve-btn"
-              @btn-event="approveTopic">
-              Approve
+              @btn-event="approveTopic"
+            >
+              {{ $t('topic.approve-button') }}
             </v-button>
           </li>
         </ul>
@@ -80,7 +99,9 @@
     </div>
     <div class="topic-item__vote">
       <div class="topic-item__vote-number">
-        <h4>Votes:</h4>
+        <h4>
+          {{ $t('topic.votes') }}
+        </h4>
         {{ topic.votes }}
       </div>
       <v-button
@@ -153,12 +174,11 @@ export default {
     tooltipText () {
       let message = ''
       if (!this.isLoggedIn) {
-        message = 'You have to be logged in to vote'
+        message = this.$t('topic.tooltip-not-logged')
       } else if (this.topic.authorId === this.user.id) {
-        message =
-          "Naughty naughty!<br> It's not fair to vote for your own topic."
+        message = this.$t('topic.tooltip-author')
       } else if (this.isVoted) {
-        message = 'Voted!'
+        message = this.$t('topic.tooltip-voted')
       }
       return message
     }
@@ -203,6 +223,7 @@ export default {
   }
 
   &__content {
+    position: relative;
     flex-grow: 1;
     text-align: left;
     padding-top: $spacer--s;
@@ -210,6 +231,23 @@ export default {
 
     @include mq($screen-sm-min) {
       max-width: 70%;
+    }
+  }
+
+  &__badge {
+    position: absolute;
+    top: $spacer--m;
+    right: 0;
+    width: auto;
+    display: block;
+    background-color: $orange;
+    padding: 4px $spacer--xs;
+    margin-bottom: $spacer--xs;
+    color: $gray-dark;
+    font-weight: $font-weight-bold;
+
+    &--available {
+      background-color: $success;
     }
   }
 
