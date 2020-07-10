@@ -37,6 +37,7 @@ export default {
       authorId: state.user.id,
       authorEmail: state.user.email,
       authorName: state.user.displayName,
+      authorRole: topic.authorRole,
       createDate: new Date(Date.now()).toLocaleString(),
       approved: false
     }).then(() => {

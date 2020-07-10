@@ -16,14 +16,6 @@
     }
   }
 
-  .error {
-    display: none;
-    text-align: left;
-    margin-top: 4px;
-    font-size: $font-size-small;
-    color: $error;
-  }
-
   &--error {
     .input__field {
       border: 1px solid $error;

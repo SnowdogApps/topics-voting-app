@@ -36,3 +36,13 @@ p {
 .bold {
   font-weight: bold;
 }
+
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &__legend {
+    @include visually-hidden();
+  }
+}
