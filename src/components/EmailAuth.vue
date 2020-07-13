@@ -6,7 +6,7 @@
         :class="['input', { 'input--error': $v.formData.firstname.$error }]"
       >
         <label for="firstname">
-          First name
+          {{ $t('form.first-name') }}
         </label>
         <input
           id="firstname"
@@ -20,7 +20,7 @@
           v-if="!$v.formData.firstname.required"
           class="error"
         >
-          Field is required
+          {{ $t('form.required-field') }}
         </div>
       </div>
       <div
@@ -28,7 +28,7 @@
         :class="['input', { 'input--error': $v.formData.lastname.$error }]"
       >
         <label for="lastname">
-          Last name
+          {{ $t('form.last-name') }}
         </label>
         <input
           id="lastname"
@@ -42,7 +42,7 @@
           v-if="!$v.formData.lastname.required"
           class="error"
         >
-          Field is required
+          {{ $t('form.required-field') }}
         </div>
       </div>
       <div
@@ -57,39 +57,39 @@
           v-model.trim="$v.formData.email.$model"
           class="input__field"
           type="email"
-          placeholder="email"
+          placeholder="Email"
           :autocomplete="isLinkingProviderPassword ? 'off' : 'email'"
         >
         <div
           v-if="!$v.formData.email.required"
           class="error"
         >
-          Field is required
+          {{ $t('form.required-field') }}
         </div>
         <div
           v-if="!$v.formData.email.email"
           class="error"
         >
-          It's not valid email address
+          {{ $t('login.invalid-email-address')}}
         </div>
       </div>
       <div :class="['input', { 'input--error': $v.formData.password.$error }]">
         <label for="password">
-          Password
+          {{ $t('login.password') }}
         </label>
         <input
           id="password"
           v-model="$v.formData.password.$model"
           class="input__field"
           type="password"
-          placeholder="password"
+          :placeholder="$t('login.password')"
           :autocomplete="login ? 'current-password' : 'new-password'"
         >
         <div
           v-if="!$v.formData.password.required"
           class="error"
         >
-          Field is required
+          {{ $t('form.required-field') }}
         </div>
       </div>
       <v-button
@@ -98,7 +98,7 @@
         :disabled="$v.$invalid"
         @btn-event="signIn"
       >
-        Log In
+        {{ $t('login.log-in') }}
       </v-button>
       <v-button
         v-else-if="!isLinkingProviderPassword"
@@ -106,33 +106,33 @@
         :disabled="$v.$invalid"
         @btn-event="createUser"
       >
-        Create User
+        {{ $t('login.sign-in') }}
       </v-button>
     </form>
     <template v-if="!isLinkingProviderPassword">
       <p v-if="login">
-        You don't have account?
+        {{ $t('login.no-account') }}
         <v-button
           :class="'button--link'"
           @btn-event="login = !login"
         >
-          Create new one here
+          {{ $t('login.create-account') }}
         </v-button>
       </p>
       <p v-else>
-        You alread have an account?
+        {{ $t('login.accont-exists') }}
         <v-button
           :class="'button--link'"
           @btn-event="login = !login"
         >
-          Log in
+          {{ $t('login.log-in') }}
         </v-button>
       </p>
       <v-button
         :class="'button--link'"
         @btn-event="backToSocial"
       >
-        Log in with social media
+        {{ $t('login.login-with-social-media') }}
       </v-button>
     </template>
   </div>
@@ -281,7 +281,7 @@ export default {
         }).catch((err) => {
           this.$store.commit('notification/push', {
             message: err.message,
-            title: 'Error',
+            title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
         })

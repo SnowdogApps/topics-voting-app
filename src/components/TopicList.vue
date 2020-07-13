@@ -19,10 +19,10 @@
       </ul>
       <transition name="fade">
         <p v-if="topicsLoaded === 1 && topics.length === 0">
-          There is no topic proposition yes. Be the first one!
+          {{ $t('topics.empty-list') }}
         </p>
         <p v-if="topicsLoaded === 2 && topics.length === 0">
-          En error occured. Refresh your page or try again later.
+          {{ $t('global.error-occured') }}
         </p>
       </transition>
       <transition name="fade">

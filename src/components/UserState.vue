@@ -100,14 +100,14 @@ export default {
         .signOut()
         .then(() => {
           this.$store.commit('notification/push', {
-            message: 'You logged out successfully',
-            title: 'Success',
+            message: this.$t('login.logout-successful'),
+            title: this.$t('global.success'),
             type: 'success'
           }, { root: true })
         }).catch((err) => {
           this.$store.commit('notification/push', {
             message: err.message,
-            title: 'Error',
+            title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
         })
