@@ -4,6 +4,7 @@
       <select
         class="select__field"
         v-model="$i18n.locale"
+        @change="saveLang"
       >
         <option
           v-for="(lang, i) in langs"
@@ -19,6 +20,12 @@
 export default {
   data () {
     return { langs: ['en', 'pl'] }
+  },
+  methods: {
+    saveLang () {
+      const currentLang = this.$i18n.locale
+      localStorage.setItem('lang', currentLang)
+    }
   }
 }
 </script>

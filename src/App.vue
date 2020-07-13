@@ -35,6 +35,7 @@ export default {
   created () {
     this.$store.dispatch('bindTopics')
     this.$store.dispatch('onAuthStateChanged')
+    this.setLanguage()
   },
   mixins: [notification, fb],
   computed: {
@@ -42,6 +43,14 @@ export default {
       isLoggedIn: 'isLoggedIn',
       isAdmin: 'isAdmin'
     })
+  },
+  methods: {
+    setLanguage () {
+      const lang = localStorage.getItem('lang')
+      if (lang) {
+        this.$i18n.locale = lang
+      }
+    }
   }
 }
 </script>
