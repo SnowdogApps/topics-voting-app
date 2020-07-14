@@ -1,7 +1,7 @@
 export const msg = {
   global: {
-    yes: 'Yes',
-    no: 'No',
+    yes: 'yes',
+    no: 'no',
     error: 'Error',
     success: 'Success',
     'error-occured': 'An error occured. Refresh your page or try again later.'
@@ -77,7 +77,9 @@ export const msg = {
     'tooltip-author':
       "Naughty naughty!<br> It's not fair to vote for your own topic.",
     'tooltip-voted': 'Voted!',
-    'see-all': 'See all propositions'
+    'see-all': 'See all propositions',
+    approved: 'approved',
+    'not-approved': 'not approved'
   },
   topics: {
     'empty-list': 'There is no topic propositions yet. Be the first one!'

@@ -79,13 +79,13 @@
             <span class="bold">
               {{ $t('topic.speaker') }}
             </span>
-            {{ topic.authorRole === 'speaker' ? $t('yes') : $t('no') }}
+            {{ topic.authorRole === 'speaker' ? $t('global.yes') : $t('global.no') }}
           </li>
           <li>
             <span class="bold">
               {{ $t('topic.status') }}
             </span>
-            {{ topic.approved ? 'approved' : 'not approved' }}
+            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
             <v-button
               v-if="isAdmin && !topic.approved"
               class="topic-item__approve-btn"

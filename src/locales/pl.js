@@ -1,7 +1,7 @@
 export const msg = {
   global: {
-    yes: 'Tak',
-    no: 'Nie',
+    yes: 'tak',
+    no: 'nie',
     error: 'Błąd',
     success: 'Sukces',
     'error-occured': 'Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.'
@@ -75,7 +75,9 @@ export const msg = {
     'tooltip-not-logged': 'Musisz być zalogowany, aby zagłosować',
     'tooltip-author': 'Oj nieładnie!<br> Nie głosujemy na swoje propozycje!',
     'tooltip-voted': 'Zagłosowane!',
-    'see-all': 'Zobacz wszystkie propozycje'
+    'see-all': 'Zobacz wszystkie propozycje',
+    approved: 'zaakceptowano',
+    'not-approved': 'nie zaakceptowano'
   },
   topics: {
     'empty-list': 'Nie ma jeszcze żadnych propozycji. Bądź pierwszy!'
