@@ -11,13 +11,14 @@ export const msg = {
     'home-subtitle':
       'Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację',
     'home-top-description':
-      'Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to take prelegentom wybrać tematr na prezentację.',
-    'login-info': 'Musisz być zalogowany aby zagłosować lub dodać temat.',
+      'Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to także prelegentom wybrać temat na prezentację.',
+    'login-info': 'Musisz być zalogowany, aby zagłosować lub dodać temat.',
     'list-items-title': 'Lista proponowanych tematów'
   },
   login: {
     'login-create-button': 'Zaloguj się lub utwórz konto',
     logout: 'Wyloguj',
+    'logout-successful': 'Wylogowano pomyślnie',
     'choose-login-method': 'Wybierz metodę logowania',
     'login-email-password': 'Zaloguj się przy użyciu adresu email i hasła',
     'sign-in-email-password': 'Adres email i hasło',
@@ -44,19 +45,19 @@ export const msg = {
     'title-field-label': 'Tytuł',
     'description-field-label': 'Opis (markdown dostępny, max. 700 znaków)',
     'description-field-placeholder': 'Opis',
-    'description-field-tips': 'Maxumalna ilość znaków - 700',
-    'characters-left': 'left',
+    'description-field-tips': 'Maxymalna ilość znaków - 700',
+    'characters-left': 'pozostało',
     'activity-radio-legend': 'Wybierz rolę',
-    'radio-author-observer': 'Chce posłuchać o tym',
-    'radio-author-speaker': 'Chce mówc o tym',
+    'radio-author-observer': 'Chcę posłuchać o tym',
+    'radio-author-speaker': 'Chcę mówić o tym',
     'radio-speaker-info':
-      'Wybierając tą opcję zgłaszasz chęc zostania prelegentem i prezentowania tego tematu podczas konferencji',
+      'Wybierając tą opcję zgłaszasz chęć zostania prelegentem i prezentowania tego tematu podczas konferencji',
     'submit-button': 'Dodaj temat',
     'submit-info-1':
       'Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.',
     'submit-info-2':
       'Temat pojawi się na liście jak tylko zostanie zaakceptowany.',
-    'more-button': 'Dodaj koleny temat',
+    'more-button': 'Dodaj kolejny temat',
     'description-preview': 'Podgląd opisu:'
   },
   topic: {
@@ -73,12 +74,26 @@ export const msg = {
     votes: 'Głosy:',
     'tooltip-not-logged': 'Musisz być zalogowany, aby zagłosować',
     'tooltip-author': 'Oj nieładnie!<br> Nie głosujemy na swoje propozycje!',
-    'tooltip-voted': 'Zagłosowane!'
+    'tooltip-voted': 'Zagłosowane!',
+    'see-all': 'Zobacz wszystkie propozycje'
   },
   topics: {
     'empty-list': 'Nie ma jeszcze żadnych propozycji. Bądź pierwszy!'
   },
+  admin: {
+    'admin-dashboard': 'Panel Administratora',
+    'not-approved-list-title': 'Oczekujące na akceptację',
+    'approved-list-title': 'Zaakceptowane'
+  },
   share: {
     share: 'Udostępnij na'
+  },
+  user: {
+    hi: 'Witaj',
+    'welcome-msg': 'Możesz głosować na zaproponowane tematy lub dodać własną propozycję.',
+    'email-not-verified': 'Twój adres email nie jest zweryfikowany.',
+    'verification-email-info': 'Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.',
+    'email-not-received': 'Jeśli nie otrzymałeś wiadomości:',
+    'resend-email': 'Ponownie wyślij prośbę o weryfikację'
   }
 }

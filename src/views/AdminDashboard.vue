@@ -1,6 +1,6 @@
 <template>
   <div class="row center-xs">
-    <h1>Admin Dashboard</h1>
+    <h1>{{ $t('admin.admin-dashboard') }}</h1>
     <topic-list
       :topics="topicsNotApproved"
       :title="notApprListTitle"
@@ -26,12 +26,12 @@ export default {
       isLoggedIn: 'isLoggedIn',
       topicsNotApproved: 'getNotApprovedTopics',
       topicsApproved: 'getApprovedTopics'
-    })
-  },
-  data () {
-    return {
-      notApprListTitle: 'Waiting for approval',
-      apprListTitle: 'Approved'
+    }),
+    notApprListTitle () {
+      return this.$t('admin.not-approved-list-title')
+    },
+    apprListTitle () {
+      return this.$t('admin.approved-list-title')
     }
   }
 }

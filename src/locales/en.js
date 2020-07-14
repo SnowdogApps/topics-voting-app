@@ -9,9 +9,9 @@ export const msg = {
   home: {
     'home-title': 'Meet Magento 2020 - topics',
     'home-subtitle':
-      'Vote on ineteresting topics, share your ideas and if you want to be a speaker - submit proposal',
+      'Vote on interesting topics, share your ideas and if you want to be a speaker - submit proposal',
     'home-top-description':
-      'Some text that explain what is the page for. This page allows as to collect topic that conference\'s participants are interested in. It helps speakers to choose their subjects and us to choose those which fit your need.',
+      "Some text that explain what is the page for. This page allows as to collect topic that conference's participants are interested in. It helps speakers to choose their subjects and us to choose those which fit your need.",
     'login-info':
       'You have to be logged in to vote for a topic or add your own proposition.',
     'list-items-title': 'List of proposed topics'
@@ -20,7 +20,7 @@ export const msg = {
     'login-create-button': 'Log in or create an account',
     logout: 'Logout',
     'logout-successful': 'You logged out successfully',
-    'choose-login-method': 'Choose you log in method',
+    'choose-login-method': 'Choose your log in method',
     'login-email-password': 'Log in with email & password',
     'sign-in-email-password': 'Sign in with email & password',
     'account-already-linked-to-email': 'You already have an account linked to {email}. Login with {link} to link new login method to your profile.',
@@ -28,13 +28,13 @@ export const msg = {
     'sign-in-with': 'Sign in with {social}',
     'first-name': 'First name',
     'last-name': 'Last name',
-    'invalid-email-address': 'It\'s not valid email address',
+    'invalid-email-address': "It's not valid email address",
     password: 'Password',
     'log-in': 'Log in',
     'sign-in': 'Sign in',
-    'no-account': ' You don\'t have account?',
+    'no-account': "You don't have account?",
     'create-account': 'Create new one here',
-    'account-exists': 'You alread have an account?',
+    'account-exists': 'You already have an account?',
     'login-with-social-media': 'Log in with social media'
   },
   form: {
@@ -54,7 +54,7 @@ export const msg = {
     'radio-author-observer': 'I want to listen about it',
     'radio-author-speaker': 'I want to talk about it',
     'radio-speaker-info':
-      'By choosing this option, you\'re submit call4papers proposal. We contact you, if your proposal will be accepted',
+      "By choosing this option, you're submit call4papers proposal. We contact you, if your proposal will be accepted",
     'submit-button': 'Add topic',
     'submit-info-1': 'Thanks for your submission! Your topic will be verified.',
     'submit-info-2': 'it will show on the list as soon as it is approved.',
@@ -75,13 +75,27 @@ export const msg = {
     votes: 'Votes:',
     'tooltip-not-logged': 'You have to be logged in to vote',
     'tooltip-author':
-      'Naughty naughty!<br> It\'s not fair to vote for your own topic.',
-    'tooltip-voted': 'Voted!'
+      "Naughty naughty!<br> It's not fair to vote for your own topic.",
+    'tooltip-voted': 'Voted!',
+    'see-all': 'See all propositions'
   },
   topics: {
-    'empty-list': 'There is no topic proposition yet. Be the first one!'
+    'empty-list': 'There is no topic propositions yet. Be the first one!'
+  },
+  admin: {
+    'admin-dashboard': 'Admin Dashboard',
+    'not-approved-list-title': 'Waiting for approval',
+    'approved-list-title': 'Approved'
   },
   share: {
     share: 'Share on'
+  },
+  user: {
+    hi: 'Hi',
+    'welcome-msg': 'You can vote on proposed topics or add your own proposition.',
+    'email-not-verified': 'Your email address is not verified.',
+    'verification-email-info': 'You should receive an email verification request, check your email box.',
+    'email-not-received': "If you didn't receive an email:",
+    'resend-email': 'Resend email verification request'
   }
 }

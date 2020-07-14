@@ -6,14 +6,14 @@
         :class="['input', { 'input--error': $v.formData.firstname.$error }]"
       >
         <label for="firstname">
-          {{ $t('form.first-name') }}
+          {{ $t('login.first-name') }}
         </label>
         <input
           id="firstname"
           v-model="$v.formData.firstname.$model"
           class="input__field"
           type="text"
-          placeholder="First name"
+          :placeholder="$t('login.first-name')"
           autocomplete="username"
         >
         <div
@@ -28,14 +28,14 @@
         :class="['input', { 'input--error': $v.formData.lastname.$error }]"
       >
         <label for="lastname">
-          {{ $t('form.last-name') }}
+          {{ $t('login.last-name') }}
         </label>
         <input
           id="lastname"
           v-model="$v.formData.lastname.$model"
           class="input__field"
           type="text"
-          placeholder="Last name"
+          :placeholder="$t('login.last-name')"
           autocomplete="family-name"
         >
         <div
@@ -120,7 +120,7 @@
         </v-button>
       </p>
       <p v-else>
-        {{ $t('login.accont-exists') }}
+        {{ $t('login.account-exists') }}
         <v-button
           :class="'button--link'"
           @btn-event="login = !login"

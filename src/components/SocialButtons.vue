@@ -64,23 +64,27 @@ export default {
       linkProvider: 'linkProvider',
       linkCreds: 'linkCreds',
       linkPass: 'linkPass'
-    })
-  },
-  data () {
-    return {
-      fb: {
+    }),
+    fb () {
+      return {
         btnClass: 'button--login button--facebook',
         label: this.$t('login.sign-in-with', { social: 'Facebook' })
-      },
-      google: {
+      }
+    },
+    google () {
+      return {
         btnClass: 'button--login button--google',
         label: this.$t('login.sign-in-with', { social: 'Google' })
-      },
-      github: {
+      }
+    },
+    github () {
+      return {
         btnClass: 'button--login button--github',
         label: this.$t('login.sign-in-with', { social: 'Github' })
-      },
-      twitter: {
+      }
+    },
+    twitter () {
+      return {
         btnClass: 'button--login button--twitter',
         label: this.$t('login.sign-in-with', { social: 'Twitter' })
       }

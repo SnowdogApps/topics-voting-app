@@ -5,12 +5,12 @@
           v-if="isLoggedIn"
           class="col-xs-12"
         >
-          Hi
+          {{ $t('user.hi') }}
           <span class="bold">
             {{ user.displayName || user.email }}
           </span>!
           <br>
-          You can vote on proposed topics or add your own proposition.
+          {{ $t('user.welcome-msg') }}
           <br>
           <v-button
             :class="'button--link'"
@@ -26,22 +26,22 @@
           class="col-xs-12"
         >
           <p>
-            Hi
+            {{ $t('user.hi') }}
             <span class="bold">
               {{ user.displayName || user.email }}
             </span>!
             <br>
-            Your email address is not verified.
+            {{ $t('user.email-not-verified') }}
             <br>
-            You should receive an email verification request, check your email box.
+            {{ $t('user.verification-email-info') }}
           </p>
           <p>
-            If you didn't receive an email:
+            {{ $t('user.email-not-received') }}
             <v-button
               :class="'button--link'"
               @btn-event="resendEmailVerification"
             >
-              Resend email verification request
+              {{ $t('user.resend-email') }}
             </v-button>
           </p>
           <v-button

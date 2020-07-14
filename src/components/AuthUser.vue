@@ -8,12 +8,15 @@
         {{ $t('login.login-email-password') }}
       </template>
     </h2>
-    <p v-if="linkProvider">
-      {{ $t('account-already-linked', { email: linkEmail, link: linkProvider }) }}
-    </p>
-    <social-buttons
-      v-if="!emailPass"
-    />
+    <i18n v-if="linkProvider" path="account-already-linked-to-email" tag="p">
+      <template #email>
+        <span class="bold">{{ linkEmail }}</span>
+      </template>
+      <template #link>
+        <span class="bold">{{ linkProvider }}</span>
+      </template>
+    </i18n>
+    <social-buttons v-if="!emailPass" />
     <v-button
       class="button--login"
       v-if="!emailPass && !linkProvider"
@@ -33,6 +36,7 @@
     </v-button>
   </section>
 </template>
+
 <script>
 import EmailAuth from '@/components/EmailAuth.vue'
 import SocialButtons from '@/components/SocialButtons.vue'
