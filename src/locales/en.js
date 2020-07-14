@@ -31,9 +31,9 @@ export const msg = {
     'invalid-email-address': "It's not valid email address",
     password: 'Password',
     'log-in': 'Log in',
-    'sign-in': 'Sign in',
+    'create-account': 'Create account',
     'no-account': "You don't have account?",
-    'create-account': 'Create new one here',
+    'create-account-here': 'Create new one here',
     'account-exists': 'You already have an account?',
     'login-with-social-media': 'Log in with social media'
   },

@@ -106,7 +106,7 @@
         :disabled="$v.$invalid"
         @btn-event="createUser"
       >
-        {{ $t('login.sign-in') }}
+        {{ $t('login.create-account') }}
       </v-button>
     </form>
     <template v-if="!isLinkingProviderPassword">
@@ -116,7 +116,7 @@
           :class="'button--link'"
           @btn-event="login = !login"
         >
-          {{ $t('login.create-account') }}
+          {{ $t('login.create-account-here') }}
         </v-button>
       </p>
       <p v-else>

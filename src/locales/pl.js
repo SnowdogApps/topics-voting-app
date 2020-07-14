@@ -30,9 +30,9 @@ export const msg = {
     'invalid-email-address': 'Niepoprawny adres email',
     password: 'Hasło',
     'log-in': 'Zaloguj',
-    'sign-in': 'Zarejestruj',
+    'create-account': 'Stwórz konto',
     'no-account': 'Nie masz konta?',
-    'create-account': 'Utwórz konto tutaj',
+    'create-account-here': 'Utwórz konto tutaj',
     'account-exists': 'Masz już konto?',
     'login-with-social-media': 'Zaloguj się przez social media'
   },
