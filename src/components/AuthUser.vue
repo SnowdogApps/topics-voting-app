@@ -2,24 +2,27 @@
   <section class="form-section">
     <h2>
       <template v-if="!emailPass && !linkProvider">
-        Choose your log in method
+        {{ $t('login.choose-login-method') }}
       </template>
       <template v-else-if="emailPass && !linkProvider">
-        Log in with email & password
+        {{ $t('login.login-email-password') }}
       </template>
     </h2>
-    <p v-if="linkProvider">
-      You already have an account linked to <span class="bold">{{ this.linkEmail }}</span>. Login with <span class="bold">{{ this.linkProvider }}</span> to link new login method to your profile:
-    </p>
-    <social-buttons
-      v-if="!emailPass"
-    />
+    <i18n v-if="linkProvider" path="account-already-linked-to-email" tag="p">
+      <template #email>
+        <span class="bold">{{ linkEmail }}</span>
+      </template>
+      <template #link>
+        <span class="bold">{{ linkProvider }}</span>
+      </template>
+    </i18n>
+    <social-buttons v-if="!emailPass" />
     <v-button
       class="button--login"
       v-if="!emailPass && !linkProvider"
       @btn-event="emailPass = !emailPass"
     >
-      Sign with email & password
+      {{ $t('login.sign-in-email-password') }}
     </v-button>
     <email-auth
       v-if="emailPass || linkProvider === 'password'"
@@ -29,10 +32,11 @@
       class="button--login button--link"
       @btn-event="$emit('hide-auth')"
     >
-      Hide login section
+      {{ $t('login.hide-login-section') }}
     </v-button>
   </section>
 </template>
+
 <script>
 import EmailAuth from '@/components/EmailAuth.vue'
 import SocialButtons from '@/components/SocialButtons.vue'

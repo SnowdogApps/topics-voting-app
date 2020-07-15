@@ -13,7 +13,7 @@
           v-if="isAdmin"
           to="/admin-dashboard"
           class="link"
-        >Admin Dashboard</router-link>
+        >{{ $t('admin.admin-dashboard') }}</router-link>
       </nav>
       <lang-switcher class="col-xs" />
     </header>

@@ -64,25 +64,29 @@ export default {
       linkProvider: 'linkProvider',
       linkCreds: 'linkCreds',
       linkPass: 'linkPass'
-    })
-  },
-  data () {
-    return {
-      fb: {
+    }),
+    fb () {
+      return {
         btnClass: 'button--login button--facebook',
-        label: 'Sign in with Facebook'
-      },
-      google: {
+        label: this.$t('login.sign-in-with', { social: 'Facebook' })
+      }
+    },
+    google () {
+      return {
         btnClass: 'button--login button--google',
-        label: 'Sign in with Google'
-      },
-      github: {
+        label: this.$t('login.sign-in-with', { social: 'Google' })
+      }
+    },
+    github () {
+      return {
         btnClass: 'button--login button--github',
-        label: 'Sign in with Github'
-      },
-      twitter: {
+        label: this.$t('login.sign-in-with', { social: 'Github' })
+      }
+    },
+    twitter () {
+      return {
         btnClass: 'button--login button--twitter',
-        label: 'Sign in with Twitter'
+        label: this.$t('login.sign-in-with', { social: 'Twitter' })
       }
     }
   },
@@ -104,7 +108,7 @@ export default {
             if (!result) {
               this.$store.commit('notification/push', {
                 message: err.message,
-                title: 'Error',
+                title: this.$t('global.error'),
                 type: 'error'
               }, { root: true })
             }
@@ -112,7 +116,7 @@ export default {
         } else {
           this.$store.commit('notification/push', {
             message: err.message,
-            title: 'Error',
+            title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
         }

@@ -9,7 +9,7 @@
         to="/"
         class="button button--secondary"
       >
-        See all propositions
+        {{ $t('topic.see-all') }}
       </router-link>
     </div>
   </div>
