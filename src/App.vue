@@ -20,17 +20,21 @@
     <main class="container">
       <router-view/>
     </main>
+    <scroll-top/>
   </div>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
 import notification from '@/mixins/notification.js'
 import fb from '@/mixins/facebook.js'
 import LangSwitcher from '@/components/LangSwitcher.vue'
+import ScrollTop from '@/components/ScrollTop.vue'
 
 export default {
   components: {
-    LangSwitcher
+    LangSwitcher,
+    ScrollTop
   },
   created () {
     this.$store.dispatch('bindTopics')
