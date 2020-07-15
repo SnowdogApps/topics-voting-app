@@ -46,6 +46,9 @@ export default {
   },
   methods: {
     setLanguage () {
+      if (typeof localStorage === 'undefined') {
+        return
+      }
       const lang = localStorage.getItem('lang')
       if (lang) {
         this.$i18n.locale = lang

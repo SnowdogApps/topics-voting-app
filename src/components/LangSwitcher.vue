@@ -23,6 +23,9 @@ export default {
   },
   methods: {
     saveLang () {
+      if (typeof localStorage === 'undefined') {
+        return
+      }
       const currentLang = this.$i18n.locale
       localStorage.setItem('lang', currentLang)
     }
