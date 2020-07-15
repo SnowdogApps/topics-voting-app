@@ -4,7 +4,14 @@
     :id="id"
     class="topic-item"
   >
-    <div class="topic-item__content">
+    <edit-topic
+      v-if="adminView && editMode"
+      :id="id"
+      @cancel-edit="editMode = false"
+      @saved-edit="editMode = false"
+    >
+    </edit-topic>
+    <div v-else class="topic-item__content">
       <div
         v-if="topic.authorRole === 'observer'"
         class="topic-item__badge topic-item__badge--available"
@@ -41,60 +48,35 @@
         v-if="topic.description"
         v-html="compiledMarkdown(topic.description)"
       ></div>
+      <div v-if="topic.targetGroup">
+        <span class="bold">{{ $t('add-form.target-group-field-placeholder') }}</span>:
+        <span>{{ topic.targetGroup }}</span>
+      </div>
       <social-share
+        v-if="!adminView"
         :url="shareUrl"
         :title="topic.title"
         :description="topic.description"
       />
-      <div v-if="isAdmin" class="topic-item__details">
-        <h4>
-          {{ $t('topic.details') }}
-        </h4>
-        <ul class="topic-item__list">
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-id') }}
-            </span>
-            {{ topic.authorId }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-name') }}
-            </span>
-            {{ topic.authorName }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-email') }}
-            </span>
-            {{ topic.authorEmail }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.created') }}
-            </span>
-            {{ topic.createDate }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.speaker') }}
-            </span>
-            {{ topic.authorRole === 'speaker' ? $t('global.yes') : $t('global.no') }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.status') }}
-            </span>
-            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
-            <v-button
-              v-if="isAdmin && !topic.approved"
-              class="topic-item__approve-btn"
-              @btn-event="approveTopic"
-            >
-              {{ $t('topic.approve-button') }}
-            </v-button>
-          </li>
-        </ul>
+      <topic-item-details
+        v-if="isAdmin"
+        :id="id">
+      </topic-item-details>
+      <div class="topic-item__btn-section">
+        <v-button
+          v-if="isAdmin && editable"
+          class="button--with-margin"
+          @btn-event="editTopic"
+        >
+          {{ $t('global.edit') }}
+        </v-button>
+        <v-button
+          v-if="isAdmin && !topic.approved"
+          class="button--with-margin"
+          @btn-event="approveTopic"
+        >
+          {{ $t('topic.approve-button') }}
+        </v-button>
       </div>
     </div>
     <div class="topic-item__vote">
@@ -105,6 +87,7 @@
         {{ topic.votes }}
       </div>
       <v-button
+        v-if="!adminView"
         :class="[
           'topic-item__upvote',
           {
@@ -123,6 +106,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import Vue from 'vue'
 import { mapGetters, mapState } from 'vuex'
@@ -137,7 +121,9 @@ export default {
   components: {
     VButton,
     SocialShare,
-    LikeIcon: () => import('@/assets/icons/like.svg')
+    LikeIcon: () => import('@/assets/icons/like.svg'),
+    TopicItemDetails: () => import('@/components/TopicItemDetails.vue'),
+    EditTopic: () => import('@/components/EditTopic.vue')
   },
   props: {
     id: {
@@ -145,6 +131,10 @@ export default {
       required: true
     },
     listItem: {
+      type: Boolean,
+      default: false
+    },
+    editable: {
       type: Boolean,
       default: false
     }
@@ -181,11 +171,15 @@ export default {
         message = this.$t('topic.tooltip-voted')
       }
       return message
+    },
+    adminView () {
+      return this.$router.currentRoute.path.includes('admin-dashboard')
     }
   },
   data () {
     return {
-      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`
+      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`,
+      editMode: false
     }
   },
   methods: {
@@ -204,6 +198,9 @@ export default {
     approveTopic () {
       const topicId = this.id
       this.$store.dispatch('approveTopic', topicId)
+    },
+    editTopic () {
+      this.editMode = true
     }
   }
 }
@@ -269,8 +266,10 @@ export default {
     line-height: 2;
   }
 
-  &__approve-btn {
-    margin-left: $spacer--m;
+  &__btn-section {
+    display: flex;
+    justify-content: center;
+    margin: $spacer--s 0;
   }
 
   &__vote {

@@ -8,25 +8,13 @@
       v-if="submitStatus !== 'OK'"
       @submit.prevent="addTopic"
     >
-      <div :class="['input', { 'input--error': $v.title.$error }]">
-        <label for="title">
-          {{ $t('add-form.title-field-label') }}
-        </label>
-        <input
-          id="title"
-          v-model.trim="$v.title.$model"
-          class="input__field"
-          type="text"
-          :placeholder="$t('add-form.title-field-label')"
-          maxlength="150"
-        >
-        <div
-          v-if="!$v.title.required"
-          class="error"
-        >
-          {{ $t('form.required-field') }}
-        </div>
-      </div>
+      <form-input-field
+        v-model="title"
+        :validator="$v.title"
+        id="title"
+        :label="$t('add-form.title-field-label')"
+        :placeholder="$t('add-form.title-field-label')"
+        maxlength="150"/>
       <div :class="['input', { 'input--error': $v.description.$error }]">
         <label for="description" class="form__label">
           {{ $t('add-form.description-field-label') }}
@@ -60,6 +48,13 @@
           </span>
         </div>
       </div>
+      <form-input-field
+        v-model="targetGroup"
+        :validator="$v.targetGroup"
+        id="targetGroup"
+        :label="$t('add-form.target-group-field-label')"
+        :placeholder="$t('add-form.target-group-field-placeholder')"
+        maxlength="150"/>
       <div :class="['radio', { 'radio--error': $v.description.$error }]">
         <fieldset class="fieldset" aria-labelledby="radio-legend">
           <legend id="radio-legend" class="fieldset__legend">
@@ -150,11 +145,13 @@ import debounce from 'lodash.debounce'
 import markdown from '@/mixins/markdown.js'
 import Loader from '@/components/Loader.vue'
 import VButton from '@/components/Button.vue'
+import FormInputField from '@/components/FormInputField.vue'
 
 export default {
   components: {
     Loader,
-    VButton
+    VButton,
+    FormInputField
   },
   computed: {
     ...mapGetters({
@@ -170,6 +167,7 @@ export default {
     return {
       title: '',
       description: '',
+      targetGroup: '',
       authorRole: '',
       loading: false,
       submitStatus: null
@@ -187,6 +185,9 @@ export default {
       required
     },
     authorRole: {
+      required
+    },
+    targetGroup: {
       required
     }
   },
@@ -206,6 +207,7 @@ export default {
         this.$store.dispatch('addTopic', {
           title: this.title,
           description: this.description,
+          targetGroup: this.targetGroup,
           authorRole: this.authorRole
         }).then(() => {
           this.$v.$reset()

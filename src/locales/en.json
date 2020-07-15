@@ -4,7 +4,10 @@
     "no": "no",
     "error": "Error",
     "success": "Success",
-    "error-occured": "An error occured. Refresh your page or try again later."
+    "error-occured": "An error occured. Refresh your page or try again later.",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "save": "Save"
   },
   "home": {
     "home-title": "Meet Magento 2020 - topics",
@@ -53,7 +56,10 @@
     "submit-info-1": "Thanks for your submission! Your topic will be verified.",
     "submit-info-2": "it will show on the list as soon as it is approved.",
     "more-button": "Add another topic",
-    "description-preview": "Your description preview:"
+    "description-preview": "Your description preview:",
+    "target-group-field-label": "Target audience (eg. junior Magento developer)",
+    "target-group-field-placeholder": "Taget audience",
+    "edit-topic": "Edit topic"
   },
   "topic": {
     "to-grab": "To grab",

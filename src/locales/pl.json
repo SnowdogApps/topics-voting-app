@@ -4,7 +4,10 @@
     "no": "nie",
     "error": "Błąd",
     "success": "Sukces",
-    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "save": "Zapisz"
   },
   "home": {
     "home-title": "Meet Magento 2020 - prezentacje",
@@ -53,7 +56,10 @@
     "submit-info-1": "Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.",
     "submit-info-2": "Temat pojawi się na liście jak tylko zostanie zaakceptowany.",
     "more-button": "Dodaj kolejny temat",
-    "description-preview": "Podgląd opisu:"
+    "description-preview": "Podgląd opisu:",
+    "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
+    "target-group-field-placeholder": "Grupa docelowa",
+    "edit-topic": "Edytuj temat"
   },
   "topic": {
     "to-grab": "do wzięcia",

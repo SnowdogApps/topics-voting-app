@@ -56,4 +56,17 @@
     height: 24px;
     transition: $transition-base;
   }
+
+  &--cancel {
+    background-color: white;
+    border-color: $gray-dark;
+    color: $gray-dark;
+  }
+
+  &--with-margin {
+    margin: $spacer--m $spacer--xs;
+    @include mq($screen-sm-min) {
+      margin: $spacer--xs $spacer--m;
+    }
+  }
 }

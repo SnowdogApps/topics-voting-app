@@ -13,6 +13,7 @@
         >
           <topic-item
             :id="item['.key']"
+            :editable="editable"
             :listItem="true"
           />
         </li>
@@ -43,6 +44,10 @@ export default {
     topics: {
       type: Array,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
