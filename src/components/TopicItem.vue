@@ -47,7 +47,10 @@
         v-if="topic.description"
         v-html="compiledMarkdown(topic.description)"
       ></div>
-      <div v-if="topic.targetGroup">
+      <div
+        v-if="topic.targetGroup"
+        class="topic-item__target-group"
+      >
         <span class="bold">{{ $t('add-form.target-group-field-placeholder') }}</span>:
         <span>{{ topic.targetGroup }}</span>
       </div>
@@ -58,19 +61,20 @@
         :description="topic.description"
       />
       <topic-item-details
-        v-if="isAdmin"
+        v-if="isAdmin && adminView"
         :id="id">
       </topic-item-details>
-      <div class="topic-item__btn-section">
+      <div class="topic-item__btn-section"
+        v-if="isAdmin && adminView">
         <v-button
-          v-if="isAdmin && editable"
+          v-if="editable"
           class="button--with-margin"
           @btn-event="editTopic"
         >
           {{ $t('global.edit') }}
         </v-button>
         <v-button
-          v-if="isAdmin && !topic.approved"
+          v-if="!topic.approved"
           class="button--with-margin"
           @btn-event="approveTopic"
         >
@@ -83,7 +87,7 @@
         <h4>
           {{ $t('topic.votes') }}
         </h4>
-        {{ topic.votes }}
+        {{ topic.votes || 0 }}
       </div>
       <v-button
         v-if="!adminView"
@@ -249,6 +253,10 @@ export default {
 
   &__title {
     margin-bottom: $spacer--s;
+  }
+
+  &__target-group {
+    margin-top: $spacer--s;
   }
 
   &__details {
