@@ -20,7 +20,10 @@
       </ul>
       <transition name="fade">
         <p v-if="topicsLoaded === 1 && topics.length === 0">
-          {{ $t('topics.empty-list') }}
+          {{ adminView
+            ? $t('topics.empty-list')
+            : $t('topics.empty-list-user')
+          }}
         </p>
         <p v-if="topicsLoaded === 2 && topics.length === 0">
           {{ $t('global.error-occured') }}
@@ -57,7 +60,10 @@ export default {
   computed: {
     ...mapState({
       topicsLoaded: state => state.topicsLoaded
-    })
+    }),
+    adminView () {
+      return this.$router.currentRoute.path.includes('admin-dashboard')
+    }
   }
 }
 </script>

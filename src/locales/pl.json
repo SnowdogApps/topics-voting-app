@@ -81,7 +81,8 @@
     "not-approved": "nie zaakceptowano"
   },
   "topics": {
-    "empty-list": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!"
+    "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
+    "empty-list": "Nie ma żadnych propozycji."
   },
   "admin": {
     "admin-dashboard": "Panel Administratora",

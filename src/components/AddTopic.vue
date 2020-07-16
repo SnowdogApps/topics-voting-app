@@ -216,6 +216,8 @@ export default {
           this.loading = false
           this.title = ''
           this.description = ''
+          this.targetGroup = ''
+          this.authorRole = ''
           this.submitStatus = 'OK'
         })
       }

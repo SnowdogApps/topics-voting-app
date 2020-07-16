@@ -4,7 +4,7 @@
 
       v-if="visible"
       href="#"
-      class="back-to-top"
+      class="back-to-top bold button--secondary"
       @click="scroll"
     >
       Back to top
@@ -39,8 +39,6 @@ export default {
   bottom: 0;
   right: 0;
   margin: $spacer--s;
-  background-color: $preset;
-  color: white;
   text-decoration: none;
   padding: $spacer--xs;
   z-index: 1;

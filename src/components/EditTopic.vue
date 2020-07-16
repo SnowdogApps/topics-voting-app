@@ -148,8 +148,6 @@ export default {
         }).then(() => {
           this.$v.$reset()
           this.loading = false
-          this.title = ''
-          this.description = ''
           this.submitStatus = 'OK'
           this.$emit('saved-edit')
         })

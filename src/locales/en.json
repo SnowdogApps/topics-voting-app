@@ -81,7 +81,8 @@
     "not-approved": "not approved"
   },
   "topics": {
-    "empty-list": "There is no topic propositions yet. Be the first one!"
+    "empty-list-user": "There is no topic propositions yet. Be the first one!",
+    "empty-list": "There is no topic propositions."
   },
   "admin": {
     "admin-dashboard": "Admin Dashboard",
