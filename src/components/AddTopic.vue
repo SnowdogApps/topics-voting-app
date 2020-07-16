@@ -14,7 +14,8 @@
         id="title"
         :label="$t('add-form.title-field-label')"
         :placeholder="$t('add-form.title-field-label')"
-        maxlength="150"/>
+        maxlength="150"
+      />
       <div :class="['input', { 'input--error': $v.description.$error }]">
         <label for="description" class="form__label">
           {{ $t('add-form.description-field-label') }}
@@ -54,7 +55,8 @@
         id="targetGroup"
         :label="$t('add-form.target-group-field-label')"
         :placeholder="$t('add-form.target-group-field-placeholder')"
-        maxlength="150"/>
+        maxlength="150"
+      />
       <div :class="['radio', { 'radio--error': $v.description.$error }]">
         <fieldset class="fieldset" aria-labelledby="radio-legend">
           <legend id="radio-legend" class="fieldset__legend">

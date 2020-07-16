@@ -9,8 +9,7 @@
       :id="id"
       @cancel-edit="editMode = false"
       @saved-edit="editMode = false"
-    >
-    </edit-topic>
+    />
     <div v-else class="topic-item__content">
       <div
         v-if="topic.authorRole === 'observer'"
