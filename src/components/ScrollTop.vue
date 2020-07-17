@@ -7,7 +7,7 @@
       class="back-to-top bold button--secondary"
       @click="scroll"
     >
-      Back to top
+      {{ $t('home.back-to-top') }}
     </a>
   </transition>
 </template>

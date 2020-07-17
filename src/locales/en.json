@@ -14,7 +14,8 @@
     "home-subtitle": "Vote on interesting topics, share your ideas and if you want to be a speaker - submit proposal",
     "home-top-description": "Some text that explain what is the page for. This page allows as to collect topic that conference's participants are interested in. It helps speakers to choose their subjects and us to choose those which fit your need.",
     "login-info": "You have to be logged in to vote for a topic or add your own proposition.",
-    "list-items-title": "List of proposed topics"
+    "list-items-title": "List of proposed topics",
+    "back-to-top": "Back to top"
   },
   "login": {
     "login-create-button": "Log in or create an account",

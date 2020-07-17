@@ -14,7 +14,8 @@
     "home-subtitle": "Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację",
     "home-top-description": "Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to także prelegentom wybrać temat na prezentację.",
     "login-info": "Musisz być zalogowany, aby zagłosować lub dodać temat.",
-    "list-items-title": "Lista proponowanych tematów"
+    "list-items-title": "Lista proponowanych tematów",
+    "back-to-top": "Do góry"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
