@@ -82,8 +82,11 @@ export default {
 .share-list {
   display: flex;
   flex-direction: column;
-  padding: 0;
-  margin: $spacer--m 0;
+  justify-content: center;
+  align-items: center;
+  padding: $spacer--s;
+  margin-top: $spacer--m;
+  border-top: $border-base;
   @include mq($screen-sm-min) {
     flex-direction: row;
   }
@@ -101,12 +104,15 @@ export default {
     flex-direction: row;
     flex: none;
     padding: 4px $spacer--xs;
-    margin: 0 $spacer--s $spacer--s 0;
+    margin: 0 0 $spacer--s 0;
     border-radius: 3px;
     color: $white;
     background-color: $gray-darker;
     overflow: hidden;
     cursor: pointer;
+    @include mq($screen-sm-min) {
+      margin: 0 $spacer--s 0 0;
+    }
   }
 
   &__item-icon {

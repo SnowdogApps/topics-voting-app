@@ -62,7 +62,7 @@ export default {
     height: 48px;
     min-width: 72px;
     padding: $spacer--xs;
-    border: $border-base;
+    border: none;
     border-radius: 0;
     appearance: none;
     background: $white;
@@ -71,6 +71,7 @@ export default {
     line-height: $line-height;
     font-size: $font-size-small;
     transition: $transition-base;
+    text-transform: uppercase;
     cursor: pointer;
 
     &:disabled {

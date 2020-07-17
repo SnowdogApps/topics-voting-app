@@ -33,8 +33,20 @@ p {
   margin: $spacer--m 0;
 }
 
+.m-auto {
+    margin: auto;
+}
+
+.m-xl {
+    margin: $spacer--xl;
+}
+
 .bold {
   font-weight: bold;
+}
+
+.justified {
+    text-align: justify;
 }
 
 .fieldset {

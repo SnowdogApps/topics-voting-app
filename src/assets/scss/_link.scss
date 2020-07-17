@@ -1,9 +1,17 @@
 .link {
-    font-weight: bold;
-    color: $gray-darker;
-    text-decoration: underline;
+  color: $gray-darker;
+  text-decoration: none;
+  padding: $spacer--xs;
+  margin: 0 $spacer--m;
+  transition: $transition-base;
 
-    &.router-link-exact-active {
-      color: $orange;
-    }
+  &:focus,
+  &:hover {
+    color: $preset;
+  }
+
+  &.router-link-exact-active {
+    color: $preset;
+    font-weight: bold;
+  }
 }

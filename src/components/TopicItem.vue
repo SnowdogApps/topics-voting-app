@@ -4,13 +4,14 @@
     :id="id"
     class="topic-item"
   >
+    <div class="col-md-1"></div>
     <edit-topic
       v-if="adminView && editMode"
       :id="id"
       @cancel-edit="editMode = false"
       @saved-edit="editMode = false"
     />
-    <div v-else class="topic-item__content">
+    <div v-else class="topic-item__content col-md-10">
       <div
         v-if="topic.authorRole === 'observer'"
         class="topic-item__badge topic-item__badge--available"
@@ -25,15 +26,15 @@
       </div>
       <h1
         v-if="!listItem"
-        class="topic-item__title"
+        class="topic-item__title justified"
       >
         {{ topic.title }}
       </h1>
       <h3
         v-else
-        class="topic-item__title">{{ topic.title }}
+        class="topic-item__title justified">{{ topic.title }}
       </h3>
-      <div>
+      <div class="justified">
         <router-link
           :to="{
             name: 'topic',
@@ -46,6 +47,7 @@
       <div
         v-if="topic.description"
         v-html="compiledMarkdown(topic.description)"
+        class="topic-item__description justified"
       ></div>
       <div
         v-if="topic.targetGroup"
@@ -215,7 +217,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: $spacer--xl;
-  border-bottom: $border-base;
 
   @include mq($screen-sm-min) {
     flex-direction: row;
@@ -225,34 +226,32 @@ export default {
   &__content {
     position: relative;
     flex-grow: 1;
-    text-align: left;
-    padding-top: $spacer--s;
+    padding: $spacer--m $spacer--m;
     word-break: break-word;
-
-    @include mq($screen-sm-min) {
-      max-width: 70%;
-    }
+    box-shadow: $box-shadow;
+    text-align: left;
   }
 
   &__badge {
     position: absolute;
-    top: $spacer--m;
+    top: $spacer--s;
     right: 0;
     width: auto;
     display: block;
-    background-color: $orange;
+    background-color: $preset;
     padding: 4px $spacer--xs;
     margin-bottom: $spacer--xs;
     color: $gray-dark;
     font-weight: $font-weight-bold;
 
     &--available {
-      background-color: $success;
+      background-color: $secondary;
+      color: $white;
     }
   }
 
   &__title {
-    margin-bottom: $spacer--s;
+    margin: $spacer--l 0 $spacer--s 0;
   }
 
   &__target-group {
@@ -281,9 +280,13 @@ export default {
 
   &__vote {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-    justify-content: flex-end;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    @include mq($max-screen: $screen-sm-min) {
+      flex-flow: row;
+      justify-content: flex-end;
+    }
   }
 
   &__vote-number {
@@ -299,18 +302,18 @@ export default {
     margin: $spacer--m;
     min-width: 56px;
     height: 56px;
-    border: 2px solid $orange;
+    border: 2px solid $preset;
     background-color: $white;
 
     .button__icon {
-      fill: $orange;
+      fill: $preset;
       width: 32px;
       height: 32px;
     }
 
     &--voted {
-      background-color: $orange;
-      border-color: $orange;
+      background-color: $preset;
+      border-color: $preset;
 
       .button__icon {
         fill: $black;

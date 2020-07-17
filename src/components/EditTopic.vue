@@ -1,5 +1,5 @@
 <template>
-  <section class="form-section col-xs-12 col-md-8">
+  <div class="form-section col-xs-12 col-md-10">
     <h2>
       {{ $t('add-form.edit-topic') }}
     </h2>
@@ -69,7 +69,7 @@
       </h3>
       <div v-html="compiledMarkdown(description)"></div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>

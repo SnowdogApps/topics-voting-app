@@ -1,5 +1,5 @@
 <template>
-  <section class="form-section">
+  <section class="form-section m-xl">
     <h2>
       <template v-if="!emailPass && !linkProvider">
         {{ $t('login.choose-login-method') }}
