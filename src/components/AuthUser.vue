@@ -8,7 +8,7 @@
         {{ $t('login.login-email-password') }}
       </template>
     </h2>
-    <i18n v-if="linkProvider" path="account-already-linked-to-email" tag="p">
+    <i18n v-if="linkProvider" path="login.account-already-linked-to-email" tag="p">
       <template #email>
         <span class="bold">{{ linkEmail }}</span>
       </template>

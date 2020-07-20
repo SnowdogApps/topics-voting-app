@@ -79,7 +79,8 @@
     "tooltip-voted": "Voted!",
     "see-all": "See all propositions",
     "approved": "approved",
-    "not-approved": "not approved"
+    "not-approved": "not approved",
+    "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}'>{email}</a>"
   },
   "topics": {
     "empty-list-user": "There is no topic propositions yet. Be the first one!",

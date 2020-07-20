@@ -108,3 +108,10 @@
     transition: opacity .15s;
   }
 }
+
+.v-popover {
+    display: block !important;
+    position: absolute;
+    top: $spacer--s;
+    right: 0;
+}

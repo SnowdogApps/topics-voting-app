@@ -12,12 +12,21 @@
       @saved-edit="editMode = false"
     />
     <div v-else class="topic-item__content col-md-10">
-      <div
+      <v-popover
         v-if="topic.authorRole === 'observer'"
-        class="topic-item__badge topic-item__badge--available"
+        placement="top"
+        container="body"
       >
-        {{ $t('topic.to-grab')}}
-      </div>
+        <button
+          class="topic-item__badge topic-item__badge--available"
+        >
+          {{ $t('topic.to-grab')}}
+        </button>
+        <template v-slot:popover>
+          <div v-html="$t('topic.to-grab-info', {email: 'contact@meetmagento.pl'})">
+          </div>
+        </template>
+      </v-popover>
       <div
         v-if="topic.authorRole === 'speaker' && isAdmin"
         class="topic-item__badge"
@@ -115,7 +124,7 @@
 <script>
 import Vue from 'vue'
 import { mapGetters, mapState } from 'vuex'
-import { VTooltip } from 'v-tooltip'
+import { VTooltip, VPopover } from 'v-tooltip'
 import VButton from '@/components/Button.vue'
 import SocialShare from '@/components/SocialShare.vue'
 import markdown from '@/mixins/markdown.js'
@@ -125,6 +134,7 @@ Vue.directive('tooltip', VTooltip)
 export default {
   components: {
     VButton,
+    VPopover,
     SocialShare,
     LikeIcon: () => import('@/assets/icons/like.svg'),
     TopicItemDetails: () => import('@/components/TopicItemDetails.vue'),
@@ -247,6 +257,16 @@ export default {
     &--available {
       background-color: $secondary;
       color: $white;
+      border: none;
+      font-size: $font-size-base;
+      font-family: $font-family-base;
+      position: unset;
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: pointer;
+        box-shadow: $box-shadow;
+      }
     }
   }
 
