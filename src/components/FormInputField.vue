@@ -7,7 +7,7 @@
       :id="id"
       v-model.trim="data"
       class="input__field"
-      type="text"
+      :type="type"
       :placeholder="placeholder"
       :maxlength="maxlength"
       @input="validator.$touch()"
@@ -47,6 +47,10 @@ export default {
     maxlength: {
       type: String,
       default: '150'
+    },
+    type: {
+      type: String,
+      default: 'text'
     }
   },
   computed: {
