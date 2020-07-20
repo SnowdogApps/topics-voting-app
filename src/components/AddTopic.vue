@@ -238,12 +238,6 @@ $radio-dot-size: 12px;
   position: relative;
   margin: 0 0 $spacer--s 0;
 
-  &--error {
-    .error {
-      display: block;
-    }
-  }
-
     &__handler {
         position: relative;
     }

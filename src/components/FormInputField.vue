@@ -13,7 +13,7 @@
       @input="validator.$touch()"
     >
     <div
-      v-if="validator.required"
+      v-if="!validator.required"
       class="error"
     >
       {{ $t('form.required-field') }}
