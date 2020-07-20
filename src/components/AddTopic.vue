@@ -104,7 +104,7 @@
         </div>
         <div class="form-section__action">
           <v-button
-            :type="'submit'"
+            type="submit"
           >
             {{ $t('add-form.submit-button') }}
           </v-button>

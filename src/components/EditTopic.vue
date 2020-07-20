@@ -57,7 +57,7 @@
         </v-button>
         <v-button
           class="button--with-margin"
-          :type="'submit'"
+          type="submit"
         >
           {{ $t('global.save') }}
         </v-button>

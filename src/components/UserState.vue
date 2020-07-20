@@ -13,7 +13,7 @@
           {{ $t('user.welcome-msg') }}
           <br>
           <v-button
-            :class="'button--link'"
+            class="button--link"
             @btn-event="logout"
           >
             {{ $t('login.logout') }}
@@ -38,14 +38,14 @@
           <p>
             {{ $t('user.email-not-received') }}
             <v-button
-              :class="'button--link'"
+              class="button--link"
               @btn-event="resendEmailVerification"
             >
               {{ $t('user.resend-email') }}
             </v-button>
           </p>
           <v-button
-            :class="'button--link'"
+            class="button--link"
             @btn-event="logout"
           >
             {{ $t('login.logout') }}
