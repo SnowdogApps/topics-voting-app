@@ -2,8 +2,8 @@
   "global": {
     "yes": "tak",
     "no": "nie",
-    "error": "Błąd",
-    "success": "Sukces",
+    "error": "Błąd!",
+    "success": "Sukces!",
     "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.",
     "cancel": "Anuluj",
     "edit": "Edytuj",
@@ -36,7 +36,11 @@
     "no-account": "Nie masz konta?",
     "create-account-here": "Utwórz konto tutaj",
     "account-exists": "Masz już konto?",
-    "login-with-social-media": "Zaloguj się przez social media"
+    "login-with-social-media": "Zaloguj się przez social media",
+    "forgotten-password": "Zapomniałeś hasła?",
+    "reset-password": "Resetuj tutaj",
+    "send-reset-password-email": "Wyślij email resetujący hasło",
+    "reset-password-email-sent": "Email resetujący hasło został wysłany. Sprawdź skrzynkę pocztową."
   },
   "form": {
     "required-field": "Pole jest wymagane",

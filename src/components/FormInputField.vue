@@ -1,5 +1,5 @@
 <template>
-  <div :class="['input', { 'input--error': validator.$error }]">
+  <div :class="['input', { 'input--error': validator && validator.$error }]">
     <label :for="id">
       {{ label }}
     </label>
@@ -11,13 +11,16 @@
       :placeholder="placeholder"
       :maxlength="maxlength"
       @input="validator.$touch()"
+      :autocomplete="autocomplete"
     >
-    <div
-      v-if="!validator.required"
-      class="error"
-    >
-      {{ $t('form.required-field') }}
-    </div>
+    <slot name="validation">
+      <div
+        v-if="validator && !validator.required"
+        class="error"
+      >
+        {{ $t('form.required-field') }}
+      </div>
+    </slot>
   </div>
 </template>
 
@@ -30,7 +33,7 @@ export default {
     },
     validator: {
       type: Object,
-      required: true
+      default: null
     },
     id: {
       type: String,
@@ -51,6 +54,10 @@ export default {
     type: {
       type: String,
       default: 'text'
+    },
+    autocomplete: {
+      type: String,
+      default: 'off'
     }
   },
   computed: {

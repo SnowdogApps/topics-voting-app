@@ -19,6 +19,7 @@
       >
         <button
           class="topic-item__badge topic-item__badge--available"
+          :disabled="adminView"
         >
           {{ $t('topic.to-grab')}}
         </button>

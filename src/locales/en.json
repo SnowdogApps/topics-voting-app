@@ -2,8 +2,8 @@
   "global": {
     "yes": "yes",
     "no": "no",
-    "error": "Error",
-    "success": "Success",
+    "error": "Error!",
+    "success": "Success!",
     "error-occured": "An error occured. Refresh your page or try again later.",
     "cancel": "Cancel",
     "edit": "Edit",
@@ -36,7 +36,11 @@
     "no-account": "You don't have account?",
     "create-account-here": "Create new one here",
     "account-exists": "You already have an account?",
-    "login-with-social-media": "Log in with social media"
+    "login-with-social-media": "Log in with social media",
+    "forgotten-password": "Forgotten password?",
+    "reset-password": "Reset here",
+    "send-reset-password-email": "Send a password reset email",
+    "reset-password-email-sent": "Password reset email has been sent. Check your mailbox."
   },
   "form": {
     "required-field": "Field is required",
