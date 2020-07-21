@@ -1,10 +1,13 @@
 <template>
   <transition name="fade">
     <a
-
       v-if="visible"
       href="#"
-      class="back-to-top bold button--secondary"
+      class="
+        back-to-top
+        bold
+        button--secondary
+      "
       @click="scroll"
     >
       {{ $t('home.back-to-top') }}

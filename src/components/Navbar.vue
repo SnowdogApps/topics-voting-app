@@ -14,7 +14,7 @@
           class="link"
         >{{ $t('admin.admin-dashboard') }}</router-link>
     </div>
-      <lang-switcher class="" />
+    <lang-switcher />
   </nav>
 </template>
 
