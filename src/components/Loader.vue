@@ -37,12 +37,12 @@
     display: block;
     overflow: hidden;
     border-top-color: $gray-dark;
-    border-bottom-color: $orange;
+    border-bottom-color: $preset;
     div {
       @include loaderDivMixin;
       height: 100%;
       border-top-color: $gray-dark;
-      border-bottom-color: $orange;
+      border-bottom-color: $preset;
     }
   }
 

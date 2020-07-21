@@ -1,8 +1,7 @@
 .form-section {
   position: relative;
-  margin: $spacer--xl;
   box-shadow: $box-shadow;
-  padding: $spacer--l;
+  padding: $spacer--xl;
 
   &__action {
     margin: $spacer--l 0;
@@ -22,11 +21,21 @@
   &__field-tip {
     text-align: right;
   }
-  .error {
-    display: none;
-    text-align: left;
-    margin-top: 4px;
-    font-size: $font-size-small;
-    color: $error;
+
+  .input,
+  .radio {
+    .error {
+      display: none;
+      text-align: left;
+      margin-top: 4px;
+      font-size: $font-size-small;
+      color: $error;
+    }
+
+    &--error {
+      .error {
+        display: block;
+      }
+    }
   }
 }

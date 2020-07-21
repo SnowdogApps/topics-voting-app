@@ -4,14 +4,18 @@
     "no": "nie",
     "error": "Błąd",
     "success": "Sukces",
-    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "save": "Zapisz"
   },
   "home": {
     "home-title": "Meet Magento 2020 - prezentacje",
     "home-subtitle": "Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację",
     "home-top-description": "Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to także prelegentom wybrać temat na prezentację.",
     "login-info": "Musisz być zalogowany, aby zagłosować lub dodać temat.",
-    "list-items-title": "Lista proponowanych tematów"
+    "list-items-title": "Lista proponowanych tematów",
+    "back-to-top": "Do góry"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
@@ -53,7 +57,10 @@
     "submit-info-1": "Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.",
     "submit-info-2": "Temat pojawi się na liście jak tylko zostanie zaakceptowany.",
     "more-button": "Dodaj kolejny temat",
-    "description-preview": "Podgląd opisu:"
+    "description-preview": "Podgląd opisu:",
+    "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
+    "target-group-field-placeholder": "Grupa docelowa",
+    "edit-topic": "Edytuj temat"
   },
   "topic": {
     "to-grab": "do wzięcia",
@@ -72,10 +79,12 @@
     "tooltip-voted": "Zagłosowane!",
     "see-all": "Zobacz wszystkie propozycje",
     "approved": "zaakceptowano",
-    "not-approved": "nie zaakceptowano"
+    "not-approved": "nie zaakceptowano",
+    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}'>{email}</a>"
   },
   "topics": {
-    "empty-list": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!"
+    "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
+    "empty-list": "Nie ma żadnych propozycji."
   },
   "admin": {
     "admin-dashboard": "Panel Administratora",

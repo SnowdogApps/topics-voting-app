@@ -1,144 +1,143 @@
 <template>
-  <section class="form-section col-xs-12 col-md-8">
-    <h2>
+  <section>
+    <h2 class="section__heading">
       {{ $t('add-form.form-title') }}
     </h2>
-    <loader v-if="loading" class="loader--overlay" />
-    <form
-      v-if="submitStatus !== 'OK'"
-      @submit.prevent="addTopic"
-    >
-      <div :class="['input', { 'input--error': $v.title.$error }]">
-        <label for="title">
-          {{ $t('add-form.title-field-label') }}
-        </label>
-        <input
+    <div class="form-section m-auto col-xs-12 col-md-8">
+      <loader v-if="loading" class="loader--overlay" />
+      <form
+        v-if="submitStatus !== 'OK'"
+        @submit.prevent="addTopic"
+      >
+        <form-input-field
+          v-model="title"
+          :validator="$v.title"
           id="title"
-          v-model.trim="$v.title.$model"
-          class="input__field"
-          type="text"
+          :label="$t('add-form.title-field-label')"
           :placeholder="$t('add-form.title-field-label')"
           maxlength="150"
-        >
-        <div
-          v-if="!$v.title.required"
-          class="error"
-        >
-          {{ $t('form.required-field') }}
-        </div>
-      </div>
-      <div :class="['input', { 'input--error': $v.description.$error }]">
-        <label for="description" class="form__label">
-          {{ $t('add-form.description-field-label') }}
-        </label>
-        <textarea
-          id="description"
-          @input="debounceInput"
-          v-model="$v.description.$model"
-          class="input__field input__field--textarea"
-          type="text"
-          :placeholder="$t('add-form.description-field-placeholder')"
-          maxlength="700"
         />
-        <div class="row between-xs">
-          <div class="errors col-xs">
-            <div
-              v-if="!$v.description.required"
-              class="error"
-            >
-              {{ $t('form.required-field') }}
+        <div :class="['input', { 'input--error': $v.description.$error }]">
+          <label for="description" class="form__label">
+            {{ $t('add-form.description-field-label') }}
+          </label>
+          <textarea
+            id="description"
+            @input="debounceInput"
+            v-model="$v.description.$model"
+            class="input__field input__field--textarea"
+            type="text"
+            :placeholder="$t('add-form.description-field-placeholder')"
+            maxlength="700"
+          />
+          <div class="row between-xs">
+            <div class="errors col-xs">
+              <div
+                v-if="!$v.description.required"
+                class="error"
+              >
+                {{ $t('form.required-field') }}
+              </div>
+              <div
+                v-if="!$v.description.maxLength"
+                class="error"
+              >
+                {{ $t('add-form.description-field-tips') }}
+              </div>
             </div>
-            <div
-              v-if="!$v.description.maxLength"
-              class="error"
-            >
-              {{ $t('add-form.description-field-tips') }}
+            <span class="col-xs form-section__field-tip">
+              {{ charactersLeft }}
+            </span>
+          </div>
+        </div>
+        <form-input-field
+          v-model="targetGroup"
+          :validator="$v.targetGroup"
+          id="targetGroup"
+          :label="$t('add-form.target-group-field-label')"
+          :placeholder="$t('add-form.target-group-field-placeholder')"
+          maxlength="150"
+        />
+        <div :class="['radio', { 'radio--error': $v.description.$error }]">
+          <fieldset class="fieldset" aria-labelledby="radio-legend">
+            <legend id="radio-legend" class="fieldset__legend">
+              {{ $t('add-form.activity-radio-legend') }}
+            </legend>
+            <div class="radio__handler">
+              <input
+                type="radio"
+                id="observer"
+                class="radio__field"
+                v-model="$v.authorRole.$model"
+                value="observer"
+              >
+              <label for="observer" class="radio__label">
+                <span class="radio__text">
+                  {{ $t('add-form.radio-author-observer')}}
+                </span>
+              </label>
             </div>
+            <div class="radio__handler">
+              <input
+                type="radio"
+                id="speaker"
+                class="radio__field"
+                v-model="authorRole"
+                value="speaker"
+              >
+              <label for="speaker" class="radio__label">
+                <span class="radio__text">
+                  {{ $t('add-form.radio-author-speaker')}}
+                </span>
+              </label>
+            </div>
+          </fieldset>
+          <div
+            v-if="!$v.authorRole.required"
+            class="error"
+          >
+            {{ $t('form.required-field') }}
           </div>
-          <span class="col-xs form-section__field-tip">
-            {{ charactersLeft }}
-          </span>
-        </div>
-      </div>
-      <div :class="['radio', { 'radio--error': $v.description.$error }]">
-        <fieldset class="fieldset" aria-labelledby="radio-legend">
-          <legend id="radio-legend" class="fieldset__legend">
-            {{ $t('add-form.activity-radio-legend') }}
-          </legend>
-          <div class="radio__handler">
-            <input
-              type="radio"
-              id="observer"
-              class="radio__field"
-              v-model="$v.authorRole.$model"
-              value="observer"
-            >
-            <label for="observer" class="radio__label">
-              <span class="radio__text">
-                {{ $t('add-form.radio-author-observer')}}
-              </span>
-            </label>
+          <div v-if="authorRole === 'speaker'">
+            {{ $t('add-form.radio-speaker-info') }}
           </div>
-          <div class="radio__handler">
-            <input
-              type="radio"
-              id="speaker"
-              class="radio__field"
-              v-model="authorRole"
-              value="speaker"
-            >
-            <label for="speaker" class="radio__label">
-              <span class="radio__text">
-                {{ $t('add-form.radio-author-speaker')}}
-              </span>
-            </label>
-          </div>
-        </fieldset>
-        <div
-          v-if="!$v.authorRole.required"
-          class="error"
-        >
-          {{ $t('form.required-field') }}
         </div>
-        <div v-if="authorRole === 'speaker'">
-          {{ $t('add-form.radio-speaker-info') }}
+        <div class="form-section__action">
+          <v-button
+            type="submit"
+          >
+            {{ $t('add-form.submit-button') }}
+          </v-button>
         </div>
-      </div>
-      <div class="form-section__action">
+      </form>
+      <div v-if="submitStatus === 'OK'">
+        <p>
+          {{ $t('add-form.submit-info-1')}}
+          <br>
+          {{ $t('add-form.submit-info-2')}}
+        </p>
+        <br>
         <v-button
-          :type="'submit'"
+          @btn-event="submitStatus = null"
         >
-          {{ $t('add-form.submit-button') }}
+          {{ $t('add-form.more-button') }}
         </v-button>
       </div>
-    </form>
-    <div v-if="submitStatus === 'OK'">
-      <p>
-        {{ $t('add-form.submit-info-1')}}
-        <br>
-        {{ $t('add-form.submit-info-2')}}
-      </p>
-      <br>
-      <v-button
-        @btn-event="submitStatus = null"
+      <p
+        v-if="submitStatus === 'ERROR'"
+        class="submit-error"
       >
-        {{ $t('add-form.more-button') }}
-      </v-button>
-    </div>
-    <p
-      v-if="submitStatus === 'ERROR'"
-      class="submit-error"
-    >
-      {{ $t('form.form-error-msg') }}
-    </p>
-    <div
-      v-if="description"
-      class="form-section__preview"
-    >
-      <h3>
-        {{ $t('add-form.description-preview')}}
-      </h3>
-      <div v-html="compiledMarkdown(description)"></div>
+        {{ $t('form.form-error-msg') }}
+      </p>
+      <div
+        v-if="description"
+        class="form-section__preview"
+      >
+        <h3>
+          {{ $t('add-form.description-preview')}}
+        </h3>
+        <div v-html="compiledMarkdown(description)"></div>
+      </div>
     </div>
   </section>
 </template>
@@ -150,11 +149,13 @@ import debounce from 'lodash.debounce'
 import markdown from '@/mixins/markdown.js'
 import Loader from '@/components/Loader.vue'
 import VButton from '@/components/Button.vue'
+import FormInputField from '@/components/FormInputField.vue'
 
 export default {
   components: {
     Loader,
-    VButton
+    VButton,
+    FormInputField
   },
   computed: {
     ...mapGetters({
@@ -170,6 +171,7 @@ export default {
     return {
       title: '',
       description: '',
+      targetGroup: '',
       authorRole: '',
       loading: false,
       submitStatus: null
@@ -187,6 +189,9 @@ export default {
       required
     },
     authorRole: {
+      required
+    },
+    targetGroup: {
       required
     }
   },
@@ -206,12 +211,15 @@ export default {
         this.$store.dispatch('addTopic', {
           title: this.title,
           description: this.description,
+          targetGroup: this.targetGroup,
           authorRole: this.authorRole
         }).then(() => {
           this.$v.$reset()
           this.loading = false
           this.title = ''
           this.description = ''
+          this.targetGroup = ''
+          this.authorRole = ''
           this.submitStatus = 'OK'
         })
       }
@@ -229,12 +237,6 @@ $radio-dot-size: 12px;
 .radio {
   position: relative;
   margin: 0 0 $spacer--s 0;
-
-  &--error {
-    .error {
-      display: block;
-    }
-  }
 
     &__handler {
         position: relative;

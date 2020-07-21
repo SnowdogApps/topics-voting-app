@@ -4,13 +4,29 @@
     :id="id"
     class="topic-item"
   >
-    <div class="topic-item__content">
-      <div
+    <div class="col-md-1"></div>
+    <edit-topic
+      v-if="adminView && editMode"
+      :id="id"
+      @cancel-edit="editMode = false"
+      @saved-edit="editMode = false"
+    />
+    <div v-else class="topic-item__content col-md-10">
+      <v-popover
         v-if="topic.authorRole === 'observer'"
-        class="topic-item__badge topic-item__badge--available"
+        placement="top"
+        container="body"
       >
-        {{ $t('topic.to-grab')}}
-      </div>
+        <button
+          class="topic-item__badge topic-item__badge--available"
+        >
+          {{ $t('topic.to-grab')}}
+        </button>
+        <template v-slot:popover>
+          <div v-html="$t('topic.to-grab-info', {email: 'contact@meetmagento.pl'})">
+          </div>
+        </template>
+      </v-popover>
       <div
         v-if="topic.authorRole === 'speaker' && isAdmin"
         class="topic-item__badge"
@@ -19,15 +35,15 @@
       </div>
       <h1
         v-if="!listItem"
-        class="topic-item__title"
+        class="topic-item__title justified"
       >
         {{ topic.title }}
       </h1>
       <h3
         v-else
-        class="topic-item__title">{{ topic.title }}
+        class="topic-item__title justified">{{ topic.title }}
       </h3>
-      <div>
+      <div class="justified">
         <router-link
           :to="{
             name: 'topic',
@@ -40,61 +56,41 @@
       <div
         v-if="topic.description"
         v-html="compiledMarkdown(topic.description)"
+        class="topic-item__description justified"
       ></div>
+      <div
+        v-if="topic.targetGroup"
+        class="topic-item__target-group"
+      >
+        <span class="bold">{{ $t('add-form.target-group-field-placeholder') }}</span>:
+        <span>{{ topic.targetGroup }}</span>
+      </div>
       <social-share
+        v-if="!adminView"
         :url="shareUrl"
         :title="topic.title"
         :description="topic.description"
       />
-      <div v-if="isAdmin" class="topic-item__details">
-        <h4>
-          {{ $t('topic.details') }}
-        </h4>
-        <ul class="topic-item__list">
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-id') }}
-            </span>
-            {{ topic.authorId }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-name') }}
-            </span>
-            {{ topic.authorName }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-email') }}
-            </span>
-            {{ topic.authorEmail }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.created') }}
-            </span>
-            {{ topic.createDate }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.speaker') }}
-            </span>
-            {{ topic.authorRole === 'speaker' ? $t('global.yes') : $t('global.no') }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.status') }}
-            </span>
-            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
-            <v-button
-              v-if="isAdmin && !topic.approved"
-              class="topic-item__approve-btn"
-              @btn-event="approveTopic"
-            >
-              {{ $t('topic.approve-button') }}
-            </v-button>
-          </li>
-        </ul>
+      <topic-item-details
+        v-if="isAdmin && adminView"
+        :id="id">
+      </topic-item-details>
+      <div class="topic-item__btn-section"
+        v-if="isAdmin && adminView">
+        <v-button
+          v-if="editable"
+          class="button--with-margin"
+          @btn-event="editTopic"
+        >
+          {{ $t('global.edit') }}
+        </v-button>
+        <v-button
+          v-if="!topic.approved"
+          class="button--with-margin"
+          @btn-event="approveTopic"
+        >
+          {{ $t('topic.approve-button') }}
+        </v-button>
       </div>
     </div>
     <div class="topic-item__vote">
@@ -102,9 +98,10 @@
         <h4>
           {{ $t('topic.votes') }}
         </h4>
-        {{ topic.votes }}
+        {{ topic.votes || 0 }}
       </div>
       <v-button
+        v-if="!adminView"
         :class="[
           'topic-item__upvote',
           {
@@ -123,10 +120,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import Vue from 'vue'
 import { mapGetters, mapState } from 'vuex'
-import { VTooltip } from 'v-tooltip'
+import { VTooltip, VPopover } from 'v-tooltip'
 import VButton from '@/components/Button.vue'
 import SocialShare from '@/components/SocialShare.vue'
 import markdown from '@/mixins/markdown.js'
@@ -136,8 +134,11 @@ Vue.directive('tooltip', VTooltip)
 export default {
   components: {
     VButton,
+    VPopover,
     SocialShare,
-    LikeIcon: () => import('@/assets/icons/like.svg')
+    LikeIcon: () => import('@/assets/icons/like.svg'),
+    TopicItemDetails: () => import('@/components/TopicItemDetails.vue'),
+    EditTopic: () => import('@/components/EditTopic.vue')
   },
   props: {
     id: {
@@ -145,6 +146,10 @@ export default {
       required: true
     },
     listItem: {
+      type: Boolean,
+      default: false
+    },
+    editable: {
       type: Boolean,
       default: false
     }
@@ -181,11 +186,15 @@ export default {
         message = this.$t('topic.tooltip-voted')
       }
       return message
+    },
+    adminView () {
+      return this.$router.currentRoute.path.includes('admin-dashboard')
     }
   },
   data () {
     return {
-      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`
+      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`,
+      editMode: false
     }
   },
   methods: {
@@ -204,6 +213,9 @@ export default {
     approveTopic () {
       const topicId = this.id
       this.$store.dispatch('approveTopic', topicId)
+    },
+    editTopic () {
+      this.editMode = true
     }
   }
 }
@@ -215,7 +227,6 @@ export default {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: $spacer--xl;
-  border-bottom: $border-base;
 
   @include mq($screen-sm-min) {
     flex-direction: row;
@@ -225,34 +236,46 @@ export default {
   &__content {
     position: relative;
     flex-grow: 1;
-    text-align: left;
-    padding-top: $spacer--s;
+    padding: $spacer--m $spacer--m;
     word-break: break-word;
-
-    @include mq($screen-sm-min) {
-      max-width: 70%;
-    }
+    box-shadow: $box-shadow;
+    text-align: left;
   }
 
   &__badge {
     position: absolute;
-    top: $spacer--m;
+    top: $spacer--s;
     right: 0;
     width: auto;
     display: block;
-    background-color: $orange;
+    background-color: $preset;
     padding: 4px $spacer--xs;
     margin-bottom: $spacer--xs;
     color: $gray-dark;
     font-weight: $font-weight-bold;
 
     &--available {
-      background-color: $success;
+      background-color: $secondary;
+      color: $white;
+      border: none;
+      font-size: $font-size-base;
+      font-family: $font-family-base;
+      position: unset;
+      &:hover,
+      &:focus,
+      &:active {
+        cursor: pointer;
+        box-shadow: $box-shadow;
+      }
     }
   }
 
   &__title {
-    margin-bottom: $spacer--s;
+    margin: $spacer--l 0 $spacer--s 0;
+  }
+
+  &__target-group {
+    margin-top: $spacer--s;
   }
 
   &__details {
@@ -269,15 +292,21 @@ export default {
     line-height: 2;
   }
 
-  &__approve-btn {
-    margin-left: $spacer--m;
+  &__btn-section {
+    display: flex;
+    justify-content: center;
+    margin: $spacer--s 0;
   }
 
   &__vote {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-    justify-content: flex-end;
+    flex-flow: column;
+    align-items: center;
+    justify-content: flex-start;
+    @include mq($max-screen: $screen-sm-min) {
+      flex-flow: row;
+      justify-content: flex-end;
+    }
   }
 
   &__vote-number {
@@ -293,18 +322,18 @@ export default {
     margin: $spacer--m;
     min-width: 56px;
     height: 56px;
-    border: 2px solid $orange;
+    border: 2px solid $preset;
     background-color: $white;
 
     .button__icon {
-      fill: $orange;
+      fill: $preset;
       width: 32px;
       height: 32px;
     }
 
     &--voted {
-      background-color: $orange;
-      border-color: $orange;
+      background-color: $preset;
+      border-color: $preset;
 
       .button__icon {
         fill: $black;

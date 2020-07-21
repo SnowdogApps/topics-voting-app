@@ -1,54 +1,56 @@
 
 // Colors
-$black                : #000;
-$white                : #fff;
-$orange               : #fe5f15;
-$gray-lighter         : #e2e2e2;
-$gray-light           : #d9d7d7;
-$gray-dark            : #2f2b2f;
-$gray-darker          : #282428;
-$error                : #dc3545;
-$success              : #42A85F;
-$warn                 : #fff3cd;
+$black                    : #000;
+$white                    : #fff;
+$orange                   : #fe5f15;
+$blue                     : #081154;
+$gray-lighter             : #e2e2e2;
+$gray-light               : #d9d7d7;
+$gray-dark                : #2f2b2f;
+$gray-darker              : #282428;
+$error                    : #dc3545;
+$success                  : #42A85F;
+$warn                     : #fff3cd;
 
 // Current Preset Declaration
-$preset               : $orange;
+$preset                   : $orange;
+$secondary                : $blue;
 
 // Breakpoints
-$screen-xs-min        : 576px;
-$screen-sm-min        : 768px;
-$screen-md-min        : 992px;
-$screen-lg-min        : 1200px;
+$screen-xs-min            : 576px;
+$screen-sm-min            : 768px;
+$screen-md-min            : 992px;
+$screen-lg-min            : 1200px;
 
-$screen-xs-max        : $screen-xs-min - 1;
-$screen-sm-max        : $screen-sm-min - 1;
-$screen-md-max        : $screen-md-min - 1;
-$screen-lg-max        : $screen-lg-min - 1;
+$screen-xs-max            : $screen-xs-min - 1;
+$screen-sm-max            : $screen-sm-min - 1;
+$screen-md-max            : $screen-md-min - 1;
+$screen-lg-max            : $screen-lg-min - 1;
 
 // Typography
-$font-family-base     : Avenir, Helvetica, Arial, sans-serif;
-$font-weight-base     : 400;
-$font-weight-bold     : 700;
+$font-family-base         : Avenir, Helvetica, Arial, sans-serif;
+$font-weight-base         : 400;
+$font-weight-bold         : 700;
 
-$font-color-base      : $gray-darker;
+$font-color-base          : $gray-darker;
 
-$font-size-extra-large: 24px;
-$font-size-large      : 18px;
-$font-size-base       : 16px;
-$font-size-small      : 14px;
-$font-size-extra-small: 12px;
-$border-base          : 1px solid $gray-light;
-$line-height          : 1.6;
+$font-size-extra-large    : 24px;
+$font-size-large          : 18px;
+$font-size-base           : 16px;
+$font-size-small          : 14px;
+$font-size-extra-small    : 12px;
+$border-base              : 1px solid $gray-light;
+$line-height              : 1.6;
 
 // spacer
-$spacer--xs           : 8px;
-$spacer--s            : 16px;
-$spacer--m            : 24px;
-$spacer--l            : 32px;
-$spacer--xl           : 40px;
+$spacer--xs               : 8px;
+$spacer--s                : 16px;
+$spacer--m                : 24px;
+$spacer--l                : 32px;
+$spacer--xl               : 40px;
 
 // transition
-$transition-base      : all 0.3s ease-in-out !default;
-$transition-fade      : opacity 0.25s linear !default;
+$transition-base          : all 0.3s ease-in-out !default;
+$transition-fade          : opacity 0.25s linear !default;
 
-$box-shadow: 0 9px 12px rgba(0, 0, 0, 0.19);
+$box-shadow               : 0 9px 12px rgba(0, 0, 0, 0.19);

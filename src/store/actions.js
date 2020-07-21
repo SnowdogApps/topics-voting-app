@@ -33,6 +33,7 @@ export default {
     return topicRef.push({
       title: topic.title,
       description: topic.description,
+      targetGroup: topic.targetGroup,
       votes: 0,
       authorId: state.user.id,
       authorEmail: state.user.email,
@@ -47,6 +48,25 @@ export default {
         type: 'success'
       }, { root: true })
     }).catch((err) => {
+      commit('notification/push', {
+        message: err.message,
+        title: 'Error',
+        type: 'error'
+      }, { root: true })
+    })
+  }),
+  editTopic: firebaseAction(({ state, commit }, topic) => {
+    return topicRef.child(topic.id).update({
+      title: topic.title,
+      description: topic.description,
+      targetGroup: topic.targetGroup
+    }).then(() => {
+      commit('notification/push', {
+        message: 'Topic changes were saved',
+        title: 'Success',
+        type: 'success'
+      }, { root: true })
+    }).catch(err => {
       commit('notification/push', {
         message: err.message,
         title: 'Error',

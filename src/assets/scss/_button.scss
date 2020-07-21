@@ -37,8 +37,8 @@
   }
 
   &--secondary {
-    background-color: $orange;
-    border-color: $orange;
+    background-color: $preset;
+    border-color: $preset;
     color: $black;
   }
 
@@ -55,5 +55,18 @@
     width: 24px;
     height: 24px;
     transition: $transition-base;
+  }
+
+  &--cancel {
+    background-color: white;
+    border-color: $gray-dark;
+    color: $gray-dark;
+  }
+
+  &--with-margin {
+    margin: $spacer--m $spacer--xs;
+    @include mq($screen-sm-min) {
+      margin: $spacer--xs $spacer--m;
+    }
   }
 }

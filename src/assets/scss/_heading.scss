@@ -45,6 +45,23 @@ h1 {
 
 h2 {
     @extend .heading--h2;
+    &.section__heading {
+        font-weight: $font-weight-bold;
+        text-transform: uppercase;
+        margin: $spacer--xs $spacer--s $spacer--m;
+        padding: $spacer--s;
+        position: relative;
+        &:after {
+        content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 64px;
+            height: 2px;
+            background-color: $preset;
+            transform: translateX(-50%);
+        }
+    }
 }
 
 h3 {

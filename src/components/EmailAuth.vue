@@ -94,7 +94,7 @@
       </div>
       <v-button
         v-if="login"
-        :type="'submit'"
+        type="submit"
         :disabled="$v.$invalid"
         @btn-event="signIn"
       >
@@ -102,7 +102,7 @@
       </v-button>
       <v-button
         v-else-if="!isLinkingProviderPassword"
-        :type="'submit'"
+        type="submit"
         :disabled="$v.$invalid"
         @btn-event="createUser"
       >
@@ -122,14 +122,14 @@
       <p v-else>
         {{ $t('login.account-exists') }}
         <v-button
-          :class="'button--link'"
+          class="button--link"
           @btn-event="login = !login"
         >
           {{ $t('login.log-in') }}
         </v-button>
       </p>
       <v-button
-        :class="'button--link'"
+        class="button--link"
         @btn-event="backToSocial"
       >
         {{ $t('login.login-with-social-media') }}

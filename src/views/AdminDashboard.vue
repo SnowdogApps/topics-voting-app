@@ -4,11 +4,13 @@
     <topic-list
       :topics="topicsNotApproved"
       :title="notApprListTitle"
+      :editable="true"
       class="col-xs-12"
     />
     <topic-list
       :topics="topicsApproved"
       :title="apprListTitle"
+      :editable="true"
       class="col-xs-12"
     />
   </div>

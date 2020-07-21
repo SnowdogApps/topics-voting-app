@@ -4,14 +4,18 @@
     "no": "no",
     "error": "Error",
     "success": "Success",
-    "error-occured": "An error occured. Refresh your page or try again later."
+    "error-occured": "An error occured. Refresh your page or try again later.",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "save": "Save"
   },
   "home": {
     "home-title": "Meet Magento 2020 - topics",
     "home-subtitle": "Vote on interesting topics, share your ideas and if you want to be a speaker - submit proposal",
     "home-top-description": "Some text that explain what is the page for. This page allows as to collect topic that conference's participants are interested in. It helps speakers to choose their subjects and us to choose those which fit your need.",
     "login-info": "You have to be logged in to vote for a topic or add your own proposition.",
-    "list-items-title": "List of proposed topics"
+    "list-items-title": "List of proposed topics",
+    "back-to-top": "Back to top"
   },
   "login": {
     "login-create-button": "Log in or create an account",
@@ -53,7 +57,10 @@
     "submit-info-1": "Thanks for your submission! Your topic will be verified.",
     "submit-info-2": "it will show on the list as soon as it is approved.",
     "more-button": "Add another topic",
-    "description-preview": "Your description preview:"
+    "description-preview": "Your description preview:",
+    "target-group-field-label": "Target audience (eg. junior Magento developer)",
+    "target-group-field-placeholder": "Taget audience",
+    "edit-topic": "Edit topic"
   },
   "topic": {
     "to-grab": "To grab",
@@ -72,10 +79,12 @@
     "tooltip-voted": "Voted!",
     "see-all": "See all propositions",
     "approved": "approved",
-    "not-approved": "not approved"
+    "not-approved": "not approved",
+    "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}'>{email}</a>"
   },
   "topics": {
-    "empty-list": "There is no topic propositions yet. Be the first one!"
+    "empty-list-user": "There is no topic propositions yet. Be the first one!",
+    "empty-list": "There is no topic propositions."
   },
   "admin": {
     "admin-dashboard": "Admin Dashboard",
