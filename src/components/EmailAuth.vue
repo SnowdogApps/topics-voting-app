@@ -54,6 +54,12 @@
         type="password"
         :autocomplete="login ? 'current-password' : 'new-password'"
       />
+      <p
+        v-if="resetPassword"
+        class="login__action"
+      >
+        {{ $t('login.reset-password-info') }}
+      </p>
       <v-button
         v-if="login && resetPassword"
         type="submit"
@@ -237,7 +243,7 @@ export default {
                 this.$parent.emailPass = false
               } else if (!result) {
                 this.$store.commit('notification/push', {
-                  message: err.message,
+                  message: this.getErrMessage(err.code),
                   title: 'Error',
                   type: 'error'
                 }, { root: true })
@@ -245,7 +251,7 @@ export default {
             })
           } else {
             this.$store.commit('notification/push', {
-              message: err.message,
+              message: this.getErrMessage(err.code),
               title: 'Error',
               type: 'error'
             }, { root: true })
@@ -272,7 +278,7 @@ export default {
           })
         }).catch((err) => {
           this.$store.commit('notification/push', {
-            message: err.message,
+            message: this.getErrMessage(err.code),
             title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
@@ -293,7 +299,7 @@ export default {
       } else {
         this.submitStatus = 'PENDING'
         const state = {
-          url: window.location.href
+          url: `${window.location.href}?reset=true`
         }
         auth.sendPasswordResetEmail(this.formData.email, state).then((result) => {
           this.$store.commit('notification/push', {
@@ -301,11 +307,10 @@ export default {
             title: this.$t('global.success'),
             type: 'success'
           }, { root: true })
-          this.resetPassword = false
+          this.backToSocial()
         }).catch((err) => {
-          const message = this.getErrMessage(err.code)
           this.$store.commit('notification/push', {
-            message,
+            message: this.getErrMessage(err.code),
             title: this.$t('global.error'),
             type: 'error'
           }, { root: true })

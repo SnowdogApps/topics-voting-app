@@ -9,11 +9,20 @@
       </template>
     </h2>
     <i18n v-if="linkProvider" path="login.account-already-linked-to-email" tag="p">
+      <template #provider>
+        <span class="bold">{{ linkCreds.providerId }}</span>
+      </template>
       <template #email>
         <span class="bold">{{ linkEmail }}</span>
       </template>
       <template #link>
-        <span class="bold">{{ linkProvider }}</span>
+        <span class="bold">
+          {{
+            linkProvider === 'password'
+              ? $t('login.password-link')
+              : linkProvider
+          }}
+        </span>
       </template>
     </i18n>
     <social-buttons v-if="!emailPass" />
