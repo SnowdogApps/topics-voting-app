@@ -26,7 +26,7 @@
           }}
         </p>
         <p v-if="topicsLoaded === 2 && topics.length === 0">
-          {{ $t('global.error-occured') }}
+          {{ $t('error.error-occured') }}
         </p>
       </transition>
       <transition name="fade">

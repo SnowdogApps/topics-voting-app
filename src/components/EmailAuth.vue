@@ -122,6 +122,7 @@ import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 import linkAccount from '@/mixins/linkAccount.js'
+import errorMsgProvider from '@/mixins/errorMsgProvider.js'
 import VButton from '@/components/Button.vue'
 import FormInputField from '@/components/FormInputField.vue'
 
@@ -140,7 +141,7 @@ export default {
       return this.linkProvider === 'password'
     }
   },
-  mixins: [validationMixin, linkAccount],
+  mixins: [validationMixin, linkAccount, errorMsgProvider],
   data () {
     return {
       formData: {
@@ -291,7 +292,10 @@ export default {
         this.submitStatus = 'ERROR'
       } else {
         this.submitStatus = 'PENDING'
-        auth.sendPasswordResetEmail(this.formData.email).then((result) => {
+        const state = {
+          url: window.location.href
+        }
+        auth.sendPasswordResetEmail(this.formData.email, state).then((result) => {
           this.$store.commit('notification/push', {
             message: this.$t('login.reset-password-email-sent'),
             title: this.$t('global.success'),
@@ -299,8 +303,9 @@ export default {
           }, { root: true })
           this.resetPassword = false
         }).catch((err) => {
+          const message = this.getErrMessage(err.code)
           this.$store.commit('notification/push', {
-            message: err.message,
+            message,
             title: this.$t('global.error'),
             type: 'error'
           }, { root: true })

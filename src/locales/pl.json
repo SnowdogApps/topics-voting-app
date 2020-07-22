@@ -105,5 +105,10 @@
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
     "resend-email": "Ponownie wyślij prośbę o weryfikację"
+  },
+  "error": {
+    "auth/invalid-email-address": "Adres email jest niepoprawny.",
+    "auth/user-not-found": "Użytkownik nie został znaleziony. Sprawdź, czy wpisany adres email jest poprawny.",
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
   }
 }

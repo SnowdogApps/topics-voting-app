@@ -4,7 +4,6 @@
     "no": "no",
     "error": "Error!",
     "success": "Success!",
-    "error-occured": "An error occured. Refresh your page or try again later.",
     "cancel": "Cancel",
     "edit": "Edit",
     "save": "Save"
@@ -105,5 +104,10 @@
     "verification-email-info": "You should receive an email verification request, check your email box.",
     "email-not-received": "If you didn't receive an email:",
     "resend-email": "Resend email verification request"
+  },
+  "error": {
+    "auth/invalid-email-address": "Email address is invalid.",
+    "auth/user-not-found": "User not found. Check if given email address is correct.",
+    "error-occured": "An error occured. Refresh your page or try again later."
   }
 }
