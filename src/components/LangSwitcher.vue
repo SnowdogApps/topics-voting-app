@@ -17,16 +17,19 @@
 </template>
 
 <script>
+import { auth } from '@/db'
+
 export default {
   data () {
     return { langs: ['en', 'pl'] }
   },
   methods: {
     saveLang () {
+      const currentLang = this.$i18n.locale
+      auth.lang = currentLang
       if (typeof localStorage === 'undefined') {
         return
       }
-      const currentLang = this.$i18n.locale
       localStorage.setItem('lang', currentLang)
     }
   }
