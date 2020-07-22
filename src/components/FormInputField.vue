@@ -57,7 +57,7 @@ export default {
     },
     autocomplete: {
       type: String,
-      default: 'off'
+      required: true
     }
   },
   computed: {
