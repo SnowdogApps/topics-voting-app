@@ -3,7 +3,6 @@
     <div class="col-xs-12">
       <topic-item :id="id" />
     </div>
-    <user-state class="col-xs-12" />
     <div class="col-xs-12">
       <router-link
         to="/"
@@ -16,12 +15,10 @@
 </template>
 
 <script>
-import UserState from '@/components/UserState.vue'
 import TopicItem from '@/components/TopicItem.vue'
 
 export default {
   components: {
-    UserState,
     TopicItem
   },
   props: {

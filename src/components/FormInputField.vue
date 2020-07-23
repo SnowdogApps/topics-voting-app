@@ -1,6 +1,8 @@
 <template>
   <div :class="['input', { 'input--error': validator.$error }]">
-    <label :for="id">
+    <label class="label"
+      :for="id"
+    >
       {{ label }}
     </label>
     <input
