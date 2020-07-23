@@ -2,7 +2,7 @@
   <header class="header">
     <navbar />
     <div class="header__top-section">
-      <img class="header__img" src="@/assets/icons/header.png" />
+      <img class="header__img" src="@/assets/images/header.png" />
       <div class="header__text">
         <span class="text">
           {{ $t("home.home-title") }}
