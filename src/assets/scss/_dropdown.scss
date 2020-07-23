@@ -1,0 +1,96 @@
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  @include mq($max-screen: $screen-md-max) {
+    width: 45px;
+  }
+
+  &__button {
+    padding: 0 26.5px 0 11.5px;
+    border: none;
+    color: #f4f4f4;
+    font-size: $font-size-small;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: transparent;
+    line-height: 38px;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    cursor: pointer;
+
+    @include mq($max-screen: $screen-md-max) {
+      padding: 0;
+      color: $font-color-base;
+    }
+
+    &:after {
+      content: "";
+      top: 50%;
+      right: 0;
+      position: absolute;
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid $gray-light;
+      color: $white;
+      transition: transform 0.3s ease-in-out;
+      transform: translateY(-50%) rotate(180deg);
+
+      @include mq($max-screen: $screen-md-max) {
+        color: $font-color-base;
+      }
+    }
+
+    &--active {
+      &:after {
+        transform: translateY(-50%) rotate(0);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      color: $preset;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    left: 10px;
+    right: 0;
+    top: 100%;
+    width: 100%;
+    margin-top: 2px;
+    background: $white;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  &__link {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $font-color-base;
+    display: block;
+    text-decoration: none;
+    padding: 5px;
+
+    &:hover,
+    &:focus {
+      color: $preset;
+    }
+  }
+}
+
+.top-nav-collapse {
+  .dropdown {
+    &__button {
+      color: $font-color-base;
+
+      &:after {
+        color: $font-color-base;
+      }
+    }
+  }
+}
