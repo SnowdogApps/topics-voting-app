@@ -1,6 +1,6 @@
 .tooltip {
   display: block !important;
-  z-index: 10000;
+  z-index: 1000;
 
   .tooltip-inner {
     background: black;
@@ -96,22 +96,22 @@
     }
   }
 
-  &[aria-hidden='true'] {
+  &[aria-hidden="true"] {
     visibility: hidden;
     opacity: 0;
-    transition: opacity .15s, visibility .15s;
+    transition: opacity 0.15s, visibility 0.15s;
   }
 
-  &[aria-hidden='false'] {
+  &[aria-hidden="false"] {
     visibility: visible;
     opacity: 1;
-    transition: opacity .15s;
+    transition: opacity 0.15s;
   }
 }
 
 .v-popover {
-    display: block;
-    position: absolute;
-    top: $spacer--s;
-    right: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
 }

@@ -1,0 +1,228 @@
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  font-size: $font-size-small;
+  padding: 0;
+
+  @include mq($screen-md-min, $screen-lg-min) {
+    font-size: $font-size-extra-small;
+  }
+
+  .active {
+    &.nav-link {
+      color: $preset;
+      font-weight: $font-weight-bold;
+    }
+  }
+}
+
+.nav-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mq($min-screen: $screen-sm-min) {
+    flex-direction: row;
+    max-width: 720px;
+  }
+  @include mq($min-screen: $screen-md-min) {
+    max-width: 960px;
+  }
+  @include mq($min-screen: $screen-lg-min) {
+    max-width: 1140px;
+  }
+}
+
+.navbar-brand {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+  margin-left: -27px;
+  height: $navbar-height;
+
+  @include mq($max-screen: $screen-sm-max) {
+    margin-left: -20px;
+  }
+}
+
+.top-nav-collapse {
+  background: $white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06);
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeInDown;
+  background: $white !important;
+  .navbar-nav .nav-link {
+    color: $font-color-base !important;
+
+    &:hover {
+      color: $preset !important;
+    }
+  }
+
+  @include mq($max-screen: $screen-sm-max) {
+    min-height: 45px;
+  }
+}
+
+.top-nav-collapse .navbar-nav li a.nav-link.active {
+  color: $preset !important;
+}
+
+.navbar-expand-lg {
+  > .nav-container {
+    padding: 0 15px;
+  }
+
+  @include mq($max-screen: $screen-md-max) {
+    background: $white;
+  }
+}
+
+.navbar-nav {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  &--right {
+    justify-content: flex-end;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+  }
+
+  @include mq($max-screen: $screen-md-max) {
+    max-width: 200px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.navbar-collapse {
+  display: flex;
+  flex-direction: row;
+  @include mq($screen-md-min) {
+    flex-basis: 100%;
+  }
+
+  @include mq($max-screen: $screen-md-max) {
+    background: $white;
+    padding: $navbar-height 0 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06);
+    display: none;
+    &.active {
+      display: flex;
+    }
+  }
+
+  > .nav-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding: 0 $spacer--s;
+    @include mq($min-screen: $screen-md-min) {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 0;
+    }
+  }
+}
+
+.nav-link {
+  color: #f4f4f4;
+  padding: 0 11.5px;
+  line-height: 38px;
+  text-transform: uppercase;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  text-decoration: none;
+
+  @include mq($min-screen: $screen-md-min) {
+    padding: 10px;
+    &--external {
+      border: 1px solid $preset;
+      padding: 10px $spacer--s;
+    }
+  }
+
+  @include mq($max-screen: $screen-md-max) {
+    color: $font-color-base;
+    padding: 0;
+  }
+}
+
+.navbar-header {
+  height: $navbar-height;
+  @include mq($max-screen: $screen-md-max) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.navbar-expand-lg .navbar-nav li > a:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -10px;
+  width: 24px;
+  height: 2px;
+  background: $preset;
+  transform: scale3d(0, 1, 1);
+  transition: transform 0.1s;
+
+  @include mq($max-screen: $screen-md-max) {
+    display: none;
+  }
+}
+.navbar-expand-lg .navbar-nav a.active:before {
+  transform: scale3d(1, 1, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.3s;
+}
+
+.navbar-expand-lg .navbar-nav li a:hover,
+.navbar-expand-lg .navbar-nav li .active > a,
+.navbar-expand-lg .navbar-nav li a:focus {
+  color: $preset;
+  outline: none;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:focus,
+.navbar-expand-lg .navbar-nav .nav-link:hover {
+  color: $preset !important;
+}
+
+.slide-enter-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: translate(100%, 0);
+}

@@ -48,6 +48,9 @@ export default {
 
 <style lang="scss">
 .container {
-  margin-top: $spacer--xl;
+  margin-top: $navbar-height;
+  @include mq($screen-md-min) {
+    margin-top: $spacer--xl;
+  }
 }
 </style>
