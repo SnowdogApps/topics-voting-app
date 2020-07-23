@@ -36,12 +36,12 @@
     height: 150px;
     display: block;
     overflow: hidden;
-    border-top-color: $gray-dark;
+    border-top-color: $blue;
     border-bottom-color: $preset;
     div {
       @include loaderDivMixin;
       height: 100%;
-      border-top-color: $gray-dark;
+      border-top-color: $blue;
       border-bottom-color: $preset;
     }
   }
@@ -53,7 +53,7 @@
     left: 0;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: $white;
     opacity: 0.5;
   }
 

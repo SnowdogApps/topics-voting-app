@@ -44,7 +44,7 @@
                   </a>
                 </li>
                 <li>
-                  <lang-switcher />
+                  <lang-switcher class="nav-link" />
                 </li>
               </ul>
           </div>
@@ -121,3 +121,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import './src/assets/scss/navbar';
+</style>
