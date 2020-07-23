@@ -19,6 +19,10 @@
             <div
               v-if="topic.authorRole === 'observer'"
               class="topic-item__badge topic-item__badge--available"
+              v-tooltip="{
+                content: this.$t('topic.to-grab-info', { email: 'contact@meetmagento.pl' }),
+                trigger: 'hover focus click'
+              }"
             >
               {{ $t("topic.to-grab") }}
             </div>
@@ -334,6 +338,7 @@ export default {
 
   &__vote-number {
     text-align: center;
+    word-break: keep-all;
     h4 {
       margin: 0;
     }

@@ -1,5 +1,5 @@
 <template>
-  <div class="form-section col-xs-12 col-md-10">
+  <div class="form-section col-xs-12">
     <div class="form-section__form">
       <h3 class="uppercase">
         {{ $t('add-form.edit-topic') }}
