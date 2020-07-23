@@ -33,6 +33,7 @@ export default {
   },
   methods: {
     saveLang (lang) {
+      this.hide()
       this.$i18n.locale = lang
       if (typeof localStorage === 'undefined') {
         return
