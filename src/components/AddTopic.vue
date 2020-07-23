@@ -74,7 +74,7 @@
               >
               <label for="observer" class="radio__label">
                 <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
-                  {{ $t('add-form.radio-author-observer')}}
+                  {{ $t('add-form.radio-author-observer') }}
                 </span>
               </label>
             </div>
@@ -88,7 +88,7 @@
               >
               <label for="speaker" class="radio__label">
                 <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
-                  {{ $t('add-form.radio-author-speaker')}}
+                  {{ $t('add-form.radio-author-speaker') }}
                 </span>
               </label>
             </div>
@@ -113,9 +113,9 @@
       </form>
       <div v-if="submitStatus === 'OK'">
         <p>
-          {{ $t('add-form.submit-info-1')}}
+          {{ $t('add-form.submit-info-1') }}
           <br>
-          {{ $t('add-form.submit-info-2')}}
+          {{ $t('add-form.submit-info-2') }}
         </p>
         <br>
         <v-button
@@ -136,7 +136,7 @@
         class="form-section__preview"
       >
         <h4>
-          {{ $t('add-form.description-preview')}}
+          {{ $t('add-form.description-preview') }}
         </h4>
         <div v-html="compiledMarkdown(description)"></div>
       </div>

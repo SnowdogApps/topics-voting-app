@@ -2,11 +2,9 @@
   <div class="row center-xs">
     <div class="col-xs-12 col-md-8">
       <p class="top-description__title bold">
-        {{ $t('home.home-top-description-title')}}
+        {{ $t('home.home-top-description-title') }}
       </p>
-      <p>
-        {{ $t('home.home-top-description')}}
-      </p>
+      <p v-html="$t('home.home-top-description')"></p>
       <p v-if="!isLoggedIn">
         {{ $t('home.login-info') }}
       </p>

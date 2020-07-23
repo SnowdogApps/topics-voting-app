@@ -13,7 +13,7 @@
     "home-title": "Meet Magento 2020",
     "home-subtitle": " - Prezentacje",
     "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
-    "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako call4papers - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go „to grab”, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę „to grab”.",
+    "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako <b>„call4papers”</b> - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go <b>„to grab”</b>, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę <b>„to grab”</b>.",
     "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
     "back-to-top": "Do góry",
@@ -52,8 +52,8 @@
     "description-field-tips": "Maxymalna ilość znaków - 700",
     "characters-left": "pozostało",
     "activity-radio-legend": "Wybierz rolę",
-    "radio-author-observer": "Chcę posłuchać o tym",
-    "radio-author-speaker": "Chcę mówić o tym",
+    "radio-author-observer": "Chcę o tym posłuchać (temat „to grab”)",
+    "radio-author-speaker": "Chcę o tym opowiedzieć („call4papers”)",
     "radio-speaker-info": "Wybierając tą opcję zgłaszasz chęć zostania prelegentem i prezentowania tego tematu podczas konferencji",
     "submit-button": "Dodaj temat",
     "submit-info-1": "Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.",
@@ -67,7 +67,7 @@
     "author-speaker": "Prelegent"
   },
   "topic": {
-    "to-grab": "do wzięcia",
+    "to-grab": "To grab",
     "c4p": "Call4papers",
     "details": "Szczegóły:",
     "author-id": "ID autora:",

@@ -10,7 +10,7 @@
           </h3>
           <p>{{ $t('user.welcome-msg') }}</p>
           <a class="button" href="#add-topic">
-              {{ $t('user.add-your-topic')}}
+              {{ $t('user.add-your-topic') }}
           </a>
           <br>
           <v-button

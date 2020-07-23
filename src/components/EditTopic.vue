@@ -64,7 +64,7 @@
               >
               <label for="observer" class="radio__label">
                 <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
-                  {{ $t('add-form.author-observer')}}
+                  {{ $t('add-form.author-observer') }}
                 </span>
               </label>
             </div>
@@ -78,7 +78,7 @@
               >
               <label for="speaker" class="radio__label">
                 <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
-                  {{ $t('add-form.author-speaker')}}
+                  {{ $t('add-form.author-speaker') }}
                 </span>
               </label>
             </div>

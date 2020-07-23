@@ -40,7 +40,7 @@
                     class="nav-link nav-link--external"
                     target="_blank"
                   >
-                    {{ $t('home.buy-ticket')}}
+                    {{ $t('home.buy-ticket') }}
                   </a>
                 </li>
                 <li>
