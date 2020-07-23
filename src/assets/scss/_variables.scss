@@ -9,7 +9,7 @@ $gray-light               : #d9d7d7;
 $gray-dark                : #2f2b2f;
 $gray-darker              : #282428;
 $error                    : #dc3545;
-$success                  : #42A85F;
+$success                  : #51df10;
 $warn                     : #fff3cd;
 
 // Current Preset Declaration
@@ -28,9 +28,10 @@ $screen-md-max            : $screen-md-min - 1;
 $screen-lg-max            : $screen-lg-min - 1;
 
 // Typography
-$font-family-base         : Avenir, Helvetica, Arial, sans-serif;
+$font-family-base         : 'Lato', sans-serif;
 $font-weight-base         : 400;
 $font-weight-bold         : 700;
+$font-weight-extra-bold   : 900;
 
 $font-color-base          : $gray-darker;
 
@@ -39,8 +40,14 @@ $font-size-large          : 18px;
 $font-size-base           : 16px;
 $font-size-small          : 14px;
 $font-size-extra-small    : 12px;
-$border-base              : 1px solid $gray-light;
+$border-base              : 1px solid #dfdfdf;
 $line-height              : 1.6;
+
+// headings
+$heading-size-large       : 40px;
+$heading-size-medium      : 32px;
+$heading-size-small       : $font-size-extra-large;
+$heading-size-extra-small : $font-size-base;
 
 // spacer
 $spacer--xs               : 8px;
@@ -53,4 +60,5 @@ $spacer--xl               : 40px;
 $transition-base          : all 0.3s ease-in-out !default;
 $transition-fade          : opacity 0.25s linear !default;
 
-$box-shadow               : 0 9px 12px rgba(0, 0, 0, 0.19);
+$box-shadow               : 0 3px 12px rgba(0, 0, 0, 0.1);
+$button-box-shadow        : 0 9px 12px rgba(0, 0, 0, 0.19);
