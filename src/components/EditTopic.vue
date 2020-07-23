@@ -12,6 +12,7 @@
         :label="$t('add-form.title-field-label')"
         :placeholder="$t('add-form.title-field-label')"
         maxlength="150"
+        autocomplete="off"
       />
       <div :class="['input', { 'input--error': $v.description.$error }]">
         <label for="description" class="form__label">

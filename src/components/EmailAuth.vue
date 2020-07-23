@@ -40,7 +40,7 @@
             v-if="!$v.formData.email.email"
             class="error"
           >
-            {{ $t('login.invalid-email-address')}}
+            {{ $t('form.invalid-email-address')}}
           </div>
         </template>
       </form-input-field>

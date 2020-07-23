@@ -31,7 +31,6 @@
     "sign-in-with": "Zarejestruj się przez {social}",
     "first-name": "Imię",
     "last-name": "Nazwisko",
-    "invalid-email-address": "Niepoprawny adres email",
     "password": "Hasło",
     "log-in": "Zaloguj",
     "create-account": "Stwórz konto",
@@ -47,12 +46,13 @@
   },
   "form": {
     "required-field": "Pole jest wymagane",
-    "form-error-msg": "Poprawnie wypełnij formularz."
+    "form-error-msg": "Poprawnie wypełnij formularz.",
+    "invalid-email-address": "Niepoprawny adres email"
   },
   "add-form": {
     "form-title": "Dodaj swoją propozycję tematu",
     "title-field-label": "Tytuł",
-    "description-field-label": "Opis (markdown dostępny, max. 700 znaków)",
+    "description-field-label": "Opis (<a target='_blank' href='{link}'>Markdown</a> dostępny, max. 700 znaków)",
     "description-field-placeholder": "Opis",
     "description-field-tips": "Maxymalna ilość znaków - 700",
     "characters-left": "pozostało",
@@ -67,7 +67,14 @@
     "description-preview": "Podgląd opisu:",
     "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
     "target-group-field-placeholder": "Grupa docelowa",
-    "edit-topic": "Edytuj temat"
+    "edit-topic": "Edytuj temat",
+    "speaker-additional-title": "Wypełnij proszę dodatkowe pola:",
+    "company-field-label": "Firma",
+    "company-field-placeholder": "Firma",
+    "position-field-label": "Stanowisko",
+    "position-field-placeholder": "Stanowisko",
+    "contact-email-field-label": "Email do kontaktu",
+    "contact-email-field-placeholder": "Email do kontaktu"
   },
   "topic": {
     "to-grab": "do wzięcia",

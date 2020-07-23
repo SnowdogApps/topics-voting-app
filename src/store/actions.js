@@ -29,19 +29,30 @@ export default {
       }, { root: true })
     })
   }),
-  addTopic: firebaseAction(({ state, commit }, topic) => {
+  addTopic: firebaseAction(({ state, commit, dispatch }, topic) => {
     return topicRef.push({
       title: topic.title,
       description: topic.description,
       targetGroup: topic.targetGroup,
       votes: 0,
-      authorId: state.user.id,
+      authorId: topic.authorId,
       authorEmail: state.user.email,
       authorName: state.user.displayName,
       authorRole: topic.authorRole,
       createDate: new Date(Date.now()).toLocaleString(),
-      approved: false
-    }).then(() => {
+      approved: false,
+      speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none'
+    }).then((result) => {
+      const addedTopic = result.key
+      dispatch('assignTopicToUser', { topicData: topic, topicId: addedTopic })
+      if (topic.authorRole === 'speaker') {
+        const userData = {
+          company: topic.company,
+          position: topic.position,
+          contactEmail: topic.contactEmail
+        }
+        dispatch('updateUserData', { userId: state.user.id, userData })
+      }
       commit('notification/push', {
         message: 'Your proposition was added to verification',
         title: 'Success',
@@ -54,6 +65,17 @@ export default {
         type: 'error'
       }, { root: true })
     })
+  }),
+  assignTopicToUser: firebaseAction(({ state }, { topicData, topicId }) => {
+    return userRef.child(state.user.id).child('topics').push({
+      topicId: topicId,
+      author: (topicData.authorId === state.user.id) ? 'yes' : 'no',
+      speaker: (topicData.authorRole === 'speaker') ? 'yes' : 'no'
+    })
+  }),
+  updateUserData: firebaseAction(({ state }, { userId, userData }) => {
+    console.log(userId, userData)
+    return userRef.child(userId).update(userData)
   }),
   editTopic: firebaseAction(({ state, commit }, topic) => {
     return topicRef.child(topic.id).update({

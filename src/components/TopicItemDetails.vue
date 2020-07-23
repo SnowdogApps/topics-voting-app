@@ -6,6 +6,12 @@
     <ul class="topic-item__list">
       <li>
         <span class="bold">
+          {{ $t('topic.speaker') }}
+        </span>
+        {{ topic.speaker }}
+      </li>
+      <li>
+        <span class="bold">
           {{ $t('topic.author-id') }}
         </span>
         {{ topic.authorId }}
@@ -27,12 +33,6 @@
           {{ $t('topic.created') }}
         </span>
         {{ topic.createDate }}
-      </li>
-      <li>
-        <span class="bold">
-          {{ $t('topic.speaker') }}
-        </span>
-        {{ topic.authorRole === 'speaker' ? $t('global.yes') : $t('global.no') }}
       </li>
       <li>
         <span class="bold">
