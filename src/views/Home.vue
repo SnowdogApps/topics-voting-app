@@ -1,12 +1,9 @@
 <template>
   <div class="row center-xs">
-    <h1 class="col-xs-12">
-      {{ $t('home.home-title') }}
-    </h1>
-    <h2 class="col-xs-12">
-      {{ $t('home.home-subtitle') }}
-    </h2>
-    <div class="col-xs-12">
+    <div class="col-xs-12 col-md-8">
+      <p class="top-description__title bold">
+        {{ $t('home.home-top-description-title')}}
+      </p>
       <p>
         {{ $t('home.home-top-description')}}
       </p>
@@ -19,7 +16,7 @@
       :topics="topics"
       :title="$t('home.list-items-title')"
       class="col-xs-12"
-     />
+    />
     <add-topic
       v-if="isLoggedIn"
       class="col-xs-12"
@@ -47,3 +44,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.top-description__title {
+  font-size: $font-size-extra-large;
+  margin: $spacer--s 0 $spacer--l;
+  @include mq($min-screen: $screen-sm-min) {
+    font-size: 32px;
+    line-height: 42px;
+  }
+}
+</style>

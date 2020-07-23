@@ -1,13 +1,13 @@
 <template>
-  <section class="form-section m-xl">
-    <h2>
+  <section class="form-section form-section__form col-md-7 col-xs-12 m-auto">
+    <h3>
       <template v-if="!emailPass && !linkProvider">
         {{ $t('login.choose-login-method') }}
       </template>
       <template v-else-if="emailPass && !linkProvider">
         {{ $t('login.login-email-password') }}
       </template>
-    </h2>
+    </h3>
     <i18n v-if="linkProvider" path="login.account-already-linked-to-email" tag="p">
       <template #email>
         <span class="bold">{{ linkEmail }}</span>
