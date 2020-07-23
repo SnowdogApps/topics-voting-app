@@ -10,12 +10,14 @@
     "save": "Zapisz"
   },
   "home": {
-    "home-title": "Meet Magento 2020 - prezentacje",
-    "home-subtitle": "Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację",
-    "home-top-description": "Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to także prelegentom wybrać temat na prezentację.",
-    "login-info": "Musisz być zalogowany, aby zagłosować lub dodać temat.",
+    "home-title": "Meet Magento 2020",
+    "home-subtitle": " - Prezentacje",
+    "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
+    "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako call4papers - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go „to grab”, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę „to grab”.",
+    "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
-    "back-to-top": "Do góry"
+    "back-to-top": "Do góry",
+    "buy-ticket": "Kup bilet"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
@@ -60,7 +62,9 @@
     "description-preview": "Podgląd opisu:",
     "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
     "target-group-field-placeholder": "Grupa docelowa",
-    "edit-topic": "Edytuj temat"
+    "edit-topic": "Edytuj temat",
+    "author-observer": "Słuchacz",
+    "author-speaker": "Prelegent"
   },
   "topic": {
     "to-grab": "do wzięcia",
@@ -95,7 +99,8 @@
     "share": "Udostępnij na"
   },
   "user": {
-    "hi": "Witaj",
+    "hi": "Witaj, {name}!",
+    "add-your-topic": "Dodaj swój temat",
     "welcome-msg": "Możesz głosować na zaproponowane tematy lub dodać własną propozycję.",
     "email-not-verified": "Twój adres email nie jest zweryfikowany.",
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",

@@ -10,12 +10,14 @@
     "save": "Save"
   },
   "home": {
-    "home-title": "Meet Magento 2020 - topics",
-    "home-subtitle": "Vote on interesting topics, share your ideas and if you want to be a speaker - submit proposal",
-    "home-top-description": "Some text that explain what is the page for. This page allows as to collect topic that conference's participants are interested in. It helps speakers to choose their subjects and us to choose those which fit your need.",
-    "login-info": "You have to be logged in to vote for a topic or add your own proposition.",
+    "home-title": "Meet Magento 2020",
+    "home-subtitle": "- Topics",
+    "home-top-description-title": "Vote for topics suggested by others, submit your own ideas or become a speaker.",
+    "home-top-description": "Give your vote to the topics that you find most interesting. If you'd like to become a speaker yourself, submit your topic and tag it as „call4papers” - we'll be in touch soon to discuss further details. Are you interested in something particular, but don't have enough knowledge about it? Submit your idea along with the tag „to grab”, so that someone with suitable expertise can pick this topic from the list and apply as a speaker - just by clicking on the „to grab” tag.",
+    "login-info": "To vote or submit your ideas, you need to be logged in.",
     "list-items-title": "List of proposed topics",
-    "back-to-top": "Back to top"
+    "back-to-top": "Back to top",
+    "buy-ticket": "Buy ticket"
   },
   "login": {
     "login-create-button": "Log in or create an account",
@@ -60,7 +62,9 @@
     "description-preview": "Your description preview:",
     "target-group-field-label": "Target audience (eg. junior Magento developer)",
     "target-group-field-placeholder": "Taget audience",
-    "edit-topic": "Edit topic"
+    "edit-topic": "Edit topic",
+    "author-observer": "Observer",
+    "author-speaker": "Speaker"
   },
   "topic": {
     "to-grab": "To grab",
@@ -95,7 +99,8 @@
     "share": "Share on"
   },
   "user": {
-    "hi": "Hi",
+    "hi": "Hi, {name}!",
+    "add-your-topic": "Add your topic",
     "welcome-msg": "You can vote on proposed topics or add your own proposition.",
     "email-not-verified": "Your email address is not verified.",
     "verification-email-info": "You should receive an email verification request, check your email box.",
