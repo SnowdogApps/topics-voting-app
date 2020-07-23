@@ -1,0 +1,85 @@
+$radio-size: 18px;
+$radio-dot-size: 10px;
+
+.submit-error {
+  color: $error;
+}
+.radio {
+  position: relative;
+  margin: 0 0 $spacer--s 0;
+  font-size: $font-size-small;
+
+  &__handler {
+    position: relative;
+  }
+
+  &__field {
+    position: absolute;
+    left: 0;
+    height: $radio-size;
+    width: $radio-size;
+    opacity: 0;
+    z-index: -1;
+
+    &:checked + .radio__label {
+      color: $gray-darker;
+      font-weight: $font-weight-bold;
+
+      &:before {
+        border-color: $gray-darker;
+      }
+
+      &:after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    height: auto;
+    width: 100%;
+    margin: $spacer--s 0;
+    line-height: $line-height;
+    color: $font-color-base;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: relative;
+      display: inline-block;
+      border: 1px solid $gray-darker;
+      border-radius: $radio-size;
+      width: $radio-size;
+      min-width: $radio-size;
+      height: $radio-size;
+      margin: 2px $spacer--xs 2px 0px;
+    }
+
+    &:after {
+      position: absolute;
+      top: 6px;
+      left: 4px;
+      content: "";
+      width: $radio-dot-size;
+      height: $radio-dot-size;
+      border-radius: $radio-dot-size;
+      margin: auto;
+      opacity: 0;
+      transform: scale(0);
+      background-color: $preset;
+      transition: $transition-base;
+    }
+  }
+
+  &__text {
+    width: calc(100% - #{$spacer--xs + $radio-size});
+    font-weight: $font-weight-base;
+    &.selected {
+      font-weight: $font-weight-bold;
+    }
+  }
+}
