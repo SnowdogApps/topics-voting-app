@@ -41,7 +41,8 @@ export default {
       authorRole: topic.authorRole,
       createDate: new Date(Date.now()).toLocaleString(),
       approved: false,
-      speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none'
+      speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none',
+      speakerId: (topic.authorRole === 'speaker') ? `${topic.authorId}` : null
     }).then((result) => {
       const addedTopic = result.key
       dispatch('assignTopicToUser', { topicData: topic, topicId: addedTopic })
@@ -74,7 +75,6 @@ export default {
     })
   }),
   updateUserData: firebaseAction(({ state }, { userId, userData }) => {
-    console.log(userId, userData)
     return userRef.child(userId).update(userData)
   }),
   editTopic: firebaseAction(({ state, commit }, topic) => {

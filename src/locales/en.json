@@ -113,7 +113,10 @@
     "email-not-verified": "Your email address is not verified.",
     "verification-email-info": "You should receive an email verification request, check your email box.",
     "email-not-received": "If you didn't receive an email:",
-    "resend-email": "Resend email verification request"
+    "resend-email": "Resend email verification request",
+    "user-dashboard": "User's Dashboard",
+    "author-topics-list-title": "Your added topics",
+    "speaker-topics-list-title": "Your proposed topic (call4papers)"
   },
   "error": {
     "auth/invalid-email": "Email address is invalid.",

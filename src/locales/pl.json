@@ -114,7 +114,10 @@
     "email-not-verified": "Twój adres email nie jest zweryfikowany.",
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
-    "resend-email": "Ponownie wyślij prośbę o weryfikację"
+    "resend-email": "Ponownie wyślij prośbę o weryfikację",
+    "user-dashboard": "Panel użytkownika",
+    "author-topics-list-title": "Twoje dodane tematy",
+    "speaker-topics-list-title": "Twoja zgłoszona prezentacja (call4papers)"
   },
   "error": {
     "auth/invalid-email-address": "Adres email jest niepoprawny.",

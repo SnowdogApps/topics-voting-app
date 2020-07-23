@@ -13,6 +13,16 @@
           to="/admin-dashboard"
           class="link"
         >{{ $t('admin.admin-dashboard') }}</router-link>
+        <router-link
+          v-if="isLoggedIn"
+          :to="{
+            name: 'user',
+            params: {
+              id: this.$store.state.user.id
+            }
+          }"
+          class="link"
+        >{{ $t('user.user-dashboard') }}</router-link>
     </div>
     <lang-switcher />
   </nav>
@@ -28,7 +38,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isAdmin: 'isAdmin'
+      isAdmin: 'isAdmin',
+      isLoggedIn: 'isLoggedIn'
     })
   }
 }
