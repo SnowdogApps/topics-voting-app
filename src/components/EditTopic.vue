@@ -15,9 +15,11 @@
         autocomplete="off"
       />
       <div :class="['input', { 'input--error': $v.description.$error }]">
-        <label for="description" class="form__label">
-          {{ $t("add-form.description-field-label") }}
-        </label>
+        <label
+          for="description"
+          class="form__label"
+          v-html="$t('add-form.description-field-label', {link: 'https://www.markdownguide.org/basic-syntax/'})"
+        ></label>
         <textarea
           id="description"
           @input="debounceInput"
