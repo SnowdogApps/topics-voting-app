@@ -25,6 +25,7 @@
           type="text"
           :placeholder="$t('add-form.description-field-placeholder')"
           maxlength="700"
+          autocomplete="off"
         />
         <div class="row between-xs">
           <div class="errors col-xs">
@@ -47,6 +48,7 @@
         :label="$t('add-form.target-group-field-label')"
         :placeholder="$t('add-form.target-group-field-placeholder')"
         maxlength="150"
+        autocomplete="off"
       />
       <div class="form-section__action">
         <v-button

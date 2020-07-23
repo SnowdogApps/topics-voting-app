@@ -4,7 +4,7 @@
     "no": "no",
     "error": "Error",
     "success": "Success",
-    "error-occured": "An error occured. Refresh your page or try again later.",
+    "info": "Info",
     "cancel": "Cancel",
     "edit": "Edit",
     "save": "Save"
@@ -24,7 +24,8 @@
     "choose-login-method": "Choose your log in method",
     "login-email-password": "Log in with email & password",
     "sign-in-email-password": "Sign in with email & password",
-    "account-already-linked-to-email": "You already have an account linked to {email}. Login with {link} to link new login method to your profile.",
+    "account-already-linked-to-email": "To link {provider} as a login method for {email} account, please sign in with {link}",
+    "password-link": "password",
     "hide-login-section": "Hide login section",
     "sign-in-with": "Sign in with {social}",
     "first-name": "First name",
@@ -36,7 +37,12 @@
     "no-account": "You don't have account?",
     "create-account-here": "Create new one here",
     "account-exists": "You already have an account?",
-    "login-with-social-media": "Log in with social media"
+    "login-with-social-media": "Log in with social media",
+    "forgotten-password": "Forgotten password?",
+    "reset-password": "Reset here",
+    "send-reset-password-email": "Send a password reset email",
+    "reset-password-email-sent": "Password reset email has been sent. Check your mailbox.",
+    "reset-password-info": "If you have any other accounts linked with current credentials, after reset you may need to confirm them with a new password."
   },
   "form": {
     "required-field": "Field is required",
@@ -101,5 +107,15 @@
     "verification-email-info": "You should receive an email verification request, check your email box.",
     "email-not-received": "If you didn't receive an email:",
     "resend-email": "Resend email verification request"
+  },
+  "error": {
+    "auth/invalid-email": "Email address is invalid.",
+    "auth/user-not-found": "User not found. Check if given email address is correct.",
+    "auth/wrong-password": "Incorrect password.",
+    "auth/user-disabled": "User is disabled.",
+    "auth/email-already-in-use": "Given email is already in use.",
+    "auth/weak-password": "Weak password.",
+    "auth/account-exists-with-different-credential": "To link another login method to existing account sign in with given provider.",
+    "error-occured": "An error occured. Refresh your page or try again later."
   }
 }

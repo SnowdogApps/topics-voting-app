@@ -16,6 +16,7 @@ import notification from '@/mixins/notification.js'
 import fb from '@/mixins/facebook.js'
 import ScrollTop from '@/components/ScrollTop.vue'
 import Navbar from '@/components/Navbar.vue'
+import { auth } from '@/db'
 
 export default {
   components: {
@@ -42,7 +43,10 @@ export default {
       const lang = localStorage.getItem('lang')
       if (lang) {
         this.$i18n.locale = lang
+      } else {
+        localStorage.setItem('lang', this.$i18n.locale)
       }
+      auth.lang = this.$i18n.locale
     }
   }
 }

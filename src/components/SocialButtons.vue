@@ -44,6 +44,7 @@
 </template>
 <script>
 import linkAccount from '@/mixins/linkAccount.js'
+import errorMsgProvider from '@/mixins/errorMsgProvider.js'
 import { auth } from '@/db.js'
 import { mapGetters } from 'vuex'
 import { getProvider } from '@/helpers.js'
@@ -57,7 +58,7 @@ export default {
     GoogleIcon: () => import('@/assets/icons/google-i.svg'),
     TwitterIcon: () => import('@/assets/icons/twitter-i.svg')
   },
-  mixins: [linkAccount],
+  mixins: [linkAccount, errorMsgProvider],
   computed: {
     ...mapGetters({
       user: 'user',
@@ -107,15 +108,15 @@ export default {
           this.setLinkingAccountData(err).then((result) => {
             if (!result) {
               this.$store.commit('notification/push', {
-                message: err.message,
-                title: this.$t('global.error'),
-                type: 'error'
+                message: this.getErrMessage(err.code),
+                title: this.$t('global.info'),
+                type: 'info'
               }, { root: true })
             }
           })
         } else {
           this.$store.commit('notification/push', {
-            message: err.message,
+            message: this.getErrMessage(err.code),
             title: this.$t('global.error'),
             type: 'error'
           }, { root: true })

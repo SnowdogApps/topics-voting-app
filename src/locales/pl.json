@@ -4,6 +4,7 @@
     "no": "nie",
     "error": "Błąd",
     "success": "Sukces",
+    "info": "Info",
     "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.",
     "cancel": "Anuluj",
     "edit": "Edytuj",
@@ -24,7 +25,8 @@
     "choose-login-method": "Wybierz metodę logowania",
     "login-email-password": "Zaloguj się przy użyciu adresu email i hasła",
     "sign-in-email-password": "Adres email i hasło",
-    "account-already-linked-to-email": "Masz już konto powiązane z adresem {email}. Zaloguj się używając {link}, aby powiązać nową metodę logowania ze swoim profilem.",
+    "account-already-linked-to-email": "Aby dodać {provider} jako metodę logowania dla konta {email}, zaloguj się używając {link}",
+    "password-link": "hasła",
     "hide-login-section": "Ukryj sekcję logowania",
     "sign-in-with": "Zarejestruj się przez {social}",
     "first-name": "Imię",
@@ -36,7 +38,12 @@
     "no-account": "Nie masz konta?",
     "create-account-here": "Utwórz konto tutaj",
     "account-exists": "Masz już konto?",
-    "login-with-social-media": "Zaloguj się przez social media"
+    "login-with-social-media": "Zaloguj się przez social media",
+    "forgotten-password": "Zapomniałeś hasła?",
+    "reset-password": "Resetuj tutaj",
+    "send-reset-password-email": "Wyślij email resetujący hasło",
+    "reset-password-email-sent": "Email resetujący hasło został wysłany. Sprawdź skrzynkę pocztową.",
+    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem."
   },
   "form": {
     "required-field": "Pole jest wymagane",
@@ -101,5 +108,15 @@
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
     "resend-email": "Ponownie wyślij prośbę o weryfikację"
+  },
+  "error": {
+    "auth/invalid-email-address": "Adres email jest niepoprawny.",
+    "auth/user-not-found": "Użytkownik nie został znaleziony. Sprawdź, czy wpisany adres email jest poprawny.",
+    "auth/wrong-password": "Niepoprawne hasło.",
+    "auth/user-disabled": "Użytkownik jest wyłączony.",
+    "auth/email-already-in-use": "Podany email jest używany.",
+    "auth/weak-password": "Słabe hasło.",
+    "auth/account-exists-with-different-credential": "Aby powiązać metodę logowania z istniejącym kontem, zaloguj się za pomocą podanej metody.",
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
   }
 }

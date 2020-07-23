@@ -16,6 +16,7 @@
           :label="$t('add-form.title-field-label')"
           :placeholder="$t('add-form.title-field-label')"
           maxlength="150"
+          autocomplete="off"
         />
         <div :class="['input', { 'input--error': $v.description.$error }]">
           <label for="description" class="form__label">
@@ -57,6 +58,7 @@
           :label="$t('add-form.target-group-field-label')"
           :placeholder="$t('add-form.target-group-field-placeholder')"
           maxlength="150"
+          autocomplete="off"
         />
         <div :class="['radio', { 'radio--error': $v.description.$error }]">
           <fieldset class="fieldset" aria-labelledby="radio-legend">

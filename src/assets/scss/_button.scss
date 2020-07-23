@@ -57,6 +57,11 @@
     transition: $transition-base;
   }
 
+  &--small {
+    font-size: $font-size-extra-small;
+    min-height: 36px;
+  }
+
   &--cancel {
     background-color: white;
     border-color: $gray-dark;
