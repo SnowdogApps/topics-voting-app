@@ -6,6 +6,7 @@
   z-index: 2000;
   font-size: $font-size-small;
   padding: 0;
+  background: $white;
 
   @include mq($screen-md-min, $screen-lg-min) {
     font-size: $font-size-extra-small;
@@ -53,12 +54,10 @@
 }
 
 .top-nav-collapse {
-  background: $white;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.06);
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-name: fadeInDown;
-  background: $white !important;
   .navbar-nav .nav-link {
     color: $font-color-base !important;
 
@@ -79,10 +78,6 @@
 .navbar-expand-lg {
   > .nav-container {
     padding: 0 15px;
-  }
-
-  @include mq($max-screen: $screen-md-max) {
-    background: $white;
   }
 }
 
@@ -149,8 +144,8 @@
 
 .nav-link {
   display: block;
-  color: #f4f4f4;
-  padding: 0 6px;
+  color: $font-color-base;
+  padding: 4px 11.5px;
   line-height: 38px;
   text-transform: uppercase;
   background: transparent;
@@ -162,10 +157,6 @@
     &--external {
       border: 1px solid $preset;
     }
-  }
-
-  @include mq($max-screen: $screen-md-max) {
-    color: $font-color-base;
   }
 }
 
@@ -182,7 +173,7 @@
 .navbar-expand-lg .navbar-nav li > a:before {
   content: "";
   position: absolute;
-  bottom: 0;
+  bottom: 4px; // nav-link top/bottom padding
   left: 50%;
   margin-left: -10px;
   width: 24px;
