@@ -28,24 +28,12 @@
     font-size: $heading-size-extra-small;
     margin-bottom: $spacer--xs;
   }
-}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  @extend .heading;
-  &.uppercase {
-    text-transform: uppercase;
-  }
-
-  &.section__heading {
-    @extend .uppercase;
+  &--underline {
+    position: relative;
     margin: $spacer--xs $spacer--s 64px;
     padding: $spacer--s;
-    position: relative;
+    text-transform: uppercase;
     &:after {
       content: "";
       position: absolute;
@@ -57,6 +45,15 @@ h6 {
       transform: translateX(-50%);
     }
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @extend .heading;
 }
 
 h1 {

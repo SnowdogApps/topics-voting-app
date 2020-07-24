@@ -10,6 +10,7 @@
     "save": "Zapisz"
   },
   "home": {
+    "home-link": "Prezentacje",
     "home-title": "Meet Magento 2020",
     "home-subtitle": " - Prezentacje",
     "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
@@ -84,7 +85,7 @@
     "see-all": "Zobacz wszystkie propozycje",
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
-    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}'>{email}</a>"
+    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",

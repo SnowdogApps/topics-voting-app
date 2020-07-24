@@ -1,8 +1,13 @@
 <template>
   <section>
-    <component :is="heading" class="section__heading">
+    <h2
+      class="
+        section__heading
+        heading--underline
+      "
+    >
       {{ title }}
-    </component>
+    </h2>
       <ul
         v-if="topics.length"
         class="topics-list"
@@ -63,9 +68,6 @@ export default {
     }),
     adminView () {
       return this.$router.currentRoute.path.includes('admin-dashboard')
-    },
-    heading () {
-      return this.adminView ? 'h2' : 'h1'
     }
   }
 }

@@ -78,7 +78,7 @@ export default {
     routes () {
       return [
         {
-          title: 'Home',
+          title: this.$t('home.home-link'),
           to: '/',
           show: true
         },

@@ -21,7 +21,8 @@
               class="topic-item__badge topic-item__badge--available"
               v-tooltip="{
                 content: this.$t('topic.to-grab-info', { email: 'contact@meetmagento.pl' }),
-                trigger: 'hover focus click'
+                trigger: 'focus click',
+                classes: 'tooltip--light'
               }"
             >
               {{ $t("topic.to-grab") }}
@@ -262,12 +263,15 @@ export default {
     line-height: 25px;
     box-shadow: $box-shadow;
     border-left: solid 2px $preset;
+    @include mq($max-screen: $screen-md-max) {
+      margin-bottom: $spacer--m;
+    }
+
     &--available {
       border-left: solid 2px $success;
     }
-
-    @include mq($max-screen: $screen-md-max) {
-      margin-bottom: $spacer--m;
+    &.has-tooltip {
+      cursor: pointer;
     }
   }
 
