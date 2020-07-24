@@ -3,14 +3,14 @@
     <navbar />
     <div class="header__top-section">
       <img class="header__img" src="@/assets/images/header.png" />
-      <div class="header__text">
+      <h1 class="header__text">
         <span class="text">
           {{ $t("home.home-title") }}
         </span>
         <span class="text text--light">
           {{ $t("home.home-subtitle") }}
         </span>
-      </div>
+      </h1>
     </div>
   </header>
 </template>
@@ -27,11 +27,10 @@ export default {
 
 <style lang="scss">
 .header__top-section {
-  display: none;
   text-align: center;
   position: relative;
-  @include mq($min-screen: $screen-md-min) {
-    display: block;
+  @include mq($max-screen: $screen-md-max) {
+    @include visually-hidden();
   }
 }
 

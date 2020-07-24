@@ -10,7 +10,14 @@
       <div class="topic-item__topic">
         <div class="topic-item__info">
           <div class="topic-item__header">
-            <h1 v-if="!listItem" class="topic-item__title justified uppercase">
+            <h1
+              v-if="!listItem"
+              class="
+                topic-item__title
+                justified
+                uppercase
+              "
+            >
               {{ topic.title }}
             </h1>
             <h3 v-else class="topic-item__title justified uppercase">
@@ -18,7 +25,10 @@
             </h3>
             <div
               v-if="topic.authorRole === 'observer'"
-              class="topic-item__badge topic-item__badge--available"
+              class="
+                topic-item__badge
+                topic-item__badge--available
+              "
               v-tooltip="{
                 content: this.$t('topic.to-grab-info', { email: 'contact@meetmagento.pl' }),
                 trigger: 'focus click',

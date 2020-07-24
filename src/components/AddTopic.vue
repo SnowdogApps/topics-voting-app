@@ -1,6 +1,13 @@
 <template>
   <section id="add-topic">
-    <div class="form-section m-auto col-xs-12 col-md-7">
+    <div
+      class="
+        form-section
+        m-auto
+        col-xs-12
+        col-md-7
+      "
+    >
       <div class="form-section__form">
       <h2 class="heading--underline">
         {{ $t('add-form.form-title') }}

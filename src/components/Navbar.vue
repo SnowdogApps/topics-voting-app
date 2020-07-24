@@ -1,6 +1,11 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg flex center-xs"
+    class="
+      navbar
+      navbar-expand-lg
+      flex
+      center-xs
+    "
     :class="{ 'top-nav-collapse': isNavCollapsed }"
   >
     <div class="nav-container">
@@ -11,7 +16,11 @@
         <toggle @click="toggleMenu" :show="showMenu"></toggle>
       </div>
       <transition name="slide">
-        <div id="main-navbar" class="navbar-collapse" :class="{'active': showMenu}">
+        <div
+          id="main-navbar"
+          class="navbar-collapse"
+          :class="{'active': showMenu}"
+        >
           <div class="nav-container">
               <ul class="navbar-nav">
                 <li
