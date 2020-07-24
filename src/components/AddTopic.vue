@@ -19,9 +19,20 @@
           maxlength="150"
         />
         <div :class="['input', { 'input--error': $v.description.$error }]">
-          <label for="description" class="form__label">
-            {{ $t('add-form.description-field-label') }}
-          </label>
+          <i18n
+            class="form__label"
+            path="add-form.description-field-label"
+            for="description"
+            tag="label"
+          >
+            <template #markdown>
+              <a
+                class="link"
+                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                target="_blank"
+              >markdown</a>
+            </template>
+          </i18n>
           <textarea
             id="description"
             @input="debounceInput"

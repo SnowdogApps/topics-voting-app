@@ -1,6 +1,8 @@
 <template>
   <div class="social-share">
-    <span class="bold">Share:</span>
+    <span class="bold">
+      {{ $t('share.share') }}:
+    </span>
     <ul class="share-list">
       <li
         v-for="network in networks"

@@ -48,7 +48,7 @@
   "add-form": {
     "form-title": "Dodaj swoją propozycję tematu",
     "title-field-label": "Tytuł",
-    "description-field-label": "Opis (markdown dostępny, max. 700 znaków)",
+    "description-field-label": "Opis ({markdown} dostępny, max. 700 znaków)",
     "description-field-placeholder": "Opis",
     "description-field-tips": "Maxymalna ilość znaków - 700",
     "characters-left": "pozostało",

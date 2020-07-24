@@ -48,7 +48,7 @@
   "add-form": {
     "form-title": "Add your topic proposition",
     "title-field-label": "Topic title",
-    "description-field-label": "Topic description (markdown syntax available, max. 700 characteres)",
+    "description-field-label": "Topic description ({markdown} syntax available, max. 700 characteres)",
     "description-field-placeholder": "Topic description",
     "description-field-tips": "Max length of text description - 700 characteres",
     "characters-left": "left",
