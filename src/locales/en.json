@@ -86,6 +86,7 @@
     "speaker": "Speaker:",
     "status": "Status:",
     "approve-button": "Approve",
+    "reject-button": "Reject",
     "votes": "Votes:",
     "tooltip-not-logged": "You have to be logged in to vote",
     "tooltip-author": "Naughty naughty!<br> It's not fair to vote for your own topic.",
@@ -102,7 +103,8 @@
   "admin": {
     "admin-dashboard": "Admin Dashboard",
     "not-approved-list-title": "Waiting for approval",
-    "approved-list-title": "Approved"
+    "approved-list-title": "Approved",
+    "rejected-list-title": "Rejected"
   },
   "share": {
     "share": "Share on"

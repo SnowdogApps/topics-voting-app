@@ -87,6 +87,7 @@
     "speaker": "Prelegent:",
     "status": "Status:",
     "approve-button": "Zaakceptuj",
+    "reject-button": "Odrzuć",
     "votes": "Głosy:",
     "tooltip-not-logged": "Musisz być zalogowany, aby zagłosować",
     "tooltip-author": "Oj nieładnie!<br> Nie głosujemy na swoje propozycje!",
@@ -103,7 +104,8 @@
   "admin": {
     "admin-dashboard": "Panel Administratora",
     "not-approved-list-title": "Oczekujące na akceptację",
-    "approved-list-title": "Zaakceptowane"
+    "approved-list-title": "Zaakceptowane",
+    "rejected-list-title": "Odrzucone"
   },
   "share": {
     "share": "Udostępnij na"

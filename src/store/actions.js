@@ -186,6 +186,17 @@ export default {
       }, { root: true })
     })
   }),
+  rejectTopic: firebaseAction(({ commit }, data) => {
+    return topicRef.child(data).update({
+      rejected: true
+    }).catch((err) => {
+      commit('notification/push', {
+        message: err.message,
+        title: 'Error',
+        type: 'error'
+      }, { root: true })
+    })
+  }),
   async checkAdmin ({ commit, state }) {
     try {
       await userRef

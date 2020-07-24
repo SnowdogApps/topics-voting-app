@@ -86,7 +86,17 @@
           {{ $t('global.edit') }}
         </v-button>
         <v-button
-          v-if="!topic.approved"
+          v-if="!topic.approved && !topic.rejected"
+          class="
+            button--with-margin
+            button--secondary
+          "
+          @btn-event="rejectTopic"
+        >
+          {{ $t("topic.reject-button") }}
+        </v-button>
+        <v-button
+          v-if="!topic.approved && !topic.rejected"
           class="button--with-margin"
           @btn-event="approveTopic"
         >
@@ -215,6 +225,10 @@ export default {
       const topicId = this.id
       this.$store.dispatch('approveTopic', topicId)
     },
+    rejectTopic () {
+      const topicId = this.id
+      this.$store.dispatch('rejectTopic', topicId)
+    },
     editTopic () {
       this.editMode = true
     }
@@ -232,6 +246,10 @@ export default {
   @include mq($screen-sm-min) {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .topic-list--rejected & {
+    background-color: $gray-lighter;
   }
 
   &__content {

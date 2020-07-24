@@ -44,7 +44,7 @@ export default {
     try {
       if (state.topics) {
         return state.topics.filter(topic => {
-          return !topic.approved
+          return !topic.approved && !topic.rejected
         })
       }
     } catch {

@@ -13,6 +13,12 @@
       :editable="true"
       class="col-xs-12"
     />
+    <topic-list
+      :topics="topicsRejected"
+      :title="rejectedListTitle"
+      :editable="false"
+      class="col-xs-12 topic-list--rejected"
+    />
   </div>
 </template>
 
@@ -29,11 +35,19 @@ export default {
       topicsNotApproved: 'getNotApprovedTopics',
       topicsApproved: 'getApprovedTopics'
     }),
+    topicsRejected () {
+      return this.$store.state.topics.filter(topic => {
+        return topic.rejected
+      })
+    },
     notApprListTitle () {
       return this.$t('admin.not-approved-list-title')
     },
     apprListTitle () {
       return this.$t('admin.approved-list-title')
+    },
+    rejectedListTitle () {
+      return this.$t('admin.rejected-list-title')
     }
   }
 }
