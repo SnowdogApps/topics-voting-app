@@ -1,9 +1,9 @@
 <template>
   <div class="row center-xs">
     <div class="col-xs-12 col-md-8">
-      <p class="top-description__title bold">
+      <h2>
         {{ $t('home.home-top-description-title') }}
-      </p>
+      </h2>
       <p v-html="$t('home.home-top-description')"></p>
       <p v-if="!isLoggedIn">
         {{ $t('home.login-info') }}
@@ -42,14 +42,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-.top-description__title {
-  font-size: $font-size-extra-large;
-  margin: $spacer--s 0 $spacer--l;
-  @include mq($min-screen: $screen-sm-min) {
-    font-size: 32px;
-    line-height: 42px;
-  }
-}
-</style>

@@ -343,7 +343,7 @@ export default {
   &__vote-number {
     text-align: center;
     word-break: keep-all;
-    h4 {
+    & > h4 {
       margin: 0;
     }
   }

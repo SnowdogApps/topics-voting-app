@@ -1,13 +1,26 @@
 <template>
-  <section id="user-section" class="col-xs-12 col-md-8 login-section">
+  <section
+    id="user-section"
+    class="
+      login-section
+      col-xs-12
+      col-md-8
+    "
+  >
       <transition name="fade">
         <div
           v-if="isLoggedIn"
-          class="col-xs-12 col-md-7 form-section form-section__form m-auto"
+          class="
+            form-section
+            form-section__form
+            col-xs-12
+            col-md-7
+            m-auto
+          "
         >
-          <h3 class="uppercase">
+          <h2 class="uppercase heading--h3">
             {{ $t('user.hi', { name: user.displayName || user.email}) }}
-          </h3>
+          </h2>
           <p>{{ $t('user.welcome-msg') }}</p>
           <a class="button" href="#add-topic">
               {{ $t('user.add-your-topic') }}
@@ -24,11 +37,15 @@
       <transition name="fade">
         <div
           v-if="isEmailVerification"
-          class="col-xs-12 col-md-6 form-section"
+          class="
+            form-section
+            col-xs-12
+            col-md-6
+          "
         >
-          <h3>
+          <h2 class="uppercase heading--h3">
             {{ $t('user.hi', { name: user.displayName || user.email}) }}
-          </h3>
+          </h2>
           <p>
             {{ $t('user.email-not-verified') }}
             <br>

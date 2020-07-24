@@ -146,9 +146,9 @@
         v-if="description"
         class="form-section__preview"
       >
-        <h4>
+        <h3 class="heading--h4">
           {{ $t('add-form.description-preview') }}
-        </h4>
+        </h3>
         <div v-html="compiledMarkdown(description)"></div>
       </div>
     </div>
