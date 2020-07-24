@@ -25,8 +25,11 @@
   }
 
   &--h4 {
-    font-size: $heading-size-extra-small;
+    font-size: $font-size-small;
     margin-bottom: $spacer--xs;
+    @include mq($screen-sm-min) {
+        font-size: $heading-size-extra-small;
+    }
   }
 
   &--underline {
