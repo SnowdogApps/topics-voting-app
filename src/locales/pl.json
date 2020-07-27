@@ -11,12 +11,15 @@
     "save": "Zapisz"
   },
   "home": {
-    "home-title": "Meet Magento 2020 - prezentacje",
-    "home-subtitle": "Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację",
-    "home-top-description": "Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to także prelegentom wybrać temat na prezentację.",
-    "login-info": "Musisz być zalogowany, aby zagłosować lub dodać temat.",
+    "home-link": "Prezentacje",
+    "home-title": "Meet Magento 2020",
+    "home-subtitle": " - Prezentacje",
+    "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
+    "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako <b>„call4papers”</b> - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go <b>„to grab”</b>, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę <b>„to grab”</b>.",
+    "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
-    "back-to-top": "Do góry"
+    "back-to-top": "Do góry",
+    "buy-ticket": "Kup bilet"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
@@ -52,14 +55,14 @@
   "add-form": {
     "form-title": "Dodaj swoją propozycję tematu",
     "title-field-label": "Tytuł",
-    "description-field-label": "Opis (markdown dostępny, max. 700 znaków)",
+    "description-field-label": "Opis ({markdown} dostępny, max. 700 znaków)",
     "description-field-placeholder": "Opis",
     "description-field-tips": "Maxymalna ilość znaków - 700",
     "characters-left": "pozostało",
     "activity-radio-legend": "Wybierz rolę",
-    "radio-author-observer": "Chcę posłuchać o tym",
-    "radio-author-speaker": "Chcę mówić o tym",
-    "radio-speaker-info": "Wybierając tą opcję zgłaszasz chęć zostania prelegentem i prezentowania tego tematu podczas konferencji",
+    "radio-author-observer": "Chcę o tym posłuchać (temat „to grab”)",
+    "radio-author-speaker": "Chcę o tym opowiedzieć („call4papers”)",
+    "radio-speaker-info": "Wybierając tą opcję zgłaszasz chęć zostania prelegentem i prezentowania tego tematu podczas konferencji. Skontaktujemy się z Tobą, jeśli zgłoszenie zostanie zaakceptowane.",
     "submit-button": "Dodaj temat",
     "submit-info-1": "Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.",
     "submit-info-2": "Temat pojawi się na liście jak tylko zostanie zaakceptowany.",
@@ -67,10 +70,12 @@
     "description-preview": "Podgląd opisu:",
     "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
     "target-group-field-placeholder": "Grupa docelowa",
-    "edit-topic": "Edytuj temat"
+    "edit-topic": "Edytuj temat",
+    "author-observer": "Słuchacz",
+    "author-speaker": "Prelegent"
   },
   "topic": {
-    "to-grab": "do wzięcia",
+    "to-grab": "To grab",
     "c4p": "Call4papers",
     "details": "Szczegóły:",
     "author-id": "ID autora:",
@@ -87,7 +92,7 @@
     "see-all": "Zobacz wszystkie propozycje",
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
-    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}'>{email}</a>"
+    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
@@ -102,7 +107,8 @@
     "share": "Udostępnij na"
   },
   "user": {
-    "hi": "Witaj",
+    "hi": "Witaj, {name}!",
+    "add-your-topic": "Dodaj swój temat",
     "welcome-msg": "Możesz głosować na zaproponowane tematy lub dodać własną propozycję.",
     "email-not-verified": "Twój adres email nie jest zweryfikowany.",
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
@@ -118,5 +124,14 @@
     "auth/weak-password": "Słabe hasło.",
     "auth/account-exists-with-different-credential": "Aby powiązać metodę logowania z istniejącym kontem, zaloguj się za pomocą podanej metody.",
     "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
+  },
+  "alert": {
+    "proposition-added": "Twoja propozycja została wysłana do weryfikacji",
+    "topic-changes-saved": "Zmiany w temacie zostały zapisane",
+    "logged-in-successfull": "Zalogowano pomyślnie",
+    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}"
+  },
+  "lang-switcher": {
+    "lang-switcher-label": "Zmień język"
   }
 }

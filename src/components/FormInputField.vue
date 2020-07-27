@@ -1,6 +1,8 @@
 <template>
-  <div :class="['input', { 'input--error': validator && validator.$error }]">
-    <label :for="id">
+  <div :class="['input', { 'input--error': validator.$error }]">
+    <label class="label"
+      :for="id"
+    >
       {{ label }}
     </label>
     <input

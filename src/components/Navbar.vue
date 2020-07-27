@@ -1,55 +1,135 @@
 <template>
   <nav
-    id="nav"
-    class="navbar between-xs"
+    class="
+      navbar
+      navbar-expand-lg
+      flex
+      center-xs
+    "
+    :class="{ 'top-nav-collapse': isNavCollapsed }"
   >
-    <div class="navbar__link-container">
-      <router-link
-          to="/"
-          class="link"
-        >Home</router-link>
-        <router-link
-          v-if="isAdmin"
-          to="/admin-dashboard"
-          class="link"
-        >{{ $t('admin.admin-dashboard') }}</router-link>
+    <div class="nav-container">
+      <div class="navbar-header">
+        <router-link to="/" class="navbar-brand">
+          <logo-svg />
+        </router-link>
+        <toggle @click="toggleMenu" :show="showMenu"></toggle>
+      </div>
+      <transition name="slide">
+        <div
+          id="main-navbar"
+          class="navbar-collapse"
+          :class="{'active': showMenu}"
+        >
+          <div class="nav-container">
+              <ul class="navbar-nav">
+                <li
+                  v-for="route in routes"
+                  :key="route.title"
+                  class="nav-item"
+                  @click="redirect"
+                >
+                  <router-link
+                    v-if="route.show"
+                    :to="route.to"
+                    class="nav-link"
+                    exact-active-class="active"
+                  >
+                    {{ route.title }}
+                  </router-link>
+                </li>
+              </ul>
+              <ul class="navbar-nav navbar-nav--right">
+                <li
+                  class="nav-item"
+                  @click="showMenu = false"
+                >
+                  <a
+                    href="https://meetmagento-pl-test.now.sh/#pricing"
+                    class="nav-link nav-link--external"
+                    target="_blank"
+                  >
+                    {{ $t('home.buy-ticket') }}
+                  </a>
+                </li>
+                <li>
+                  <lang-switcher class="nav-link" />
+                </li>
+              </ul>
+          </div>
+        </div>
+      </transition>
     </div>
-    <lang-switcher />
   </nav>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import LangSwitcher from '@/components/LangSwitcher.vue'
+import Toggle from '@/components/Toggle.vue'
 
 export default {
   components: {
-    LangSwitcher
+    LangSwitcher,
+    Toggle,
+    LogoSvg: () => import('@/assets/icons/logo.svg')
+  },
+  data () {
+    return {
+      isNavCollapsed: false,
+      showMenu: false
+    }
   },
   computed: {
     ...mapGetters({
       isAdmin: 'isAdmin'
-    })
+    }),
+    routes () {
+      return [
+        {
+          title: this.$t('home.home-link'),
+          to: '/',
+          show: true
+        },
+        {
+          title: this.$t('admin.admin-dashboard'),
+          to: '/admin-dashboard',
+          show: this.isAdmin
+        }
+      ]
+    }
+  },
+  mounted () {
+    this.navCollapsing()
+    window.addEventListener('scroll', this.navCollapsing, { passive: true })
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.navCollapsing, { passive: true })
+  },
+  methods: {
+    navCollapsing () {
+      const element = document.scrollingElement || document.srcElement
+      if (element.scrollTop > 200) {
+        this.isNavCollapsed = true
+      } else {
+        this.isNavCollapsed = false
+      }
+    },
+    toggleMenu () {
+      this.showMenu = !this.showMenu
+    },
+    trackEvent () {
+      this.$gtag('event', 'buy-ticket-button-click', {
+        event_label: 'Header'
+      })
+    },
+    redirect () {
+      this.showMenu = false
+      window.scrollTo(0, 0)
+    }
   }
 }
 </script>
-
-<style lang="scss">
-.navbar {
-  display: flex;
-  flex-wrap: nowrap;
-  position: fixed;
-  top: 0;
-  padding: 0;
-  width: 100%;
-  text-transform: uppercase;
-  font-size: 13px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.06);
-  background-color: $white;
-  z-index: 100;
-
-  &__link-container {
-    padding: $spacer--s;
-  }
-}
+<style lang="scss" scoped>
+@import './src/assets/scss/navbar';
 </style>

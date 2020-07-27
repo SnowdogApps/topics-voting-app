@@ -5,18 +5,21 @@
       href="#"
       class="
         back-to-top
-        bold
         button--secondary
       "
       @click="scroll"
+      :aria-label="$t('home.back-to-top')"
     >
-      {{ $t('home.back-to-top') }}
+      <arrow-svg />
     </a>
   </transition>
 </template>
 
 <script>
 export default {
+  components: {
+    ArrowSvg: () => import('@/assets/icons/arrow.svg')
+  },
   data () {
     return {
       visible: false
@@ -45,5 +48,9 @@ export default {
   text-decoration: none;
   padding: $spacer--xs;
   z-index: 1;
+  text-decoration: none;
+  line-height: initial;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),
+    0 4px 8px rgba(0,0,0,.28)
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2 class="section__heading">
+    <h2 class="heading--underline">
       {{ title }}
     </h2>
       <ul
