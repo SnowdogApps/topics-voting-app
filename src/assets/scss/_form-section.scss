@@ -1,15 +1,17 @@
 .form-section {
   position: relative;
   box-shadow: $box-shadow;
-  padding: 0;
+  padding: $spacer--s;
 
   &__form,
   &__preview {
       padding: $spacer--xl;
+      text-align: left;
   }
 
   &__action {
     margin: $spacer--l 0;
+    text-align: center;
     @include mq($screen-sm-min) {
       max-width: 80%;
       margin: 0 auto;
