@@ -42,6 +42,7 @@ export default {
       authorRole: topic.authorRole,
       createDate: new Date(Date.now()).toLocaleString(),
       approved: false,
+      lang: topic.lang,
       speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none',
       speakerId: (topic.authorRole === 'speaker') ? `${topic.authorId}` : null
     }).then((result) => {

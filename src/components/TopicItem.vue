@@ -23,25 +23,36 @@
             <h3 v-else class="topic-item__title justified uppercase">
               {{ topic.title }}
             </h3>
-            <div
-              v-if="topic.authorRole === 'observer'"
-              class="
-                topic-item__badge
-                topic-item__badge--available
-              "
-              v-tooltip="{
-                content: this.$t('topic.to-grab-info', { email: 'contact@meetmagento.pl' }),
-                trigger: 'focus click',
-                classes: 'tooltip--light'
-              }"
-            >
-              {{ $t("topic.to-grab") }}
-            </div>
-            <div
-              v-if="topic.authorRole === 'speaker' && isAdmin"
-              class="topic-item__badge"
-            >
-              {{ $t("topic.c4p") }}
+            <div class="topic-item__header-top">
+              <PlIcon
+                v-if="topic.lang === 'pl'"
+                class="topic-item__lang-icon"
+              />
+              <EnIcon
+                v-else
+                class="topic-item__lang-icon"
+              />
+              <button
+                v-if="topic.authorRole === 'observer'"
+                type="button"
+                class="topic-item__badge"
+                v-tooltip="{
+                  content: $t('topic.to-grab-info', {email: 'contact@meetmagento.pl'}),
+                  trigger: 'focus click',
+                  classes: 'tooltip--light'
+                }"
+              >
+                {{ $t("topic.to-grab") }}
+              </button>
+              <div
+                v-if="topic.authorRole === 'speaker' && isAdmin"
+                class="
+                  topic-item__badge
+                  topic-item__badge--c4p
+                "
+              >
+                {{ $t("topic.c4p") }}
+              </div>
             </div>
           </div>
           <div class="topic-item__link justified">
@@ -81,7 +92,10 @@
             @btn-event="
               isVoted ? downvote(id, topic.votes) : upvote(id, topic.votes)
             "
-            v-tooltip="tooltipText"
+            v-tooltip="{
+              content: tooltipText,
+              trigger: 'hover focus click'
+            }"
             :aria-label="tooltipText"
           >
             <span class="button__icon">
@@ -159,7 +173,9 @@ export default {
     SocialShare,
     LikeIcon: () => import('@/assets/icons/like.svg'),
     TopicItemDetails: () => import('@/components/TopicItemDetails.vue'),
-    EditTopic: () => import('@/components/EditTopic.vue')
+    EditTopic: () => import('@/components/EditTopic.vue'),
+    PlIcon: () => import('@/assets/icons/pl.svg'),
+    EnIcon: () => import('@/assets/icons/en.svg')
   },
   props: {
     id: {
@@ -281,16 +297,28 @@ export default {
 
   &__header {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     justify-content: space-between;
-    @include mq($max-screen: $screen-md-max) {
-      flex-direction: column-reverse;
+  }
+
+  &__header-top {
+    display: flex;
+    margin-bottom: $spacer--s;
+    justify-content: space-between;
+    @include mq($screen-md-min) {
+      justify-content: flex-start;
     }
   }
 
+  &__lang-icon {
+    display: block;
+    border: 1px solid $gray-lighter;
+    width: 42px;
+    height: 32px;
+    margin-right: $spacer--s;
+  }
+
   &__badge {
-    width: 120px;
-    height: 33px;
     display: block;
     border: none;
     background-color: $white;
@@ -301,13 +329,17 @@ export default {
     font-size: $font-size-small;
     line-height: 25px;
     box-shadow: $box-shadow;
-    border-left: solid 2px $preset;
-    @include mq($max-screen: $screen-md-max) {
-      margin-bottom: $spacer--m;
+    border-left: solid 2px $success;
+    transition: $transition-base;
+    cursor: pointer;
+
+    &:hover,
+    &.focus-visible {
+      background-color: $preset;
     }
 
-    &--available {
-      border-left: solid 2px $success;
+    &--c4p {
+      border-left: solid 2px $preset;
     }
     &.has-tooltip {
       cursor: pointer;
@@ -364,14 +396,14 @@ export default {
 
   &__vote {
     display: flex;
-    flex-flow: column;
+    flex-flow: row-reverse;
     align-items: center;
     justify-content: flex-start;
-    margin: 0 0 0 $spacer--m;
-    @include mq($max-screen: $screen-md-max) {
-      flex-flow: row-reverse;
-      justify-content: flex-start;
-      margin: $spacer--s 0 0 0;
+    margin: $spacer--s 0 0 0;
+
+    @include mq($screen-md-min) {
+      margin: 50px 0 0 $spacer--m;
+      flex-flow: column;
     }
   }
 

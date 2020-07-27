@@ -100,6 +100,7 @@
     "approved": "approved",
     "not-approved": "not approved",
     "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "language-label": "Topic's language",
     "add-to-approval-button": "Add to approval"
   },
   "topics": {

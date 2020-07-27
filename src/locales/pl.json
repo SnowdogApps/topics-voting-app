@@ -101,6 +101,7 @@
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
     "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "language-label": "Język prezentacji",
     "add-to-approval-button": "Do Akceptacji"
   },
   "topics": {
