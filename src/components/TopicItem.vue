@@ -380,13 +380,17 @@ export default {
       border-color: $preset;
 
       .button__icon {
-        fill: $black;
+        fill: $blue;
       }
     }
 
     &--disabled {
       cursor: not-allowed;
       background-color: $gray-lighter;
+      border: 0;
+      .button__icon {
+        fill: $blue;
+      }
     }
   }
 }
