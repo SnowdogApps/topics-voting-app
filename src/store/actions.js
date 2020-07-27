@@ -178,7 +178,8 @@ export default {
   }),
   approveTopic: firebaseAction(({ commit }, data) => {
     return topicRef.child(data).update({
-      approved: true
+      approved: true,
+      rejected: false
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
@@ -189,7 +190,20 @@ export default {
   }),
   rejectTopic: firebaseAction(({ commit }, data) => {
     return topicRef.child(data).update({
-      rejected: true
+      rejected: true,
+      approved: false
+    }).catch((err) => {
+      commit('notification/push', {
+        message: err.message,
+        title: 'Error',
+        type: 'error'
+      }, { root: true })
+    })
+  }),
+  addToApproval: firebaseAction(({ commit }, data) => {
+    return topicRef.child(data).update({
+      rejected: false,
+      approved: false
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,

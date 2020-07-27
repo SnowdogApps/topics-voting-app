@@ -124,11 +124,18 @@
             {{ $t("topic.reject-button") }}
           </v-button>
           <v-button
-            v-if="!topic.approved"
+            v-if="!topic.approved && !topic.rejected"
             class="button--with-margin"
             @btn-event="approveTopic"
           >
             {{ $t("topic.approve-button") }}
+          </v-button>
+          <v-button
+            v-if="topic.rejected"
+            class="button--secondary button--with-margin"
+            @btn-event="addToApproval"
+          >
+            {{ $t('topic.add-to-approval-button') }}
           </v-button>
         </div>
       </div>
@@ -231,6 +238,10 @@ export default {
     rejectTopic () {
       const topicId = this.id
       this.$store.dispatch('rejectTopic', topicId)
+    },
+    addToApproval () {
+      const topicId = this.id
+      this.$store.dispatch('addToApproval', topicId)
     },
     editTopic () {
       this.editMode = true
