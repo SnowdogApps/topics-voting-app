@@ -10,7 +10,7 @@
       <div class="topic-item__topic">
         <div class="topic-item__info">
           <div class="topic-item__header">
-            <h1
+            <h2
               v-if="!listItem"
               class="
                 topic-item__title
@@ -19,7 +19,7 @@
               "
             >
               {{ topic.title }}
-            </h1>
+            </h2>
             <h3 v-else class="topic-item__title justified uppercase">
               {{ topic.title }}
             </h3>

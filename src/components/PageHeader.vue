@@ -3,11 +3,16 @@
     <navbar />
     <div class="header__top-section">
       <img class="header__img" src="@/assets/images/header.png" />
-      <h1 class="header__text">
-        <span class="text">
+      <h1 class="header__title">
+        <span class="header__title-text">
           {{ $t("home.home-title") }}
         </span>
-        <span class="text text--light">
+        <span
+          class="
+            header__title-text
+            header__title-text--light
+          "
+        >
           {{ $t("home.home-subtitle") }}
         </span>
       </h1>
@@ -26,43 +31,53 @@ export default {
 </script>
 
 <style lang="scss">
-.header__top-section {
-  text-align: center;
-  position: relative;
-  @include mq($max-screen: $screen-md-max) {
-    @include visually-hidden();
-  }
-}
-
-.header__img {
-  object-fit: cover;
-  height: 100vh;
-  max-height: 748px;
-  width: 100%;
-}
-
-.header__text {
-  max-width: 80%;
-  position: absolute;
-  top: 50%;
-  left: 42%;
-  transform: translate(-42%, -50%);
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  @include mq($min-screen: $screen-md-min) {
-    min-width: 960px;
+.header {
+  &__top-section {
+    text-align: center;
+    position: relative;
   }
 
-  .text {
-    font-size: 90px;
-    line-height: 100px;
+  &__img {
+    display: none;
+    @include mq($screen-sm-min) {
+      display: block;
+      width: 100%;
+      height: 100vh;
+      max-height: 748px;
+      object-fit: cover;
+    }
+  }
+
+  &__title {
+    max-width: 80%;
+    margin: 100px auto;
     color: $preset;
-    text-transform: uppercase;
-    font-weight: $font-weight-extra-bold;
-    margin-bottom: 0;
-    &--light {
-      color: $white;
+    @include mq($screen-sm-min) {
+      position: absolute;
+      top: 50%;
+      left: 42%;
+      transform: translate(-42%, -50%);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+    }
+    @include mq($min-screen: $screen-md-min) {
+      min-width: 960px;
+    }
+  }
+
+  &__title-text {
+    @include mq($screen-sm-min) {
+      font-size: 90px;
+      line-height: 100px;
+      color: $preset;
+      text-transform: uppercase;
+      font-weight: $font-weight-extra-bold;
+      margin-bottom: 0;
+
+      &--light {
+        color: $white;
+      }
     }
   }
 }
