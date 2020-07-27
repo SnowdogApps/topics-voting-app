@@ -2,7 +2,6 @@
   <section
     id="user-section"
     class="
-      login-section
       col-xs-12
       col-md-8
     "
@@ -11,8 +10,7 @@
         <div
           v-if="isLoggedIn"
           class="
-            form-section
-            form-section__form
+            auth-section
             col-xs-12
             col-md-7
             m-auto
@@ -38,7 +36,6 @@
         <div
           v-if="isEmailVerification"
           class="
-            form-section
             col-xs-12
             col-md-6
           "
@@ -134,3 +131,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import './src/assets/scss/auth-section';
+</style>

@@ -91,7 +91,8 @@
     "see-all": "See all propositions",
     "approved": "approved",
     "not-approved": "not approved",
-    "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>"
+    "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "language-label": "Topic's language"
   },
   "topics": {
     "empty-list-user": "There is no topic propositions yet. Be the first one!",

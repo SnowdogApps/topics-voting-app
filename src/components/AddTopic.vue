@@ -8,13 +8,13 @@
         col-md-7
       "
     >
-      <div class="form-section__form">
       <h2 class="heading--underline">
         {{ $t('add-form.form-title') }}
       </h2>
       <loader v-if="loading" class="loader--overlay" />
       <form
         v-if="submitStatus !== 'OK'"
+        class="form-section__form"
         @submit.prevent="addTopic"
       >
         <form-input-field
@@ -79,6 +79,25 @@
           maxlength="150"
           autocomplete="off"
         />
+        <div class="select">
+          <label
+            for="topic-language"
+            class="select__label"
+          >
+            {{ $t('add-form.language-label') }}
+          </label>
+          <select
+            class="select__field"
+            id="topic-language"
+            v-model="language"
+          >
+            <option
+              v-for="(language, i) in languages"
+              :key="`language-${i}`"
+              :value="language"
+            >{{ language }}</option>
+          </select>
+        </div>
         <div :class="['radio', { 'radio--error': $v.description.$error }]">
           <fieldset class="fieldset" aria-labelledby="radio-legend">
             <legend id="radio-legend" class="fieldset__legend">
@@ -150,7 +169,6 @@
       >
         {{ $t('form.form-error-msg') }}
       </p>
-      </div>
       <div
         v-if="description"
         class="form-section__preview"
@@ -197,7 +215,9 @@ export default {
       targetGroup: '',
       authorRole: '',
       loading: false,
-      submitStatus: null
+      submitStatus: null,
+      language: 'pl',
+      languages: ['pl', 'en']
     }
   },
   mixins: [
@@ -235,7 +255,8 @@ export default {
           title: this.title,
           description: this.description,
           targetGroup: this.targetGroup,
-          authorRole: this.authorRole
+          authorRole: this.authorRole,
+          lang: this.language
         }).then(() => {
           this.$v.$reset()
           this.loading = false

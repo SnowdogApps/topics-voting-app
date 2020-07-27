@@ -41,7 +41,8 @@ export default {
       authorName: state.user.displayName,
       authorRole: topic.authorRole,
       createDate: new Date(Date.now()).toLocaleString(),
-      approved: false
+      approved: false,
+      lang: topic.lang
     }).then(() => {
       commit('notification/push', {
         message: i18n.t('alert.proposition-added'),

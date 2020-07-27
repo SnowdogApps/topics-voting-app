@@ -92,7 +92,8 @@
     "see-all": "Zobacz wszystkie propozycje",
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
-    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>"
+    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "language-label": "Język prezentacji"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",

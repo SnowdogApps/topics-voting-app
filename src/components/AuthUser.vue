@@ -1,11 +1,10 @@
 <template>
   <section
     class="
-      form-section
-      form-section__form
       col-md-7
       col-xs-12
       m-auto
+      auth-section
     "
   >
     <h2 class="heading--h3">
@@ -80,3 +79,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import './src/assets/scss/auth-section';
+</style>
