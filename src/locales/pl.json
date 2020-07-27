@@ -107,5 +107,14 @@
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
     "resend-email": "Ponownie wyślij prośbę o weryfikację"
+  },
+  "alert": {
+    "proposition-added": "Twoja propozycja została wysłana do weryfikacji",
+    "topic-changes-saved": "Zmiany w temacie zostały zapisane",
+    "logged-in-successfull": "Zalogowano pomyślnie",
+    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}"
+  },
+  "lang-switcher": {
+    "lang-switcher-label": "Zmień język"
   }
 }

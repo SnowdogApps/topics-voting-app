@@ -1,6 +1,7 @@
 import { firebaseAction } from 'vuexfire'
 import { auth, topicRef, userRef } from '../db'
 import { checkSocialLogin } from '../helpers'
+import i18n from '../i18n'
 
 export default {
   bindTopics: firebaseAction(({ bindFirebaseRef, commit }) => {
@@ -12,7 +13,7 @@ export default {
         commit('LOAD_TOPICS', 2)
         commit('notification/push', {
           message: err.message,
-          title: 'Error',
+          title: i18n.t('global.error'),
           type: 'error'
         }, { root: true })
       })
@@ -24,7 +25,7 @@ export default {
     ).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -43,14 +44,14 @@ export default {
       approved: false
     }).then(() => {
       commit('notification/push', {
-        message: 'Your proposition was added to verification',
-        title: 'Success',
+        message: i18n.t('alert.proposition-added'),
+        title: i18n.t('global.success'),
         type: 'success'
       }, { root: true })
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -62,14 +63,14 @@ export default {
       targetGroup: topic.targetGroup
     }).then(() => {
       commit('notification/push', {
-        message: 'Topic changes were saved',
-        title: 'Success',
+        message: i18n.t('alert.topic-changes-saved'),
+        title: i18n.t('global.success'),
         type: 'success'
       }, { root: true })
     }).catch(err => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -88,8 +89,8 @@ export default {
           dispatch('checkAdmin')
           dispatch('bindUser')
           commit('notification/push', {
-            message: 'You have logged in successfully',
-            title: 'Success',
+            message: i18n.t('alert.logged-in-successfull'),
+            title: i18n.t('global.success'),
             type: 'success'
           }, { root: true })
         } else {
@@ -105,7 +106,7 @@ export default {
     } catch (err) {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     }
@@ -119,7 +120,7 @@ export default {
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -135,7 +136,7 @@ export default {
       }).catch((err) => {
         commit('notification/push', {
           message: err.message,
-          title: 'Error',
+          title: i18n.t('global.error'),
           type: 'error'
         }, { root: true })
       })
@@ -148,7 +149,7 @@ export default {
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -159,7 +160,7 @@ export default {
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })
@@ -207,14 +208,14 @@ export default {
         dispatch('setInitEmailSent')
       }
       commit('notification/push', {
-        message: `An Email verification request was sent to ${user.email}`,
+        message: i18n.t('alert.email-verification-sent', { email: user.email }),
         title: '',
         type: 'info'
       }, { root: true })
     }).catch((err) => {
       commit('notification/push', {
         message: err.message,
-        title: 'Error',
+        title: i18n.t('global.error'),
         type: 'error'
       }, { root: true })
     })

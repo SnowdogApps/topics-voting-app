@@ -4,6 +4,7 @@
       :class="['dropdown__button', { 'dropdown__button--active': show }]"
       type="button"
       @click="toggle"
+      :aria-label="$t('lang-switcher.lang-switcher-label')"
     >
       {{ $i18n.locale.toUpperCase() }}
     </button>

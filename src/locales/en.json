@@ -107,5 +107,14 @@
     "verification-email-info": "You should receive an email verification request, check your email box.",
     "email-not-received": "If you didn't receive an email:",
     "resend-email": "Resend email verification request"
+  },
+  "alert": {
+    "proposition-added": "Your proposition was added to verification",
+    "topic-changes-saved": "Topic changes were saved",
+    "logged-in-successfull": "You have logged in successfully",
+    "email-verification-sent": "An email verification request was sent to {email}"
+  },
+  "lang-switcher": {
+    "change-language": "Change language"
   }
 }
