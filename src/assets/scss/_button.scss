@@ -31,18 +31,19 @@
     cursor: not-allowed;
   }
 
+  &__icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transition: $transition-base;
+  }
+
   &--login {
     width: 100%;
     max-width: 320px;
     margin: 0 auto $spacer__s;
     padding: 0 $spacer--s 0 $spacer--m;
     font-weight: $font-weight-base;
-  }
-
-  &--secondary {
-    background-color: $preset;
-    border-color: $preset;
-    color: $secondary;
   }
 
   &--link {
@@ -55,21 +56,21 @@
     margin-bottom: 0;
   }
 
-  &__icon {
-    display: block;
-    width: 24px;
-    height: 24px;
-    transition: $transition-base;
-  }
-
   &--small {
     font-size: $font-size-extra-small;
     min-height: 36px;
   }
 
-  &--cancel {
-    background-color: white;
+  &--secondary {
+    background-color: $white;
     border-color: $secondary;
+    color: $secondary;
+  }
+
+  &--tertiary {
+    background-color: $white;
+    border-color: $preset;
+    border-width: 2px;
     color: $secondary;
   }
 

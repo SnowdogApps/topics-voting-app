@@ -94,7 +94,7 @@
         </div>
         <div class="form-section__action">
           <v-button
-            class="button--cancel button--with-margin"
+            class="button--secondary button--with-margin"
             @btn-event="cancel"
           >
             {{ $t('global.cancel') }}

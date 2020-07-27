@@ -108,7 +108,7 @@
         <div class="topic-item__btn-section" v-if="isAdmin && adminView">
           <v-button
             v-if="editable"
-            class="button--cancel button--with-margin"
+            class="button--secondary button--with-margin"
             @btn-event="editTopic"
           >
             {{ $t("global.edit") }}
@@ -117,7 +117,7 @@
             v-if="!topic.approved && !topic.rejected"
             class="
               button--with-margin
-              button--secondary
+              button--tertiary
             "
             @btn-event="rejectTopic"
           >
