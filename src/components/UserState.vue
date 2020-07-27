@@ -1,16 +1,30 @@
 <template>
-  <section class="col-xs-12 col-md-8 login-section">
+  <section
+    id="user-section"
+    class="
+      login-section
+      col-xs-12
+      col-md-8
+    "
+  >
       <transition name="fade">
         <div
           v-if="isLoggedIn"
-          class="col-xs-12"
+          class="
+            form-section
+            form-section__form
+            col-xs-12
+            col-md-7
+            m-auto
+          "
         >
-          {{ $t('user.hi') }}
-          <span class="bold">
-            {{ user.displayName || user.email }}
-          </span>!
-          <br>
-          {{ $t('user.welcome-msg') }}
+          <h2 class="uppercase heading--h3">
+            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+          </h2>
+          <p>{{ $t('user.welcome-msg') }}</p>
+          <a class="button" href="#add-topic">
+              {{ $t('user.add-your-topic') }}
+          </a>
           <br>
           <v-button
             class="button--link"
@@ -23,14 +37,16 @@
       <transition name="fade">
         <div
           v-if="isEmailVerification"
-          class="col-xs-12"
+          class="
+            form-section
+            col-xs-12
+            col-md-6
+          "
         >
+          <h2 class="uppercase heading--h3">
+            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+          </h2>
           <p>
-            {{ $t('user.hi') }}
-            <span class="bold">
-              {{ user.displayName || user.email }}
-            </span>!
-            <br>
             {{ $t('user.email-not-verified') }}
             <br>
             {{ $t('user.verification-email-info') }}
@@ -118,8 +134,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-.login-section {
-  position: relative;
-}
-</style>

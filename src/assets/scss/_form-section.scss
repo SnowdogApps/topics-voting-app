@@ -1,7 +1,12 @@
 .form-section {
   position: relative;
   box-shadow: $box-shadow;
-  padding: $spacer--xl;
+  padding: 0;
+
+  &__form,
+  &__preview {
+      padding: $spacer--xl;
+  }
 
   &__action {
     margin: $spacer--l 0;
@@ -11,8 +16,6 @@
     }
   }
   &__preview {
-    margin: $spacer--xl 0;
-    padding: $spacer--m;
     border-top: $border-base;
     text-align: left;
     word-break: break-word;
@@ -37,5 +40,13 @@
         display: block;
       }
     }
+  }
+
+  .label {
+    font-weight: $font-weight-bold;
+  }
+
+  .form__label {
+    @extend .label;
   }
 }

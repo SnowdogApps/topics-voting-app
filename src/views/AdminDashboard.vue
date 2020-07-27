@@ -1,6 +1,8 @@
 <template>
   <div class="row center-xs">
-    <h1>{{ $t('admin.admin-dashboard') }}</h1>
+    <h1 class="uppercase">
+      {{ $t('admin.admin-dashboard') }}
+    </h1>
     <topic-list
       :topics="topicsNotApproved"
       :title="notApprListTitle"

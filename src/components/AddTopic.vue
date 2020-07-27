@@ -1,9 +1,17 @@
 <template>
-  <section>
-    <h2 class="section__heading">
-      {{ $t('add-form.form-title') }}
-    </h2>
-    <div class="form-section m-auto col-xs-12 col-md-8">
+  <section id="add-topic">
+    <div
+      class="
+        form-section
+        m-auto
+        col-xs-12
+        col-md-7
+      "
+    >
+      <div class="form-section__form">
+      <h2 class="heading--underline">
+        {{ $t('add-form.form-title') }}
+      </h2>
       <loader v-if="loading" class="loader--overlay" />
       <form
         v-if="submitStatus !== 'OK'"
@@ -19,11 +27,20 @@
           autocomplete="off"
         />
         <div :class="['input', { 'input--error': $v.description.$error }]">
-          <label
-            for="description"
+          <i18n
             class="form__label"
-            v-html="$t('add-form.description-field-label', {link: 'https://www.markdownguide.org/basic-syntax/'})"
-          ></label>
+            path="add-form.description-field-label"
+            for="description"
+            tag="label"
+          >
+            <template #markdown>
+              <a
+                class="link"
+                href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
+                target="_blank"
+              >markdown</a>
+            </template>
+          </i18n>
           <textarea
             id="description"
             @input="debounceInput"
@@ -76,8 +93,8 @@
                 value="observer"
               >
               <label for="observer" class="radio__label">
-                <span class="radio__text">
-                  {{ $t('add-form.radio-author-observer')}}
+                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
+                  {{ $t('add-form.radio-author-observer') }}
                 </span>
               </label>
             </div>
@@ -90,8 +107,8 @@
                 value="speaker"
               >
               <label for="speaker" class="radio__label">
-                <span class="radio__text">
-                  {{ $t('add-form.radio-author-speaker')}}
+                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
+                  {{ $t('add-form.radio-author-speaker') }}
                 </span>
               </label>
             </div>
@@ -165,9 +182,9 @@
       </form>
       <div v-if="submitStatus === 'OK'">
         <p>
-          {{ $t('add-form.submit-info-1')}}
+          {{ $t('add-form.submit-info-1') }}
           <br>
-          {{ $t('add-form.submit-info-2')}}
+          {{ $t('add-form.submit-info-2') }}
         </p>
         <br>
         <v-button
@@ -182,18 +199,20 @@
       >
         {{ $t('form.form-error-msg') }}
       </p>
+      </div>
       <div
         v-if="description"
         class="form-section__preview"
       >
-        <h3>
-          {{ $t('add-form.description-preview')}}
+        <h3 class="heading--h4">
+          {{ $t('add-form.description-preview') }}
         </h3>
         <div v-html="compiledMarkdown(description)"></div>
       </div>
     </div>
   </section>
 </template>
+
 <script>
 import { mapGetters } from 'vuex'
 import { required, email, requiredIf } from 'vuelidate/lib/validators'
@@ -306,86 +325,12 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-$radio-size: 24px;
-$radio-dot-size: 12px;
+
+<style lang="scss">
+$radio-size: 18px;
+$radio-dot-size: 10px;
 
 .submit-error {
   color: $error;
-}
-.radio {
-  position: relative;
-  margin: 0 0 $spacer--s 0;
-
-    &__handler {
-        position: relative;
-    }
-
-    &__field {
-        position: absolute;
-        left: 0;
-        height: $radio-size;
-        width: $radio-size;
-        opacity: 0;
-        z-index: -1;
-
-        &:checked + .radio__label {
-            color: $gray-darker;
-            font-weight: $font-weight-bold;
-
-            &:before {
-                border-color: $gray-darker;
-            }
-
-            &:after {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-    }
-
-    &__label {
-        position: relative;
-        display: flex;
-        flex-flow: row nowrap;
-        height: auto;
-        width: 100%;
-        margin: $spacer--s 0;
-        line-height: $line-height;
-        font-size: $font-size-base;
-        color: $font-color-base;
-        cursor: pointer;
-
-        &:before {
-            content: '';
-            position: relative;
-            display: inline-block;
-            border: 2px solid $gray-darker;
-            border-radius: $radio-size;
-            width: $radio-size;
-            min-width: $radio-size;
-            height: $radio-size;
-            margin-right: $spacer--xs;
-        }
-
-        &:after {
-            position: absolute;
-            top: 6px;
-            left: 6px;
-            content: '';
-            width: $radio-dot-size;
-            height: $radio-dot-size;
-            border-radius: $radio-dot-size;
-            margin: auto;
-            opacity: 0;
-            transform: scale(0);
-            background-color: $gray-darker;
-            transition: $transition-base;
-        }
-    }
-
-    &__text {
-        width: calc(100% - #{$spacer--xs + $radio-size});
-    }
 }
 </style>

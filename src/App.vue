@@ -1,12 +1,10 @@
 <template>
   <div id="app">
-    <header class="row between-xs">
-      <navbar/>
-    </header>
+    <page-header />
+    <scroll-top/>
     <main class="container">
       <router-view/>
     </main>
-    <scroll-top/>
   </div>
 </template>
 
@@ -15,13 +13,13 @@ import { mapGetters } from 'vuex'
 import notification from '@/mixins/notification.js'
 import fb from '@/mixins/facebook.js'
 import ScrollTop from '@/components/ScrollTop.vue'
-import Navbar from '@/components/Navbar.vue'
+import PageHeader from '@/components/PageHeader.vue'
 import { auth } from '@/db'
 
 export default {
   components: {
     ScrollTop,
-    Navbar
+    PageHeader
   },
   created () {
     this.$store.dispatch('bindTopics')
@@ -54,6 +52,9 @@ export default {
 
 <style lang="scss">
 .container {
-  margin-top: 80px;
+  margin-top: $navbar-height;
+  @include mq($screen-md-min) {
+    margin-top: $spacer--xl;
+  }
 }
 </style>

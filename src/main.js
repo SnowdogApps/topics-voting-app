@@ -8,6 +8,7 @@ import router from './router'
 import VueIziToast from 'vue-izitoast'
 import VueSocialSharing from 'vue-social-sharing'
 import i18n from './i18n'
+import focusVisible from 'focus-visible'
 const rtdbPlugin = ({ rtdbPlugin }) => import('vuefire')
 
 const options = {
@@ -23,5 +24,6 @@ new Vue({
   store,
   router,
   i18n,
+  focusVisible,
   render: h => h(App)
 }).$mount('#app')

@@ -1,6 +1,14 @@
 <template>
-  <section class="form-section m-xl">
-    <h2>
+  <section
+    class="
+      form-section
+      form-section__form
+      col-md-7
+      col-xs-12
+      m-auto
+    "
+  >
+    <h2 class="heading--h3">
       <template v-if="!emailPass && !linkProvider">
         {{ $t('login.choose-login-method') }}
       </template>

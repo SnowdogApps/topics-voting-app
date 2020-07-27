@@ -1,33 +1,53 @@
 .heading {
-    margin: 0 0 $spacer--xl;
-    color: $gray-dark;
-    font-weight: $font-weight-bold;
+  margin: 0 0 $spacer--xl;
+  color: $font-color-base;
+  font-weight: $font-weight-extra-bold;
 
-    &--h1 {
-        font-size: $font-size-extra-large;
-        @include mq($screen-sm-min) {
-            font-size: 30px;
-        }
+  &--h1 {
+    font-size: $heading-size-medium;
+    @include mq($screen-sm-min) {
+      font-size: $heading-size-large;
     }
+  }
 
-    &--h2 {
-        font-size: $font-size-large;
-        @include mq($screen-sm-min) {
-            font-size: $font-size-extra-large;
-        }
+  &--h2 {
+    font-size: $heading-size-small;
+    @include mq($screen-sm-min) {
+      font-size: $heading-size-medium;
     }
+  }
 
-    &--h3 {
-        font-size: $font-size-base;
-        @include mq($screen-sm-min) {
-            font-size: $font-size-large;
-        }
+  &--h3 {
+    font-size: $heading-size-extra-small;
+    @include mq($screen-sm-min) {
+      font-size: $heading-size-small;
     }
+  }
 
-    &--h4 {
-        font-size: $font-size-base;
-        margin-bottom: $spacer--s;
+  &--h4 {
+    font-size: $font-size-small;
+    margin-bottom: $spacer--xs;
+    @include mq($screen-sm-min) {
+        font-size: $heading-size-extra-small;
     }
+  }
+
+  &--underline {
+    position: relative;
+    margin: $spacer--xs $spacer--s 64px;
+    padding: $spacer--s;
+    text-transform: uppercase;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 64px;
+      height: 2px;
+      background-color: $preset;
+      transform: translateX(-50%);
+    }
+  }
 }
 
 h1,
@@ -36,38 +56,21 @@ h3,
 h4,
 h5,
 h6 {
-    @extend .heading;
+  @extend .heading;
 }
 
 h1 {
-    @extend .heading--h1;
+  @extend .heading--h1;
 }
 
 h2 {
-    @extend .heading--h2;
-    &.section__heading {
-        font-weight: $font-weight-bold;
-        text-transform: uppercase;
-        margin: $spacer--xs $spacer--s $spacer--m;
-        padding: $spacer--s;
-        position: relative;
-        &:after {
-        content: "";
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 64px;
-            height: 2px;
-            background-color: $preset;
-            transform: translateX(-50%);
-        }
-    }
+  @extend .heading--h2;
 }
 
 h3 {
-    @extend .heading--h3;
+  @extend .heading--h3;
 }
 
 h4 {
-    @extend .heading--h4;
+  @extend .heading--h4;
 }

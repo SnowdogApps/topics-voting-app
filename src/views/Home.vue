@@ -1,15 +1,10 @@
 <template>
   <div class="row center-xs">
-    <h1 class="col-xs-12">
-      {{ $t('home.home-title') }}
-    </h1>
-    <h2 class="col-xs-12">
-      {{ $t('home.home-subtitle') }}
-    </h2>
-    <div class="col-xs-12">
-      <p>
-        {{ $t('home.home-top-description')}}
-      </p>
+    <div class="col-xs-12 col-md-8">
+      <h2>
+        {{ $t('home.home-top-description-title') }}
+      </h2>
+      <p v-html="$t('home.home-top-description')"></p>
       <p v-if="!isLoggedIn">
         {{ $t('home.login-info') }}
       </p>
@@ -19,7 +14,7 @@
       :topics="topics"
       :title="$t('home.list-items-title')"
       class="col-xs-12"
-     />
+    />
     <add-topic
       v-if="isLoggedIn"
       class="col-xs-12"
