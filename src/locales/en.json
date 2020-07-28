@@ -80,8 +80,10 @@
     "contact-email-field-label": "Contact email",
     "contact-email-field-placeholder": "Contact email",
     "speaker-name-field-label": "Speaker Name",
-    "speaker-email-field-label": "Speaker Email (provide user's email used for registration, if user doesn't exist in db, an account will be created and verification email will be sent for this address)",
-    "speaker-email-field-placeholder": "Speaker email"
+    "speaker-email-field-label": "Speaker Email (provide user's email used for registration, if user doesn't exist in db, please create an email/pass account for him)",
+    "speaker-email-field-placeholder": "Speaker email",
+    "user-not-exist": "User with this email does not exist in db, please create an account",
+    "users-not-found": "Users not found, please refresh the page and try again or contact support team :)"
   },
   "topic": {
     "to-grab": "To grab",

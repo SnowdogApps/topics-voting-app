@@ -192,50 +192,81 @@ export default {
       } else {
         this.loading = true
         this.submitStatus = 'PENDING'
-        if (!this.topic.speakerEmail && this.$v.speakerEmail.$dirty) {
-          const dataUpdated = {
-            title: this.title,
-            description: this.description,
-            targetGroup: this.targetGroup
-          }
-          // check is there is a user with provided email
+        const dataUpdated = {
+          title: this.title,
+          description: this.description,
+          targetGroup: this.targetGroup
+        }
+        // if speaker was changed
+        if (this.$v.speakerEmail.$dirty) {
           if (this.allUsers) {
+            // check if provided email is assign to any registered user
             const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
             if (newSpeaker) {
-              const data = {
+              // if new speaker exist, update old speaker data
+              if (this.topic.speakerEmail && (this.topic.speakerEmail !== this.speakerEmail)) {
+                const oldSpeakerData = {
+                  authorId: this.topic.authorId,
+                  oldSpeakerId: this.topic.speakerId,
+                  topicId: this.topic['.key']
+                }
+                this.$store.dispatch('updateUserTopic', oldSpeakerData)
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              }
+              // update new speaker data
+              const newSpeakerData = {
                 authorId: this.topic.authorId,
                 newSpeakerId: newSpeaker['.key'],
-                newSpeakerEmail: this.speakerEmail,
                 topicId: this.topic['.key']
               }
-              this.$store.dispatch('updateSpeaker', data)
+              this.$store.dispatch('updateUserTopic', newSpeakerData)
+                .cathc((err) => {
+                  console.log(err)
+                })
+              // update topic data
               dataUpdated.speaker = this.speaker
               dataUpdated.speakerEmail = this.speakerEmail
               dataUpdated.speakerId = newSpeaker['.key']
               this.$store.dispatch('editTopic', {
                 topicId: this.topic['.key'],
                 topicData: dataUpdated
+              }).then(() => {
+                this.resetFormData()
               })
-                .then(() => {
-                  this.$v.$reset()
-                  this.loading = false
-                  this.submitStatus = 'OK'
-                  this.$emit('saved-edit')
-                })
             } else {
-              console.log('there is no user with such email')
+              // display error msg if user with provided email doesn't exist
+              this.$store.commit('notification/push', {
+                message: this.$t('add-form.user-not-exist'),
+                title: 'Error',
+                type: 'error'
+              }, { root: true })
             }
+          } else {
+            // display error msg if users list is not found
+            this.$store.commit('notification/push', {
+              message: this.$t('add-form.users-not-found'),
+              title: 'Error',
+              type: 'error'
+            }, { root: true })
           }
-          // if not - create account
-        } else if (this.topic.speakerEmail && this.$v.speakerEmail.$dirty) {
-          console.log('you are changing speaker info')
-          // check if spekerEmail has changed
-          const isEmailChanged = this.topic.speakerEmail === this.speakerEmail
-          console.log('isEmailChanged', isEmailChanged)
-          // check is there is a user with provided email
-          // if not - create account
+        } else {
+          // update topic data
+          this.$store.dispatch('editTopic', {
+            topicId: this.topic['.key'],
+            topicData: dataUpdated
+          }).then(() => {
+            this.resetFormData()
+          })
         }
       }
+    },
+    resetFormData () {
+      this.$v.$reset()
+      this.loading = false
+      this.submitStatus = 'OK'
+      this.$emit('saved-edit')
     },
     cancel () {
       this.$emit('cancel-edit')

@@ -81,8 +81,10 @@
     "contact-email-field-label": "Email do kontaktu",
     "contact-email-field-placeholder": "Email do kontaktu",
     "speaker-name-field-label": "Speaker Name",
-    "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, konto zostanie stworzone automatycznie, a email weryfikacyjny zostanie wyslany pod podany adres email)",
-    "speaker-email-field-placeholder": "Speaker email"
+    "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, utwórz proszę konto dla niego uzywajac email/pass)",
+    "speaker-email-field-placeholder": "Speaker email",
+    "user-not-exist": "Uzytwkonik z podanym emailem nie istnieje, prosze stworz konto",
+    "users-not-found": "Lista uzytwkonikow nie zostala znaleziona, odswiez strone i sprobuj ponownie lub skontaktuj sie z supportem :)"
   },
   "topic": {
     "to-grab": "To grab",

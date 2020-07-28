@@ -32,9 +32,6 @@ export default {
   }),
   bindAllUsers: firebaseAction(({ bindFirebaseRef, state }) => {
     return bindFirebaseRef('allUsers', userRef)
-      .then((result) => {
-        console.log(result)
-      })
       .catch((err) => {
         console.log(err)
       })
@@ -99,14 +96,16 @@ export default {
   updateUserData: firebaseAction(({ state }, { userId, userData }) => {
     return userRef.child(userId).update(userData)
   }),
-  updateSpeaker: firebaseAction(({ dispatch }, data) => {
-    return userRef.child(data.newSpeakerId).child('topics').push({
+  updateUserTopic: firebaseAction(({ state }, data) => {
+    const speakerId = data.oldSpeakerId ? data.oldSpeakerId : data.newSpeakerId
+    const speakerPayload = {
       topicId: data.topicId,
-      author: (data.authorId === data.newSpeakerId) ? 'yes' : 'no',
-      speaker: 'yes'
-    }).then((result) => {
-      console.log(result)
-    }).catch((err) => {
+      author: (speakerId === data.authorId) ? 'yes' : 'no',
+      speaker: data.oldSpeakerId ? 'no' : 'yes'
+    }
+    return userRef.child(speakerId).child('topics').push(
+      speakerPayload
+    ).catch((err) => {
       console.log(err)
     })
   }),
