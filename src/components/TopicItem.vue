@@ -78,6 +78,12 @@
             >:
             <span>{{ topic.targetGroup }}</span>
           </div>
+          <div v-if="userView">
+            <span class="bold">
+              {{ $t('topic.status') }}
+            </span>
+            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
+          </div>
         </div>
         <div class="topic-item__vote">
           <v-button
@@ -225,7 +231,10 @@ export default {
       return message
     },
     adminView () {
-      return this.$router.currentRoute.path.includes('admin-dashboard')
+      return this.$router.currentRoute.path.includes('admin-dashboard') && this.isAdmin
+    },
+    userView () {
+      return this.$router.currentRoute.path.includes('user')
     }
   },
   data () {
@@ -265,7 +274,7 @@ export default {
   }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import './src/assets/scss/tooltip';
 
 .topic-item {
@@ -378,14 +387,6 @@ export default {
 
   &__target-group {
     margin-top: $spacer--s;
-  }
-
-  &__list {
-    display: block;
-    margin: $spacer--s 0;
-    padding: 0;
-    list-style: none;
-    line-height: 2;
   }
 
   &__btn-section {

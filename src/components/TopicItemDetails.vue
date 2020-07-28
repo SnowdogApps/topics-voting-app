@@ -1,14 +1,26 @@
 <template>
-<div class="topic-item__details">
+<div class="topic-details">
    <h4>
       {{ $t('topic.details') }}
     </h4>
-    <ul class="topic-item__list">
+    <ul class="topic-details__list">
+      <li>
+        <span class="bold">
+          {{ $t('topic.topic-id') }}
+        </span>
+        {{ topic['.key'] }}
+      </li>
       <li>
         <span class="bold">
           {{ $t('topic.speaker') }}
         </span>
         {{ topic.speaker }}
+      </li>
+      <li>
+        <span class="bold">
+          {{ $t('topic.speaker-id') }}
+        </span>
+        {{ topic.speakerId }}
       </li>
       <li>
         <span class="bold">
@@ -59,3 +71,12 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.topic-details__list {
+  display: block;
+  margin: $spacer--s 0;
+  padding: 0;
+  list-style: none;
+  line-height: 2;
+}
+</style>

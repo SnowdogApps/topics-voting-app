@@ -227,6 +227,7 @@ export default {
           this.formData.password
         ).then((result) => {
           const user = result.user
+          console.log(result)
           if (this.isLinkingProviderPassword) {
             this.linkAccountCreds(user, this.linkCreds)
           }
@@ -274,6 +275,8 @@ export default {
             displayName: `${this.formData.firstname} ${this.formData.lastname}`
           }).then(() => {
             const user = auth.currentUser
+            // if is a new user, save data in db
+            self.$store.dispatch('assignUserData', result.user)
             self.$store.commit('SET_AUTH_USER', { user })
           })
         }).catch((err) => {

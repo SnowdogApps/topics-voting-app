@@ -3,10 +3,7 @@
     <a
       v-if="visible"
       href="#"
-      class="
-        back-to-top
-        button--secondary
-      "
+      class="back-to-top"
       @click="scroll"
       :aria-label="$t('home.back-to-top')"
     >
@@ -39,18 +36,23 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .back-to-top {
   position: fixed;
   bottom: 0;
   right: 0;
   margin: $spacer--s;
-  text-decoration: none;
   padding: $spacer--xs;
-  z-index: 1;
-  text-decoration: none;
   line-height: initial;
+  background-color: $preset;
+  text-decoration: none;
+  z-index: 1;
   box-shadow: 0 0 4px rgba(0,0,0,.14),
-    0 4px 8px rgba(0,0,0,.28)
+    0 4px 8px rgba(0,0,0,.28);
+    transition: $transition-base;
+  &:hover,
+  &.focus-visible {
+    background-color: $blue;
+  }
 }
 </style>

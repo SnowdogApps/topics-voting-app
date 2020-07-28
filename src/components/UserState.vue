@@ -12,7 +12,7 @@
           class="
             auth-section
             col-xs-12
-            col-md-7
+            col-lg-7
             m-auto
           "
         >
@@ -38,6 +38,7 @@
           class="
             col-xs-12
             col-md-6
+            m-auto
           "
         >
           <h2 class="uppercase heading--h3">

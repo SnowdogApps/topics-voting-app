@@ -1,7 +1,7 @@
 <template>
   <section
     class="
-      col-md-7
+      col-lg-7
       col-xs-12
       m-auto
       auth-section
@@ -17,7 +17,7 @@
     </h2>
     <i18n v-if="linkProvider" path="login.account-already-linked-to-email" tag="p">
       <template #provider>
-        <span class="bold">{{ linkCreds.providerId }}</span>
+        <span class="bold">{{ linkProvider }}</span>
       </template>
       <template #email>
         <span class="bold">{{ linkEmail }}</span>

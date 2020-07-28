@@ -15,6 +15,7 @@ export default new Vuex.Store({
     topics: [],
     user: null,
     userVotes: [],
+    allUsers: [],
     topicsLoaded: 0,
     admin: false,
     linkAccount: null

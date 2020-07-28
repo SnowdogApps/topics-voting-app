@@ -51,46 +51,29 @@
           maxlength="150"
           autocomplete="off"
         />
-        <div :class="['radio', { 'radio--error': $v.description.$error }]">
-          <fieldset class="fieldset" aria-labelledby="radio-legend">
-            <legend id="radio-legend" class="fieldset__legend">
-              {{ $t('add-form.activity-radio-legend') }}
-            </legend>
-            <div class="radio__handler">
-              <input
-                type="radio"
-                id="observer"
-                class="radio__field"
-                v-model="$v.authorRole.$model"
-                value="observer"
-              >
-              <label for="observer" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
-                  {{ $t('add-form.author-observer') }}
-                </span>
-              </label>
-            </div>
-            <div class="radio__handler">
-              <input
-                type="radio"
-                id="speaker"
-                class="radio__field"
-                v-model="authorRole"
-                value="speaker"
-              >
-              <label for="speaker" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
-                  {{ $t('add-form.author-speaker') }}
-                </span>
-              </label>
-            </div>
-          </fieldset>
-          <div
-            v-if="!$v.authorRole.required"
-            class="error"
-          >
-            {{ $t('form.required-field') }}
-          </div>
+        <form-input-field
+          v-model="speaker"
+          :validator="$v.speaker"
+          id="speaker"
+          :label="$t('add-form.speaker-name-field-label')"
+          :placeholder="$t('add-form.speaker-name-field-label')"
+          maxlength="150"
+          autocomplete="off"
+        />
+        <form-input-field
+          v-model="speakerEmail"
+          :validator="$v.speakerEmail"
+          id="speakerEmail"
+          :label="$t('add-form.speaker-email-field-label')"
+          :placeholder="$t('add-form.speaker-email-field-placeholder')"
+          maxlength="150"
+          autocomplete="off"
+        />
+        <div>
+          <span class="bold">
+            {{ $t('topic.speaker-id') }}
+          </span>
+          {{ topic.speakerId }}
         </div>
         <div class="form-section__action">
           <v-button
@@ -120,6 +103,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
+import { mapState } from 'vuex'
 import debounce from 'lodash.debounce'
 import markdown from '@/mixins/markdown.js'
 import VButton from '@/components/Button.vue'
@@ -146,14 +130,18 @@ export default {
       const char = this.description.length
       const limit = 700
       return `${(limit - char)} / ${limit}`
-    }
+    },
+    ...mapState({
+      allUsers: 'allUsers'
+    })
   },
   data () {
     return {
       title: '',
       description: '',
       targetGroup: '',
-      authorRole: '',
+      speaker: '',
+      speakerEmail: '',
       loading: false,
       submitStatus: null
     }
@@ -162,18 +150,33 @@ export default {
     validationMixin,
     markdown
   ],
-  validations: {
-    title: {
-      required
-    },
-    description: {
-      required
-    },
-    authorRole: {
-      required
-    },
-    targetGroup: {
-      required
+  validations () {
+    return {
+      title: {
+        required
+      },
+      description: {
+        required
+      },
+      targetGroup: {
+        required
+      },
+      speaker: {
+        required: false
+      },
+      speakerEmail: {
+        required: false
+      }
+    }
+  },
+  created () {
+    this.$store.dispatch('bindAllUsers')
+    if (this.topic) {
+      this.title = this.topic.title || ''
+      this.description = this.topic.description || ''
+      this.targetGroup = this.topic.targetGroup || ''
+      this.speaker = this.topic.speaker || ''
+      this.speakerEmail = this.topic.speakerEmail
     }
   },
   methods: {
@@ -189,30 +192,53 @@ export default {
       } else {
         this.loading = true
         this.submitStatus = 'PENDING'
-        this.$store.dispatch('editTopic', {
-          title: this.title,
-          description: this.description,
-          targetGroup: this.targetGroup,
-          authorRole: this.authorRole,
-          id: this.id
-        }).then(() => {
-          this.$v.$reset()
-          this.loading = false
-          this.submitStatus = 'OK'
-          this.$emit('saved-edit')
-        })
+        if (!this.topic.speakerEmail && this.$v.speakerEmail.$dirty) {
+          const dataUpdated = {
+            title: this.title,
+            description: this.description,
+            targetGroup: this.targetGroup
+          }
+          // check is there is a user with provided email
+          if (this.allUsers) {
+            const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
+            if (newSpeaker) {
+              const data = {
+                authorId: this.topic.authorId,
+                newSpeakerId: newSpeaker['.key'],
+                newSpeakerEmail: this.speakerEmail,
+                topicId: this.topic['.key']
+              }
+              this.$store.dispatch('updateSpeaker', data)
+              dataUpdated.speaker = this.speaker
+              dataUpdated.speakerEmail = this.speakerEmail
+              dataUpdated.speakerId = newSpeaker['.key']
+              this.$store.dispatch('editTopic', {
+                topicId: this.topic['.key'],
+                topicData: dataUpdated
+              })
+                .then(() => {
+                  this.$v.$reset()
+                  this.loading = false
+                  this.submitStatus = 'OK'
+                  this.$emit('saved-edit')
+                })
+            } else {
+              console.log('there is no user with such email')
+            }
+          }
+          // if not - create account
+        } else if (this.topic.speakerEmail && this.$v.speakerEmail.$dirty) {
+          console.log('you are changing speaker info')
+          // check if spekerEmail has changed
+          const isEmailChanged = this.topic.speakerEmail === this.speakerEmail
+          console.log('isEmailChanged', isEmailChanged)
+          // check is there is a user with provided email
+          // if not - create account
+        }
       }
     },
     cancel () {
       this.$emit('cancel-edit')
-    }
-  },
-  created () {
-    if (this.topic) {
-      this.title = this.topic.title || ''
-      this.description = this.topic.description || ''
-      this.targetGroup = this.topic.targetGroup || ''
-      this.authorRole = this.topic.authorRole || ''
     }
   }
 }

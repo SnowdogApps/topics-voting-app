@@ -84,7 +84,7 @@
             for="topic-language"
             class="select__label"
           >
-            {{ $t('add-form.language-label') }}
+            {{ $t('topic.language-label') }}
           </label>
           <select
             class="select__field"
@@ -307,6 +307,11 @@ export default {
         }),
         email
       }
+    }
+  },
+  created () {
+    if (this.$store.state.user) {
+      this.contactEmail = this.$store.state.user.email
     }
   },
   methods: {

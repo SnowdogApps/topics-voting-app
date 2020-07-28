@@ -30,6 +30,15 @@ export default {
       }, { root: true })
     })
   }),
+  bindAllUsers: firebaseAction(({ bindFirebaseRef, state }) => {
+    return bindFirebaseRef('allUsers', userRef)
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }),
   addTopic: firebaseAction(({ state, commit, dispatch }, topic) => {
     return topicRef.push({
       title: topic.title,
@@ -44,7 +53,8 @@ export default {
       approved: false,
       lang: topic.lang,
       speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none',
-      speakerId: (topic.authorRole === 'speaker') ? `${topic.authorId}` : null
+      speakerId: (topic.authorRole === 'speaker') ? `${topic.authorId}` : null,
+      speakerEmail: (topic.authorRole === 'speaker') ? `${state.user.email}` : null
     }).then((result) => {
       const addedTopic = result.key
       dispatch('assignTopicToUser', { topicData: topic, topicId: addedTopic })
@@ -69,6 +79,16 @@ export default {
       }, { root: true })
     })
   }),
+  assignUserData: firebaseAction(({ state }, user) => {
+    return userRef.child(user.uid).update({
+      name: user.displayName,
+      email: user.email,
+      uid: user.uid,
+      photo: user.photoURL
+    }).catch((err) => {
+      console.log(err)
+    })
+  }),
   assignTopicToUser: firebaseAction(({ state }, { topicData, topicId }) => {
     return userRef.child(state.user.id).child('topics').push({
       topicId: topicId,
@@ -79,12 +99,21 @@ export default {
   updateUserData: firebaseAction(({ state }, { userId, userData }) => {
     return userRef.child(userId).update(userData)
   }),
-  editTopic: firebaseAction(({ state, commit }, topic) => {
-    return topicRef.child(topic.id).update({
-      title: topic.title,
-      description: topic.description,
-      targetGroup: topic.targetGroup
-    }).then(() => {
+  updateSpeaker: firebaseAction(({ dispatch }, data) => {
+    return userRef.child(data.newSpeakerId).child('topics').push({
+      topicId: data.topicId,
+      author: (data.authorId === data.newSpeakerId) ? 'yes' : 'no',
+      speaker: 'yes'
+    }).then((result) => {
+      console.log(result)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }),
+  editTopic: firebaseAction(({ state, commit }, { topicId, topicData }) => {
+    return topicRef.child(topicId).update(
+      topicData
+    ).then(() => {
       commit('notification/push', {
         message: i18n.t('alert.topic-changes-saved'),
         title: i18n.t('global.success'),
@@ -250,7 +279,10 @@ export default {
     if (!state.user.initEmailSent) {
       dispatch('setInitEmailSent')
     }
-    user.sendEmailVerification().then(() => {
+    const redirect = {
+      url: `${window.location.href}?verified=true`
+    }
+    user.sendEmailVerification(redirect).then(() => {
       // set in db that init email was send if needed
       if (!state.user.initEmailSent) {
         dispatch('setInitEmailSent')
@@ -269,7 +301,7 @@ export default {
     })
   },
   setInitEmailSent: firebaseAction(({ state, commit }) => {
-    return userRef.child(state.user.id).set({
+    return userRef.child(state.user.id).update({
       initEmailSent: true
     }).then(() => {
       commit('INIT_EMAIL_SENT')

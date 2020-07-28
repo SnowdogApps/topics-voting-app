@@ -78,7 +78,10 @@
     "position-field-label": "Job title",
     "position-field-placeholder": "Job title",
     "contact-email-field-label": "Contact email",
-    "contact-email-field-placeholder": "Contact email"
+    "contact-email-field-placeholder": "Contact email",
+    "speaker-name-field-label": "Speaker Name",
+    "speaker-email-field-label": "Speaker Email (provide user's email used for registration, if user doesn't exist in db, an account will be created and verification email will be sent for this address)",
+    "speaker-email-field-placeholder": "Speaker email"
   },
   "topic": {
     "to-grab": "To grab",
@@ -89,6 +92,7 @@
     "author-email": "Author email:",
     "created": "Created at:",
     "speaker": "Speaker:",
+    "speaker-id": "Speaker ID",
     "status": "Status:",
     "approve-button": "Approve",
     "reject-button": "Reject",
@@ -100,8 +104,9 @@
     "approved": "approved",
     "not-approved": "not approved",
     "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
-    "language-label": "Topic's language",
-    "add-to-approval-button": "Add to approval"
+    "language-label": "Topics language",
+    "add-to-approval-button": "Add to approval",
+    "topic-id": "Topic ID (db)"
   },
   "topics": {
     "empty-list-user": "There is no topic propositions yet. Be the first one!",
@@ -145,6 +150,6 @@
     "email-verification-sent": "An email verification request was sent to {email}"
   },
   "lang-switcher": {
-    "change-language": "Change language"
+    "lang-switcher-label": "Zmień język"
   }
 }

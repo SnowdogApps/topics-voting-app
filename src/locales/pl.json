@@ -79,7 +79,10 @@
     "position-field-label": "Stanowisko",
     "position-field-placeholder": "Stanowisko",
     "contact-email-field-label": "Email do kontaktu",
-    "contact-email-field-placeholder": "Email do kontaktu"
+    "contact-email-field-placeholder": "Email do kontaktu",
+    "speaker-name-field-label": "Speaker Name",
+    "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, konto zostanie stworzone automatycznie, a email weryfikacyjny zostanie wyslany pod podany adres email)",
+    "speaker-email-field-placeholder": "Speaker email"
   },
   "topic": {
     "to-grab": "To grab",
@@ -90,6 +93,7 @@
     "author-email": "Email autora:",
     "created": "Data utworzenia:",
     "speaker": "Prelegent:",
+    "speaker-id": "ID Prelegenta",
     "status": "Status:",
     "approve-button": "Zaakceptuj",
     "reject-button": "Odrzuć",
@@ -102,7 +106,8 @@
     "not-approved": "nie zaakceptowano",
     "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
     "language-label": "Język prezentacji",
-    "add-to-approval-button": "Do Akceptacji"
+    "add-to-approval-button": "Do Akceptacji",
+    "topic-id": "ID Tematu (db)"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
