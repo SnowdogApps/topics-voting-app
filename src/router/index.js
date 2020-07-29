@@ -34,9 +34,18 @@ const routes = [
     }
   },
   {
-    path: '/admin-dashboard',
+    path: '/user/:id',
+    name: 'user',
+    component: () => import(/* webpackChunkName: "topic" */ '../views/User.vue'),
+    meta: {
+      requiresAuth: true,
+      title: 'Meet Magento PL 2020 - topic poll'
+    }
+  },
+  {
+    path: '/admin',
     name: 'Admin dasboard',
-    component: () => import(/* webpackChunkName: "topic" */ '../views/AdminDashboard.vue'),
+    component: () => import(/* webpackChunkName: "topic" */ '../views/Admin.vue'),
     meta: {
       requiresAuth: true,
       title: 'Meet Magento PL 2020 - topic poll - dashboard'

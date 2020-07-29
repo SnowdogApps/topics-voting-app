@@ -1,36 +1,93 @@
 {
+  "global": {
+    "yes": "tak",
+    "no": "nie",
+    "error": "Błąd",
+    "success": "Sukces",
+    "info": "Info",
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później.",
+    "cancel": "Anuluj",
+    "edit": "Edytuj",
+    "save": "Zapisz"
+  },
   "home": {
-    "home-title": "Meet Magento 2020 - prezentacje",
-    "home-subtitle": "Głosuj na interesujące tematy, dziel się pomysłami, a jeśli chcesz być prelegentem - zgłoś prezentację",
-    "home-top-description": "Tekst tłumaczący po co jest ta stronka. Zbieramy informacje o tematach interesujących dla uczestników konferencji. <br> Pomaga to take prelegentom wybrać tematr na prezentację.",
-    "login-info": "Musisz być zalogowany aby zagłosować lub dodać temat.",
-    "list-items-title": "Lista proponowanych tematów"
+    "home-link": "Prezentacje",
+    "home-title": "Meet Magento 2020",
+    "home-subtitle": " - Prezentacje",
+    "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
+    "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako <b>„call4papers”</b> - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go <b>„to grab”</b>, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę <b>„to grab”</b>.",
+    "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
+    "list-items-title": "Lista proponowanych tematów",
+    "back-to-top": "Do góry",
+    "buy-ticket": "Kup bilet"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
-    "logout": "Wyloguj"
+    "logout": "Wyloguj",
+    "logout-successful": "Wylogowano pomyślnie",
+    "choose-login-method": "Wybierz metodę logowania",
+    "login-email-password": "Zaloguj się przy użyciu adresu email i hasła",
+    "sign-in-email-password": "Adres email i hasło",
+    "account-already-linked-to-email": "Aby dodać {provider} jako metodę logowania dla konta {email}, zaloguj się używając {link}",
+    "password-link": "hasła",
+    "hide-login-section": "Ukryj sekcję logowania",
+    "sign-in-with": "Zarejestruj się przez {social}",
+    "first-name": "Imię",
+    "last-name": "Nazwisko",
+    "password": "Hasło",
+    "log-in": "Zaloguj",
+    "create-account": "Stwórz konto",
+    "no-account": "Nie masz konta?",
+    "create-account-here": "Utwórz konto tutaj",
+    "account-exists": "Masz już konto?",
+    "login-with-social-media": "Zaloguj się przez social media",
+    "forgotten-password": "Zapomniałeś hasła?",
+    "reset-password": "Resetuj tutaj",
+    "send-reset-password-email": "Wyślij email resetujący hasło",
+    "reset-password-email-sent": "Email resetujący hasło został wysłany. Sprawdź skrzynkę pocztową.",
+    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem."
   },
   "form": {
-
+    "required-field": "Pole jest wymagane",
+    "form-error-msg": "Poprawnie wypełnij formularz.",
+    "invalid-email-address": "Niepoprawny adres email"
   },
   "add-form": {
     "form-title": "Dodaj swoją propozycję tematu",
     "title-field-label": "Tytuł",
-    "description-field-label": "Opis (markdown dostępny, max. 700 znaków)",
+    "description-field-label": "Opis ({markdown} dostępny, max. 700 znaków)",
     "description-field-placeholder": "Opis",
-    "description-field-tips": "Maxumalna ilość znaków - 700",
+    "description-field-tips": "Maxymalna ilość znaków - 700",
+    "characters-left": "pozostało",
     "activity-radio-legend": "Wybierz rolę",
-    "radio-author-observer": "Chce posłuchać o tym",
-    "radio-author-speaker": "Chce mówc o tym",
-    "radio-speaker-info": "Wybierając tą opcję zgłaszasz chęc zostania prelegentem i prezentowania tego tematu podczas konferencji",
+    "radio-author-observer": "Chcę o tym posłuchać (temat „to grab”)",
+    "radio-author-speaker": "Chcę o tym opowiedzieć („call4papers”)",
+    "radio-speaker-info": "Wybierając tą opcję zgłaszasz chęć zostania prelegentem i prezentowania tego tematu podczas konferencji. Skontaktujemy się z Tobą, jeśli zgłoszenie zostanie zaakceptowane.",
     "submit-button": "Dodaj temat",
     "submit-info-1": "Dziękujemy za zgłoszenie. Twój temat został przesłany do weryfikacji.",
     "submit-info-2": "Temat pojawi się na liście jak tylko zostanie zaakceptowany.",
-    "more-button": "Dodaj koleny temat",
-    "description-preview": "Podgląd opisu:"
+    "more-button": "Dodaj kolejny temat",
+    "description-preview": "Podgląd opisu:",
+    "target-group-field-label": "Grupa docelowa (np. początkujący developer Magento)",
+    "target-group-field-placeholder": "Grupa docelowa",
+    "edit-topic": "Edytuj temat",
+    "author-observer": "Słuchacz",
+    "author-speaker": "Prelegent",
+    "speaker-additional-title": "Wypełnij proszę dodatkowe pola:",
+    "company-field-label": "Firma",
+    "company-field-placeholder": "Firma",
+    "position-field-label": "Stanowisko",
+    "position-field-placeholder": "Stanowisko",
+    "contact-email-field-label": "Email do kontaktu",
+    "contact-email-field-placeholder": "Email do kontaktu",
+    "speaker-name-field-label": "Speaker Name",
+    "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, utwórz proszę konto dla niego uzywajac email/pass)",
+    "speaker-email-field-placeholder": "Speaker email",
+    "user-not-exist": "Uzytwkonik z podanym emailem nie istnieje, prosze stworz konto",
+    "users-not-found": "Lista uzytwkonikow nie zostala znaleziona, odswiez strone i sprobuj ponownie lub skontaktuj sie z supportem :)"
   },
   "topic": {
-    "to-grab": "do wzięcia",
+    "to-grab": "To grab",
     "c4p": "Call4papers",
     "details": "Szczegóły:",
     "author-id": "ID autora:",
@@ -38,14 +95,65 @@
     "author-email": "Email autora:",
     "created": "Data utworzenia:",
     "speaker": "Prelegent:",
+    "speaker-id": "ID Prelegenta",
     "status": "Status:",
     "approve-button": "Zaakceptuj",
+    "reject-button": "Odrzuć",
     "votes": "Głosy:",
     "tooltip-not-logged": "Musisz być zalogowany, aby zagłosować",
     "tooltip-author": "Oj nieładnie!<br> Nie głosujemy na swoje propozycje!",
-    "tooltip-voted": "Zagłosowane!"
+    "tooltip-voted": "Zagłosowane!",
+    "see-all": "Zobacz wszystkie propozycje",
+    "approved": "zaakceptowano",
+    "not-approved": "nie zaakceptowano",
+    "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "language-label": "Język prezentacji",
+    "add-to-approval-button": "Do Akceptacji",
+    "topic-id": "ID Tematu (db)",
+    "speaker-email": "Email Prelegenta"
+  },
+  "topics": {
+    "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
+    "empty-list": "Nie ma żadnych propozycji."
+  },
+  "admin": {
+    "admin-dashboard": "Panel Administratora",
+    "not-approved-list-title": "Oczekujące na akceptację",
+    "approved-list-title": "Zaakceptowane",
+    "rejected-list-title": "Odrzucone"
   },
   "share": {
     "share": "Udostępnij na"
+  },
+  "user": {
+    "hi": "Witaj, {name}!",
+    "add-your-topic": "Dodaj swój temat",
+    "welcome-msg": "Możesz głosować na zaproponowane tematy lub dodać własną propozycję.",
+    "email-not-verified": "Twój adres email nie jest zweryfikowany.",
+    "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
+    "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
+    "resend-email": "Ponownie wyślij prośbę o weryfikację",
+    "user-dashboard": "Panel użytkownika",
+    "author-topics-list-title": "Twoje dodane tematy",
+    "speaker-topics-list-title": "Twoja zgłoszona prezentacja (call4papers)"
+  },
+  "error": {
+    "auth/invalid-email-address": "Adres email jest niepoprawny.",
+    "auth/user-not-found": "Użytkownik nie został znaleziony. Sprawdź, czy wpisany adres email jest poprawny.",
+    "auth/wrong-password": "Niepoprawne hasło.",
+    "auth/user-disabled": "Użytkownik jest wyłączony.",
+    "auth/email-already-in-use": "Podany email jest używany.",
+    "auth/weak-password": "Słabe hasło.",
+    "auth/account-exists-with-different-credential": "Aby powiązać metodę logowania z istniejącym kontem, zaloguj się za pomocą podanej metody.",
+    "error-occured": "Wystąpił błąd. Odśwież stronę lub spróbuj ponownie później."
+  },
+  "alert": {
+    "proposition-added": "Twoja propozycja została wysłana do weryfikacji",
+    "topic-changes-saved": "Zmiany w temacie zostały zapisane",
+    "logged-in-successfull": "Zalogowano pomyślnie",
+    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}"
+  },
+  "lang-switcher": {
+    "lang-switcher-label": "Zmień język"
   }
 }

@@ -5,22 +5,24 @@
   justify-content: center;
   min-width: 150px;
   min-height: 48px;
-  padding: 0 $spacer--s;
-  background-color: $gray-dark;
+  padding: 0 $spacer--l;
+  background-color: $secondary;
   border: 1px solid $gray-dark;
   font-family: $font-family-base;
   font-size: $font-size-base;
-  font-weight: $font-weight-base;
+  font-weight: $font-weight-bold;
   line-height: $line-height;
   color: $white;
   text-decoration: none;
   cursor: pointer;
   transition: $transition-base;
+  margin-bottom: $spacer--s;
 
   &:focus,
   &:hover,
   &:active {
-    box-shadow: $box-shadow;
+    box-shadow: $button-box-shadow;
+    outline: none;
   }
 
   &:disabled {
@@ -29,31 +31,50 @@
     cursor: not-allowed;
   }
 
+  &__icon {
+    display: block;
+    width: 24px;
+    height: 24px;
+    transition: $transition-base;
+  }
+
   &--login {
     width: 100%;
     max-width: 320px;
     margin: 0 auto $spacer__s;
     padding: 0 $spacer--s 0 $spacer--m;
-  }
-
-  &--secondary {
-    background-color: $orange;
-    border-color: $orange;
-    color: $black;
+    font-weight: $font-weight-base;
   }
 
   &--link {
     min-width: unset;
     border: 0;
     background-color: transparent;
-    color: $gray-darker;
+    color: $preset;
     text-decoration: underline;
+    font-weight: $font-weight-base;
+    margin-bottom: 0;
   }
 
-  &__icon {
-    display: block;
-    width: 24px;
-    height: 24px;
-    transition: $transition-base;
+  &--small {
+    font-size: $font-size-extra-small;
+    min-height: 36px;
+  }
+
+  &--secondary {
+    background-color: $white;
+    border-color: $secondary;
+    color: $secondary;
+  }
+
+  &--tertiary {
+    background-color: $white;
+    border-color: $preset;
+    border-width: 2px;
+    color: $secondary;
+  }
+
+  &--with-margin {
+      margin: $spacer--xs;
   }
 }

@@ -44,6 +44,7 @@
 </template>
 <script>
 import linkAccount from '@/mixins/linkAccount.js'
+import errorMsgProvider from '@/mixins/errorMsgProvider.js'
 import { auth } from '@/db.js'
 import { mapGetters } from 'vuex'
 import { getProvider } from '@/helpers.js'
@@ -57,32 +58,36 @@ export default {
     GoogleIcon: () => import('@/assets/icons/google-i.svg'),
     TwitterIcon: () => import('@/assets/icons/twitter-i.svg')
   },
-  mixins: [linkAccount],
+  mixins: [linkAccount, errorMsgProvider],
   computed: {
     ...mapGetters({
       user: 'user',
       linkProvider: 'linkProvider',
       linkCreds: 'linkCreds',
       linkPass: 'linkPass'
-    })
-  },
-  data () {
-    return {
-      fb: {
+    }),
+    fb () {
+      return {
         btnClass: 'button--login button--facebook',
-        label: 'Sign in with Facebook'
-      },
-      google: {
+        label: this.$t('login.sign-in-with', { social: 'Facebook' })
+      }
+    },
+    google () {
+      return {
         btnClass: 'button--login button--google',
-        label: 'Sign in with Google'
-      },
-      github: {
+        label: this.$t('login.sign-in-with', { social: 'Google' })
+      }
+    },
+    github () {
+      return {
         btnClass: 'button--login button--github',
-        label: 'Sign in with Github'
-      },
-      twitter: {
+        label: this.$t('login.sign-in-with', { social: 'Github' })
+      }
+    },
+    twitter () {
+      return {
         btnClass: 'button--login button--twitter',
-        label: 'Sign in with Twitter'
+        label: this.$t('login.sign-in-with', { social: 'Twitter' })
       }
     }
   },
@@ -91,6 +96,10 @@ export default {
       try {
         await auth.signInWithPopup(getProvider(provider)).then((result) => {
           const user = result.user
+          // if is a new user
+          if (result.additionalUserInfo.isNewUser) {
+            this.$store.dispatch('assignUserData', user)
+          }
           // if registered with another provider and stored creds
           if (this.linkProvider && this.linkCreds) {
             this.linkAccountCreds(user, this.linkCreds)
@@ -103,16 +112,16 @@ export default {
           this.setLinkingAccountData(err).then((result) => {
             if (!result) {
               this.$store.commit('notification/push', {
-                message: err.message,
-                title: 'Error',
-                type: 'error'
+                message: this.getErrMessage(err.code),
+                title: this.$t('global.info'),
+                type: 'info'
               }, { root: true })
             }
           })
         } else {
           this.$store.commit('notification/push', {
-            message: err.message,
-            title: 'Error',
+            message: this.getErrMessage(err.code),
+            title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
         }

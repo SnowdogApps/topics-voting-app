@@ -1,128 +1,158 @@
 <template>
-  <div
-    v-if="topic"
-    :id="id"
-    class="topic-item"
-  >
-    <div class="topic-item__content">
-      <div
-        v-if="topic.authorRole === 'observer'"
-        class="topic-item__badge topic-item__badge--available"
-      >
-        {{ $t('topic.to-grab')}}
-      </div>
-      <div
-        v-if="topic.authorRole === 'speaker' && isAdmin"
-        class="topic-item__badge"
-      >
-        {{ $t('topic.c4p')}}
-      </div>
-      <h1
-        v-if="!listItem"
-        class="topic-item__title"
-      >
-        {{ topic.title }}
-      </h1>
-      <h3
-        v-else
-        class="topic-item__title">{{ topic.title }}
-      </h3>
-      <div>
-        <router-link
-          :to="{
-            name: 'topic',
-            params: {
-              id: id
-            }
-          }"
-        >{{ topic.title }}</router-link>
-      </div>
-      <div
-        v-if="topic.description"
-        v-html="compiledMarkdown(topic.description)"
-      ></div>
-      <social-share
-        :url="shareUrl"
-        :title="topic.title"
-        :description="topic.description"
-      />
-      <div v-if="isAdmin" class="topic-item__details">
-        <h4>
-          {{ $t('topic.details') }}
-        </h4>
-        <ul class="topic-item__list">
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-id') }}
-            </span>
-            {{ topic.authorId }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-name') }}
-            </span>
-            {{ topic.authorName }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.author-email') }}
-            </span>
-            {{ topic.authorEmail }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.created') }}
-            </span>
-            {{ topic.createDate }}
-          </li>
-          <li>
-            <span class="bold">
-              {{ $t('topic.speaker') }}
-            </span>
-            {{ topic.authorRole === 'speaker' ? $t('yes') : $t('no') }}
-          </li>
-          <li>
+  <div v-if="topic" :id="id" class="topic-item">
+    <edit-topic
+      v-if="adminView && editMode"
+      :id="id"
+      @cancel-edit="editMode = false"
+      @saved-edit="editMode = false"
+    />
+    <div v-else class="topic-item__content">
+      <div class="topic-item__topic">
+        <div class="topic-item__info">
+          <div class="topic-item__header">
+            <h2
+              v-if="!listItem"
+              class="
+                topic-item__title
+                justified
+                uppercase
+              "
+            >
+              {{ topic.title }}
+            </h2>
+            <h3 v-else class="topic-item__title justified uppercase">
+              {{ topic.title }}
+            </h3>
+            <div class="topic-item__header-top">
+              <PlIcon
+                v-if="topic.lang === 'pl'"
+                class="topic-item__lang-icon"
+              />
+              <EnIcon
+                v-else
+                class="topic-item__lang-icon"
+              />
+              <button
+                v-if="topic.authorRole === 'observer'"
+                type="button"
+                class="topic-item__badge"
+                v-tooltip="{
+                  content: $t('topic.to-grab-info', {email: 'contact@meetmagento.pl'}),
+                  trigger: 'focus click',
+                  classes: 'tooltip--light'
+                }"
+                :aria-label="$t('topic.to-grab-info-aria')"
+              >
+                {{ $t("topic.to-grab") }}
+              </button>
+              <div
+                v-if="topic.authorRole === 'speaker' && isAdmin"
+                class="
+                  topic-item__badge
+                  topic-item__badge--c4p
+                "
+              >
+                {{ $t("topic.c4p") }}
+              </div>
+            </div>
+          </div>
+          <div
+            v-if="topic.description"
+            v-html="compiledMarkdown(topic.description)"
+            class="topic-item__description justified"
+          ></div>
+          <div v-if="topic.targetGroup" class="topic-item__target-group">
+            <span class="bold">{{
+              $t("add-form.target-group-field-placeholder")
+            }}</span
+            >:
+            <span>{{ topic.targetGroup }}</span>
+          </div>
+          <div v-if="userView">
             <span class="bold">
               {{ $t('topic.status') }}
             </span>
-            {{ topic.approved ? 'approved' : 'not approved' }}
-            <v-button
-              v-if="isAdmin && !topic.approved"
-              class="topic-item__approve-btn"
-              @btn-event="approveTopic"
-            >
-              {{ $t('topic.approve-button') }}
-            </v-button>
-          </li>
-        </ul>
+            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
+          </div>
+        </div>
+        <div class="topic-item__vote">
+          <v-button
+            v-if="!adminView"
+            :class="[
+              'topic-item__upvote',
+              {
+                'topic-item__upvote--voted': isVoted,
+                'topic-item__upvote--disabled': voteDisabled
+              }
+            ]"
+            @btn-event="
+              isVoted ? downvote(id, topic.votes) : upvote(id, topic.votes)
+            "
+            v-tooltip="{
+              content: tooltipText,
+              trigger: 'hover focus click'
+            }"
+            :aria-label="tooltipText"
+          >
+            <span class="button__icon">
+              <LikeIcon />
+            </span>
+          </v-button>
+          <div class="topic-item__vote-number">
+            <h4>
+              {{ $t("topic.votes") }}
+            </h4>
+            {{ topic.votes || 0 }}
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="topic-item__vote">
-      <div class="topic-item__vote-number">
-        <h4>
-          {{ $t('topic.votes') }}
-        </h4>
-        {{ topic.votes }}
+      <div class="topic-item__addons">
+        <social-share
+          v-if="!adminView"
+          :url="shareUrl"
+          :title="topic.title"
+          :description="topic.description"
+        />
+        <topic-item-details v-if="isAdmin && adminView" :id="id">
+        </topic-item-details>
+        <div class="topic-item__btn-section" v-if="isAdmin && adminView">
+          <v-button
+            v-if="editable"
+            class="button--secondary button--with-margin"
+            @btn-event="editTopic"
+          >
+            {{ $t("global.edit") }}
+          </v-button>
+          <v-button
+            v-if="!topic.approved && !topic.rejected"
+            class="
+              button--with-margin
+              button--tertiary
+            "
+            @btn-event="rejectTopic"
+          >
+            {{ $t("topic.reject-button") }}
+          </v-button>
+          <v-button
+            v-if="!topic.approved && !topic.rejected"
+            class="button--with-margin"
+            @btn-event="approveTopic"
+          >
+            {{ $t("topic.approve-button") }}
+          </v-button>
+          <v-button
+            v-if="topic.rejected"
+            class="button--secondary button--with-margin"
+            @btn-event="addToApproval"
+          >
+            {{ $t('topic.add-to-approval-button') }}
+          </v-button>
+        </div>
       </div>
-      <v-button
-        :class="[
-          'topic-item__upvote',
-          {
-            'topic-item__upvote--voted': isVoted,
-            'topic-item__upvote--disabled': voteDisabled
-          }
-        ]"
-        @btn-event="isVoted ? downvote(id, topic.votes) : upvote(id, topic.votes)"
-        v-tooltip="tooltipText"
-        :aria-label="tooltipText"
-      >
-        <span class="button__icon">
-          <LikeIcon />
-        </span>
-      </v-button>
     </div>
   </div>
 </template>
+
 <script>
 import Vue from 'vue'
 import { mapGetters, mapState } from 'vuex'
@@ -137,7 +167,11 @@ export default {
   components: {
     VButton,
     SocialShare,
-    LikeIcon: () => import('@/assets/icons/like.svg')
+    LikeIcon: () => import('@/assets/icons/like.svg'),
+    TopicItemDetails: () => import('@/components/TopicItemDetails.vue'),
+    EditTopic: () => import('@/components/EditTopic.vue'),
+    PlIcon: () => import('@/assets/icons/pl.svg'),
+    EnIcon: () => import('@/assets/icons/en.svg')
   },
   props: {
     id: {
@@ -145,6 +179,10 @@ export default {
       required: true
     },
     listItem: {
+      type: Boolean,
+      default: false
+    },
+    editable: {
       type: Boolean,
       default: false
     }
@@ -181,11 +219,18 @@ export default {
         message = this.$t('topic.tooltip-voted')
       }
       return message
+    },
+    adminView () {
+      return this.$router.currentRoute.path.includes('admin') && this.isAdmin
+    },
+    userView () {
+      return this.$router.currentRoute.path.includes('user')
     }
   },
   data () {
     return {
-      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`
+      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`,
+      editMode: false
     }
   },
   methods: {
@@ -204,116 +249,196 @@ export default {
     approveTopic () {
       const topicId = this.id
       this.$store.dispatch('approveTopic', topicId)
+    },
+    rejectTopic () {
+      const topicId = this.id
+      this.$store.dispatch('rejectTopic', topicId)
+    },
+    addToApproval () {
+      const topicId = this.id
+      this.$store.dispatch('addToApproval', topicId)
+    },
+    editTopic () {
+      this.editMode = true
     }
   }
 }
 </script>
-<style lang="scss">
-@import './src/assets/scss/tooltip';
-
+<style lang="scss" scoped>
 .topic-item {
   display: flex;
   flex-flow: column nowrap;
   margin-bottom: $spacer--xl;
-  border-bottom: $border-base;
 
   @include mq($screen-sm-min) {
     flex-direction: row;
     justify-content: space-between;
   }
 
+  .topic-list--rejected & {
+    background-color: $gray-lighter;
+  }
+
   &__content {
     position: relative;
     flex-grow: 1;
-    text-align: left;
-    padding-top: $spacer--s;
+    padding: 0px;
     word-break: break-word;
+    box-shadow: $box-shadow;
+    text-align: left;
+  }
 
+  &__info {
+    flex-basis: 100%;
     @include mq($screen-sm-min) {
-      max-width: 70%;
+      padding-right: $spacer--xl;
     }
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  &__header-top {
+    display: flex;
+    margin-bottom: $spacer--s;
+    justify-content: space-between;
+    @include mq($screen-sm-min) {
+      justify-content: flex-start;
+    }
+  }
+
+  &__lang-icon {
+    display: block;
+    border: 1px solid $gray-lighter;
+    width: 42px;
+    height: 32px;
+    margin-right: $spacer--s;
   }
 
   &__badge {
-    position: absolute;
-    top: $spacer--m;
-    right: 0;
-    width: auto;
     display: block;
-    background-color: $orange;
-    padding: 4px $spacer--xs;
-    margin-bottom: $spacer--xs;
-    color: $gray-dark;
-    font-weight: $font-weight-bold;
+    border: none;
+    background-color: $white;
+    padding: 4px $spacer--s;
+    text-align: center;
+    color: $font-color-base;
+    font-weight: $font-weight-extra-bold;
+    font-size: $font-size-small;
+    line-height: 25px;
+    box-shadow: $box-shadow;
+    border-left: solid 2px $success;
+    transition: $transition-base;
+    cursor: pointer;
 
-    &--available {
-      background-color: $success;
+    &:hover,
+    &.focus-visible {
+      background-color: $preset;
+    }
+
+    &--c4p {
+      border-left: solid 2px $preset;
+    }
+    &.has-tooltip {
+      cursor: pointer;
     }
   }
 
-  &__title {
-    margin-bottom: $spacer--s;
+  &__topic {
+    padding: $spacer--m;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    @include mq($screen-sm-min) {
+      flex-direction: row;
+    }
   }
 
-  &__details {
-    margin: $spacer--xl 0;
-    padding-top: $spacer--m;
+  &__addons {
+    padding: $spacer--m;
     border-top: $border-base;
   }
 
-  &__list {
-    display: block;
-    margin: $spacer--s 0;
-    padding: 0;
-    list-style: none;
-    line-height: 2;
+  &__title {
+    margin: 0 0 $spacer--s 0;
+    max-width: 700px;
+    @include mq($screen-lg-min) {
+      max-width: 900px;
+    }
   }
 
-  &__approve-btn {
-    margin-left: $spacer--m;
+  &__target-group {
+    margin-top: $spacer--s;
+  }
+
+  &__btn-section {
+    display: flex;
+    justify-content: center;
+    margin: $spacer--s 0 0;
   }
 
   &__vote {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: flex-start;
-    justify-content: flex-end;
-  }
+    flex-flow: row-reverse;
+    align-items: center;
+    justify-content: flex-start;
+    margin: $spacer--s 0 0 0;
 
-  &__vote-number {
-    padding: $spacer--m;
+    @include mq($screen-sm-min) {
+      margin: 50px 0 0 $spacer--m;
+      flex-flow: column;
+    }
   }
 
   &__vote-info {
     padding: 0 $spacer--s;
   }
 
+  &__vote-number {
+    text-align: center;
+    word-break: keep-all;
+    & > h4 {
+      margin: 0;
+    }
+  }
+
   &__upvote {
     padding: 0 $spacer--xs;
-    margin: $spacer--m;
     min-width: 56px;
     height: 56px;
-    border: 2px solid $orange;
+    border: 2px solid $preset;
     background-color: $white;
+    margin: 0 0 0 $spacer--m;
+
+    @include mq($screen-sm-min) {
+      margin: 0 0 $spacer--m 0;
+    }
 
     .button__icon {
-      fill: $orange;
+      fill: $preset;
       width: 32px;
       height: 32px;
     }
 
     &--voted {
-      background-color: $orange;
-      border-color: $orange;
+      background-color: $preset;
+      border-color: $preset;
 
       .button__icon {
-        fill: $black;
+        fill: $blue;
       }
     }
 
     &--disabled {
       cursor: not-allowed;
       background-color: $gray-lighter;
+      border: 0;
+      .button__icon {
+        fill: $blue;
+      }
     }
   }
 }

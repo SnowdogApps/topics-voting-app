@@ -1,19 +1,23 @@
 .form-section {
   position: relative;
-  margin: $spacer--xl;
   box-shadow: $box-shadow;
-  padding: $spacer--l;
+  padding: $spacer--s;
+
+  &__form,
+  &__preview {
+      padding: $spacer--xl;
+      text-align: left;
+  }
 
   &__action {
     margin: $spacer--l 0;
+    text-align: center;
     @include mq($screen-sm-min) {
       max-width: 80%;
       margin: 0 auto;
     }
   }
   &__preview {
-    margin: $spacer--xl 0;
-    padding: $spacer--m;
     border-top: $border-base;
     text-align: left;
     word-break: break-word;
@@ -22,11 +26,29 @@
   &__field-tip {
     text-align: right;
   }
-  .error {
-    display: none;
-    text-align: left;
-    margin-top: 4px;
-    font-size: $font-size-small;
-    color: $error;
+
+  .input,
+  .radio {
+    .error {
+      display: none;
+      text-align: left;
+      margin-top: 4px;
+      font-size: $font-size-small;
+      color: $error;
+    }
+
+    &--error {
+      .error {
+        display: block;
+      }
+    }
+  }
+
+  .label {
+    font-weight: $font-weight-bold;
+  }
+
+  .form__label {
+    @extend .label;
   }
 }

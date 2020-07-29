@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h2>
+    <h2 class="heading--underline">
       {{ title }}
     </h2>
       <ul
@@ -13,16 +13,20 @@
         >
           <topic-item
             :id="item['.key']"
+            :editable="editable"
             :listItem="true"
           />
         </li>
       </ul>
       <transition name="fade">
         <p v-if="topicsLoaded === 1 && topics.length === 0">
-          There is no topic proposition yes. Be the first one!
+          {{ adminView
+            ? $t('topics.empty-list')
+            : $t('topics.empty-list-user')
+          }}
         </p>
         <p v-if="topicsLoaded === 2 && topics.length === 0">
-          En error occured. Refresh your page or try again later.
+          {{ $t('error.error-occured') }}
         </p>
       </transition>
       <transition name="fade">
@@ -43,6 +47,10 @@ export default {
     topics: {
       type: Array,
       required: true
+    },
+    editable: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -52,7 +60,10 @@ export default {
   computed: {
     ...mapState({
       topicsLoaded: state => state.topicsLoaded
-    })
+    }),
+    adminView () {
+      return this.$router.currentRoute.path.includes('admin')
+    }
   }
 }
 </script>

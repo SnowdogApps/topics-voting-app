@@ -15,6 +15,7 @@ body {
   color: $font-color-base;
   line-height: $line-height;
   scroll-behavior: smooth;
+  margin: 0;
 }
 
 section {
@@ -29,18 +30,16 @@ p {
   padding: 0 $spacer--m;
 }
 
-.margin-x {
-  margin: $spacer--m 0;
-}
-
-.bold {
-  font-weight: bold;
-}
-
 .fieldset {
   margin: 0;
   padding: 0;
   border: 0;
+
+  &__legend-visible {
+    text-align: left;
+    font-weight: $font-weight-bold;
+    padding: $spacer--m 0;
+  }
 
   &__legend {
     @include visually-hidden();

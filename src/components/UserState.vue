@@ -1,19 +1,37 @@
 <template>
-  <section class="col-xs-12 col-md-8 login-section">
+  <section
+    id="user-section"
+    class="
+      col-xs-12
+      col-md-8
+    "
+  >
       <transition name="fade">
         <div
           v-if="isLoggedIn"
-          class="col-xs-12"
+          class="
+            auth-section
+            col-xs-12
+            col-lg-8
+            m-auto
+          "
         >
-          Hi
-          <span class="bold">
-            {{ user.displayName || user.email }}
-          </span>!
-          <br>
-          You can vote on proposed topics or add your own proposition.
+          <h2
+            class="
+              uppercase
+              heading--h3
+              auth-section__heading-name
+            "
+          >
+            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+          </h2>
+          <p>{{ $t('user.welcome-msg') }}</p>
+          <a class="button" href="#add-topic">
+              {{ $t('user.add-your-topic') }}
+          </a>
           <br>
           <v-button
-            :class="'button--link'"
+            class="button--link"
             @btn-event="logout"
           >
             {{ $t('login.logout') }}
@@ -23,29 +41,31 @@
       <transition name="fade">
         <div
           v-if="isEmailVerification"
-          class="col-xs-12"
+          class="
+            col-xs-12
+            col-md-6
+            m-auto
+          "
         >
+          <h2 class="uppercase heading--h3">
+            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+          </h2>
           <p>
-            Hi
-            <span class="bold">
-              {{ user.displayName || user.email }}
-            </span>!
+            {{ $t('user.email-not-verified') }}
             <br>
-            Your email address is not verified.
-            <br>
-            You should receive an email verification request, check your email box.
+            {{ $t('user.verification-email-info') }}
           </p>
           <p>
-            If you didn't receive an email:
+            {{ $t('user.email-not-received') }}
             <v-button
-              :class="'button--link'"
+              class="button--link"
               @btn-event="resendEmailVerification"
             >
-              Resend email verification request
+              {{ $t('user.resend-email') }}
             </v-button>
           </p>
           <v-button
-            :class="'button--link'"
+            class="button--link"
             @btn-event="logout"
           >
             {{ $t('login.logout') }}
@@ -100,14 +120,14 @@ export default {
         .signOut()
         .then(() => {
           this.$store.commit('notification/push', {
-            message: 'You logged out successfully',
-            title: 'Success',
+            message: this.$t('login.logout-successful'),
+            title: this.$t('global.success'),
             type: 'success'
           }, { root: true })
         }).catch((err) => {
           this.$store.commit('notification/push', {
             message: err.message,
-            title: 'Error',
+            title: this.$t('global.error'),
             type: 'error'
           }, { root: true })
         })
@@ -119,7 +139,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.login-section {
-  position: relative;
-}
+@import './src/assets/scss/auth-section';
 </style>

@@ -1,10 +1,10 @@
 .tooltip {
   display: block !important;
-  z-index: 10000;
+  z-index: 1000;
 
   .tooltip-inner {
-    background: black;
-    color: white;
+    background: $gray-darker;
+    color: $white;
     border-radius: 4px;
     text-align: center;
     padding: $spacer--xs $spacer--s;
@@ -96,15 +96,26 @@
     }
   }
 
-  &[aria-hidden='true'] {
+  &[aria-hidden="true"] {
     visibility: hidden;
     opacity: 0;
-    transition: opacity .15s, visibility .15s;
+    transition: opacity 0.15s, visibility 0.15s;
   }
 
-  &[aria-hidden='false'] {
+  &[aria-hidden="false"] {
     visibility: visible;
     opacity: 1;
-    transition: opacity .15s;
+    transition: opacity 0.15s;
+  }
+
+  &--light {
+    .tooltip-inner {
+      background-color: $white;
+      color: $gray-darker;
+      box-shadow: $box-shadow;
+    }
+    .tooltip-arrow {
+      border-color: $white;
+    }
   }
 }
