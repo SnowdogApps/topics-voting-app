@@ -1,8 +1,16 @@
 <template>
-  <header class="header">
+  <header
+    :class="[
+      'header',
+      { 'header--home': isHome  }
+    ]">
     <navbar />
     <div class="header__top-section">
-      <img class="header__img" src="@/assets/images/header.png" />
+      <img
+        v-if="isHome"
+        class="header__img"
+        src="@/assets/images/header.png"
+      />
       <h1 class="header__title">
         <span class="header__title-text">
           {{ $t("home.home-title") }}
@@ -26,12 +34,51 @@ import Navbar from '@/components/Navbar.vue'
 export default {
   components: {
     Navbar
+  },
+  computed: {
+    isHome () {
+      return this.$route.name === 'Home'
+    }
   }
 }
 </script>
 
 <style lang="scss">
 .header {
+  &--home {
+    .header {
+      &__title {
+        margin: 100px auto;
+        @include mq($screen-sm-min) {
+          position: absolute;
+          top: 50%;
+          left: 42%;
+          transform: translate(-42%, -50%);
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+        }
+        @include mq($min-screen: $screen-md-min) {
+          min-width: 960px;
+        }
+      }
+      &__title-text {
+        @include mq($screen-sm-min) {
+          font-size: 90px;
+          line-height: 100px;
+          color: $preset;
+          text-transform: uppercase;
+          font-weight: $font-weight-extra-bold;
+          margin-bottom: 0;
+
+          &--light {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+
   &__top-section {
     text-align: center;
     position: relative;
@@ -50,35 +97,8 @@ export default {
 
   &__title {
     max-width: 80%;
-    margin: 100px auto;
+    margin: 100px auto 0;
     color: $preset;
-    @include mq($screen-sm-min) {
-      position: absolute;
-      top: 50%;
-      left: 42%;
-      transform: translate(-42%, -50%);
-      text-align: left;
-      display: flex;
-      flex-direction: column;
-    }
-    @include mq($min-screen: $screen-md-min) {
-      min-width: 960px;
-    }
-  }
-
-  &__title-text {
-    @include mq($screen-sm-min) {
-      font-size: 90px;
-      line-height: 100px;
-      color: $preset;
-      text-transform: uppercase;
-      font-weight: $font-weight-extra-bold;
-      margin-bottom: 0;
-
-      &--light {
-        color: $white;
-      }
-    }
   }
 }
 </style>

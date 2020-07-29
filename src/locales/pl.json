@@ -34,7 +34,6 @@
     "sign-in-with": "Zarejestruj się przez {social}",
     "first-name": "Imię",
     "last-name": "Nazwisko",
-    "invalid-email-address": "Niepoprawny adres email",
     "password": "Hasło",
     "log-in": "Zaloguj",
     "create-account": "Stwórz konto",
@@ -50,7 +49,8 @@
   },
   "form": {
     "required-field": "Pole jest wymagane",
-    "form-error-msg": "Poprawnie wypełnij formularz."
+    "form-error-msg": "Poprawnie wypełnij formularz.",
+    "invalid-email-address": "Niepoprawny adres email"
   },
   "add-form": {
     "form-title": "Dodaj swoją propozycję tematu",
@@ -72,7 +72,19 @@
     "target-group-field-placeholder": "Grupa docelowa",
     "edit-topic": "Edytuj temat",
     "author-observer": "Słuchacz",
-    "author-speaker": "Prelegent"
+    "author-speaker": "Prelegent",
+    "speaker-additional-title": "Wypełnij proszę dodatkowe pola:",
+    "company-field-label": "Firma",
+    "company-field-placeholder": "Firma",
+    "position-field-label": "Stanowisko",
+    "position-field-placeholder": "Stanowisko",
+    "contact-email-field-label": "Email do kontaktu",
+    "contact-email-field-placeholder": "Email do kontaktu",
+    "speaker-name-field-label": "Speaker Name",
+    "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, utwórz proszę konto dla niego uzywajac email/pass)",
+    "speaker-email-field-placeholder": "Speaker email",
+    "user-not-exist": "Uzytwkonik z podanym emailem nie istnieje, prosze stworz konto",
+    "users-not-found": "Lista uzytwkonikow nie zostala znaleziona, odswiez strone i sprobuj ponownie lub skontaktuj sie z supportem :)"
   },
   "topic": {
     "to-grab": "To grab",
@@ -83,8 +95,10 @@
     "author-email": "Email autora:",
     "created": "Data utworzenia:",
     "speaker": "Prelegent:",
+    "speaker-id": "ID Prelegenta",
     "status": "Status:",
     "approve-button": "Zaakceptuj",
+    "reject-button": "Odrzuć",
     "votes": "Głosy:",
     "tooltip-not-logged": "Musisz być zalogowany, aby zagłosować",
     "tooltip-author": "Oj nieładnie!<br> Nie głosujemy na swoje propozycje!",
@@ -93,7 +107,10 @@
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
     "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
-    "language-label": "Język prezentacji"
+    "language-label": "Język prezentacji",
+    "add-to-approval-button": "Do Akceptacji",
+    "topic-id": "ID Tematu (db)",
+    "speaker-email": "Email Prelegenta"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
@@ -102,7 +119,8 @@
   "admin": {
     "admin-dashboard": "Panel Administratora",
     "not-approved-list-title": "Oczekujące na akceptację",
-    "approved-list-title": "Zaakceptowane"
+    "approved-list-title": "Zaakceptowane",
+    "rejected-list-title": "Odrzucone"
   },
   "share": {
     "share": "Udostępnij na"
@@ -114,7 +132,10 @@
     "email-not-verified": "Twój adres email nie jest zweryfikowany.",
     "verification-email-info": "Powinieneś otrzymać email z prośbą o weryfikację, sprawdź swoją skrzynkę.",
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
-    "resend-email": "Ponownie wyślij prośbę o weryfikację"
+    "resend-email": "Ponownie wyślij prośbę o weryfikację",
+    "user-dashboard": "Panel użytkownika",
+    "author-topics-list-title": "Twoje dodane tematy",
+    "speaker-topics-list-title": "Twoja zgłoszona prezentacja (call4papers)"
   },
   "error": {
     "auth/invalid-email-address": "Adres email jest niepoprawny.",

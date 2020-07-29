@@ -96,6 +96,10 @@ export default {
       try {
         await auth.signInWithPopup(getProvider(provider)).then((result) => {
           const user = result.user
+          // if is a new user
+          if (result.additionalUserInfo.isNewUser) {
+            this.$store.dispatch('assignUserData', user)
+          }
           // if registered with another provider and stored creds
           if (this.linkProvider && this.linkCreds) {
             this.linkAccountCreds(user, this.linkCreds)

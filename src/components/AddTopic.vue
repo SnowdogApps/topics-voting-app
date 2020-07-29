@@ -84,7 +84,7 @@
             for="topic-language"
             class="select__label"
           >
-            {{ $t('add-form.language-label') }}
+            {{ $t('topic.language-label') }}
           </label>
           <select
             class="select__field"
@@ -138,9 +138,58 @@
           >
             {{ $t('form.required-field') }}
           </div>
-          <div v-if="authorRole === 'speaker'">
-            {{ $t('add-form.radio-speaker-info') }}
-          </div>
+          <template v-if="authorRole === 'speaker'">
+            <div>
+              {{ $t('add-form.radio-speaker-info') }}
+            </div>
+            <fieldset class="fieldset" aria-labelledby="speaker-additional">
+              <legend class="fieldset__legend-visible">
+                {{ $t('add-form.speaker-additional-title') }}
+              </legend>
+              <form-input-field
+                v-model="company"
+                :validator="$v.company"
+                id="company"
+                :label="$t('add-form.company-field-label')"
+                :placeholder="$t('add-form.company-field-placeholder')"
+                maxlength="150"
+                autocomplete="organization"
+              />
+              <form-input-field
+                v-model="position"
+                :validator="$v.position"
+                id="position"
+                :label="$t('add-form.position-field-label')"
+                :placeholder="$t('add-form.position-field-placeholder')"
+                maxlength="150"
+                autocomplete="organization-title"
+              />
+              <form-input-field
+                v-model="contactEmail"
+                :validator="$v.contactEmail"
+                id="contactEmail"
+                :label="$t('add-form.contact-email-field-label')"
+                :placeholder="$t('add-form.contact-email-field-placeholder')"
+                maxlength="150"
+                autocomplete="email"
+              >
+                <template #validation>
+                  <div
+                    v-if="!$v.contactEmail.required"
+                    class="error"
+                  >
+                    {{ $t('form.required-field') }}
+                  </div>
+                  <div
+                    v-if="!$v.contactEmail.email"
+                    class="error"
+                  >
+                    {{ $t('form.invalid-email-address')}}
+                  </div>
+                </template>
+              </form-input-field>
+            </fieldset>
+          </template>
         </div>
         <div class="form-section__action">
           <v-button
@@ -184,7 +233,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { required } from 'vuelidate/lib/validators'
+import { required, email, requiredIf } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 import debounce from 'lodash.debounce'
 import markdown from '@/mixins/markdown.js'
@@ -214,6 +263,9 @@ export default {
       description: '',
       targetGroup: '',
       authorRole: '',
+      company: '',
+      position: '',
+      contactEmail: '',
       loading: false,
       submitStatus: null,
       language: 'pl',
@@ -224,18 +276,41 @@ export default {
     validationMixin,
     markdown
   ],
-  validations: {
-    title: {
-      required
-    },
-    description: {
-      required
-    },
-    authorRole: {
-      required
-    },
-    targetGroup: {
-      required
+  validations () {
+    return {
+      title: {
+        required
+      },
+      description: {
+        required
+      },
+      authorRole: {
+        required
+      },
+      targetGroup: {
+        required
+      },
+      company: {
+        required: requiredIf(() => {
+          return this.authorRole === 'speaker'
+        })
+      },
+      position: {
+        required: requiredIf(() => {
+          return this.authorRole === 'speaker'
+        })
+      },
+      contactEmail: {
+        required: requiredIf(() => {
+          return this.authorRole === 'speaker'
+        }),
+        email
+      }
+    }
+  },
+  created () {
+    if (this.$store.state.user) {
+      this.contactEmail = this.$store.state.user.email
     }
   },
   methods: {
@@ -255,8 +330,12 @@ export default {
           title: this.title,
           description: this.description,
           targetGroup: this.targetGroup,
+          lang: this.language,
           authorRole: this.authorRole,
-          lang: this.language
+          authorId: this.$store.state.user.id,
+          company: this.company,
+          position: this.position,
+          contactEmail: this.contactEmail
         }).then(() => {
           this.$v.$reset()
           this.loading = false

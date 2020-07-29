@@ -35,6 +35,12 @@ p {
   padding: 0;
   border: 0;
 
+  &__legend-visible {
+    text-align: left;
+    font-weight: $font-weight-bold;
+    padding: $spacer--m 0;
+  }
+
   &__legend {
     @include visually-hidden();
   }

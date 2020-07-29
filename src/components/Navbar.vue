@@ -30,7 +30,7 @@
                   @click="redirect"
                 >
                   <router-link
-                    v-if="route.show"
+                    v-if="route.show && route.to"
                     :to="route.to"
                     class="nav-link"
                     exact-active-class="active"
@@ -82,7 +82,9 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isAdmin: 'isAdmin'
+      isAdmin: 'isAdmin',
+      isLoggedIn: 'isLoggedIn',
+      user: 'user'
     }),
     routes () {
       return [
@@ -92,8 +94,13 @@ export default {
           show: true
         },
         {
+          title: this.$t('user.user-dashboard'),
+          to: (this.user) ? `/user/${this.user.id}` : null,
+          show: this.isLoggedIn
+        },
+        {
           title: this.$t('admin.admin-dashboard'),
-          to: '/admin-dashboard',
+          to: '/admin',
           show: this.isAdmin
         }
       ]

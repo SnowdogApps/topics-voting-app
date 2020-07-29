@@ -33,7 +33,6 @@
     "sign-in-with": "Sign in with {social}",
     "first-name": "First name",
     "last-name": "Last name",
-    "invalid-email-address": "It's not valid email address",
     "password": "Password",
     "log-in": "Log in",
     "create-account": "Create account",
@@ -49,7 +48,8 @@
   },
   "form": {
     "required-field": "Field is required",
-    "form-error-msg": "Please fill the form correctly."
+    "form-error-msg": "Please fill the form correctly.",
+    "invalid-email-address": "It's not valid email address"
   },
   "add-form": {
     "form-title": "Add your topic proposition",
@@ -71,7 +71,19 @@
     "target-group-field-placeholder": "Taget audience",
     "edit-topic": "Edit topic",
     "author-observer": "Observer",
-    "author-speaker": "Speaker"
+    "author-speaker": "Speaker",
+    "speaker-additional-title": "Please fill additional fields:",
+    "company-field-label": "Company",
+    "company-field-placeholder": "Company",
+    "position-field-label": "Job title",
+    "position-field-placeholder": "Job title",
+    "contact-email-field-label": "Contact email",
+    "contact-email-field-placeholder": "Contact email",
+    "speaker-name-field-label": "Speaker Name",
+    "speaker-email-field-label": "Speaker Email (provide user's email used for registration, if user doesn't exist in db, please create an email/pass account for him)",
+    "speaker-email-field-placeholder": "Speaker email",
+    "user-not-exist": "User with this email does not exist in db, please create an account",
+    "users-not-found": "Users not found, please refresh the page and try again or contact support team :)"
   },
   "topic": {
     "to-grab": "To grab",
@@ -82,8 +94,10 @@
     "author-email": "Author email:",
     "created": "Created at:",
     "speaker": "Speaker:",
+    "speaker-id": "Speaker ID",
     "status": "Status:",
     "approve-button": "Approve",
+    "reject-button": "Reject",
     "votes": "Votes:",
     "tooltip-not-logged": "You have to be logged in to vote",
     "tooltip-author": "Naughty naughty!<br> It's not fair to vote for your own topic.",
@@ -92,7 +106,11 @@
     "approved": "approved",
     "not-approved": "not approved",
     "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
-    "language-label": "Topic's language"
+    "to-grab-info-aria": "Would you like to present this topic?<br>Contact us via contact@meetmagento.pl",
+    "language-label": "Topics language",
+    "add-to-approval-button": "Add to approval",
+    "topic-id": "Topic ID (db)",
+    "speaker-email": "Speaker Email"
   },
   "topics": {
     "empty-list-user": "There is no topic propositions yet. Be the first one!",
@@ -101,7 +119,8 @@
   "admin": {
     "admin-dashboard": "Admin Dashboard",
     "not-approved-list-title": "Waiting for approval",
-    "approved-list-title": "Approved"
+    "approved-list-title": "Approved",
+    "rejected-list-title": "Rejected"
   },
   "share": {
     "share": "Share on"
@@ -113,7 +132,10 @@
     "email-not-verified": "Your email address is not verified.",
     "verification-email-info": "You should receive an email verification request, check your email box.",
     "email-not-received": "If you didn't receive an email:",
-    "resend-email": "Resend email verification request"
+    "resend-email": "Resend email verification request",
+    "user-dashboard": "User's Dashboard",
+    "author-topics-list-title": "Your added topics",
+    "speaker-topics-list-title": "Your proposed topic (call4papers)"
   },
   "error": {
     "auth/invalid-email": "Email address is invalid.",
@@ -132,6 +154,6 @@
     "email-verification-sent": "An email verification request was sent to {email}"
   },
   "lang-switcher": {
-    "change-language": "Change language"
+    "lang-switcher-label": "Zmień język"
   }
 }

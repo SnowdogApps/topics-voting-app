@@ -41,6 +41,7 @@
                   trigger: 'focus click',
                   classes: 'tooltip--light'
                 }"
+                :aria-label="$t('topic.to-grab-info-aria')"
               >
                 {{ $t("topic.to-grab") }}
               </button>
@@ -55,17 +56,6 @@
               </div>
             </div>
           </div>
-          <div class="topic-item__link justified">
-            <router-link
-              :to="{
-                name: 'topic',
-                params: {
-                  id: id
-                }
-              }"
-              >{{ topic.title }}</router-link
-            >
-          </div>
           <div
             v-if="topic.description"
             v-html="compiledMarkdown(topic.description)"
@@ -77,6 +67,12 @@
             }}</span
             >:
             <span>{{ topic.targetGroup }}</span>
+          </div>
+          <div v-if="userView">
+            <span class="bold">
+              {{ $t('topic.status') }}
+            </span>
+            {{ topic.approved ? $t('topic.approved') : $t('topic.not-approved') }}
           </div>
         </div>
         <div class="topic-item__vote">
@@ -122,17 +118,34 @@
         <div class="topic-item__btn-section" v-if="isAdmin && adminView">
           <v-button
             v-if="editable"
-            class="button--cancel button--with-margin"
+            class="button--secondary button--with-margin"
             @btn-event="editTopic"
           >
             {{ $t("global.edit") }}
           </v-button>
           <v-button
-            v-if="!topic.approved"
+            v-if="!topic.approved && !topic.rejected"
+            class="
+              button--with-margin
+              button--tertiary
+            "
+            @btn-event="rejectTopic"
+          >
+            {{ $t("topic.reject-button") }}
+          </v-button>
+          <v-button
+            v-if="!topic.approved && !topic.rejected"
             class="button--with-margin"
             @btn-event="approveTopic"
           >
             {{ $t("topic.approve-button") }}
+          </v-button>
+          <v-button
+            v-if="topic.rejected"
+            class="button--secondary button--with-margin"
+            @btn-event="addToApproval"
+          >
+            {{ $t('topic.add-to-approval-button') }}
           </v-button>
         </div>
       </div>
@@ -208,7 +221,10 @@ export default {
       return message
     },
     adminView () {
-      return this.$router.currentRoute.path.includes('admin-dashboard')
+      return this.$router.currentRoute.path.includes('admin') && this.isAdmin
+    },
+    userView () {
+      return this.$router.currentRoute.path.includes('user')
     }
   },
   data () {
@@ -234,15 +250,21 @@ export default {
       const topicId = this.id
       this.$store.dispatch('approveTopic', topicId)
     },
+    rejectTopic () {
+      const topicId = this.id
+      this.$store.dispatch('rejectTopic', topicId)
+    },
+    addToApproval () {
+      const topicId = this.id
+      this.$store.dispatch('addToApproval', topicId)
+    },
     editTopic () {
       this.editMode = true
     }
   }
 }
 </script>
-<style lang="scss">
-@import './src/assets/scss/tooltip';
-
+<style lang="scss" scoped>
 .topic-item {
   display: flex;
   flex-flow: column nowrap;
@@ -251,6 +273,10 @@ export default {
   @include mq($screen-sm-min) {
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .topic-list--rejected & {
+    background-color: $gray-lighter;
   }
 
   &__content {
@@ -264,6 +290,9 @@ export default {
 
   &__info {
     flex-basis: 100%;
+    @include mq($screen-sm-min) {
+      padding-right: $spacer--xl;
+    }
   }
 
   &__header {
@@ -276,7 +305,7 @@ export default {
     display: flex;
     margin-bottom: $spacer--s;
     justify-content: space-between;
-    @include mq($screen-md-min) {
+    @include mq($screen-sm-min) {
       justify-content: flex-start;
     }
   }
@@ -320,11 +349,11 @@ export default {
   &__topic {
     padding: $spacer--m;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     flex-wrap: nowrap;
-    @include mq($max-screen: $screen-md-max) {
-      flex-direction: column;
+    @include mq($screen-sm-min) {
+      flex-direction: row;
     }
   }
 
@@ -335,28 +364,14 @@ export default {
 
   &__title {
     margin: 0 0 $spacer--s 0;
-    max-width: 900px;
-    @include mq($max-screen: $screen-lg-max) {
-      max-width: 700px;
-    }
-  }
-
-  &__link {
-    a {
-      color: $preset;
+    max-width: 700px;
+    @include mq($screen-lg-min) {
+      max-width: 900px;
     }
   }
 
   &__target-group {
     margin-top: $spacer--s;
-  }
-
-  &__list {
-    display: block;
-    margin: $spacer--s 0;
-    padding: 0;
-    list-style: none;
-    line-height: 2;
   }
 
   &__btn-section {
@@ -372,7 +387,7 @@ export default {
     justify-content: flex-start;
     margin: $spacer--s 0 0 0;
 
-    @include mq($screen-md-min) {
+    @include mq($screen-sm-min) {
       margin: 50px 0 0 $spacer--m;
       flex-flow: column;
     }
@@ -396,9 +411,10 @@ export default {
     height: 56px;
     border: 2px solid $preset;
     background-color: $white;
+    margin: 0 0 0 $spacer--m;
 
-    @include mq($max-screen: $screen-md-max) {
-      margin: 0 0 0 $spacer--m;
+    @include mq($screen-sm-min) {
+      margin: 0 0 $spacer--m 0;
     }
 
     .button__icon {

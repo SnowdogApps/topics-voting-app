@@ -51,50 +51,33 @@
           maxlength="150"
           autocomplete="off"
         />
-        <div :class="['radio', { 'radio--error': $v.description.$error }]">
-          <fieldset class="fieldset" aria-labelledby="radio-legend">
-            <legend id="radio-legend" class="fieldset__legend">
-              {{ $t('add-form.activity-radio-legend') }}
-            </legend>
-            <div class="radio__handler">
-              <input
-                type="radio"
-                id="observer"
-                class="radio__field"
-                v-model="$v.authorRole.$model"
-                value="observer"
-              >
-              <label for="observer" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
-                  {{ $t('add-form.author-observer') }}
-                </span>
-              </label>
-            </div>
-            <div class="radio__handler">
-              <input
-                type="radio"
-                id="speaker"
-                class="radio__field"
-                v-model="authorRole"
-                value="speaker"
-              >
-              <label for="speaker" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
-                  {{ $t('add-form.author-speaker') }}
-                </span>
-              </label>
-            </div>
-          </fieldset>
-          <div
-            v-if="!$v.authorRole.required"
-            class="error"
-          >
-            {{ $t('form.required-field') }}
-          </div>
+        <form-input-field
+          v-model="speaker"
+          :validator="$v.speaker"
+          id="speaker"
+          :label="$t('add-form.speaker-name-field-label')"
+          :placeholder="$t('add-form.speaker-name-field-label')"
+          maxlength="150"
+          autocomplete="off"
+        />
+        <form-input-field
+          v-model="speakerEmail"
+          :validator="$v.speakerEmail"
+          id="speakerEmail"
+          :label="$t('add-form.speaker-email-field-label')"
+          :placeholder="$t('add-form.speaker-email-field-placeholder')"
+          maxlength="150"
+          autocomplete="off"
+        />
+        <div>
+          <span class="bold">
+            {{ $t('topic.speaker-id') }}
+          </span>
+          {{ topic.speakerId }}
         </div>
         <div class="form-section__action">
           <v-button
-            class="button--cancel button--with-margin"
+            class="button--secondary button--with-margin"
             @btn-event="cancel"
           >
             {{ $t('global.cancel') }}
@@ -120,6 +103,7 @@
 <script>
 import { required } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
+import { mapState } from 'vuex'
 import debounce from 'lodash.debounce'
 import markdown from '@/mixins/markdown.js'
 import VButton from '@/components/Button.vue'
@@ -146,14 +130,18 @@ export default {
       const char = this.description.length
       const limit = 700
       return `${(limit - char)} / ${limit}`
-    }
+    },
+    ...mapState({
+      allUsers: 'allUsers'
+    })
   },
   data () {
     return {
       title: '',
       description: '',
       targetGroup: '',
-      authorRole: '',
+      speaker: '',
+      speakerEmail: '',
       loading: false,
       submitStatus: null
     }
@@ -162,21 +150,44 @@ export default {
     validationMixin,
     markdown
   ],
-  validations: {
-    title: {
-      required
-    },
-    description: {
-      required
-    },
-    authorRole: {
-      required
-    },
-    targetGroup: {
-      required
+  validations () {
+    return {
+      title: {
+        required
+      },
+      description: {
+        required
+      },
+      targetGroup: {
+        required
+      },
+      speaker: {
+        required: false
+      },
+      speakerEmail: {
+        required: false
+      }
+    }
+  },
+  created () {
+    this.$store.dispatch('bindAllUsers')
+    if (this.topic) {
+      this.title = this.topic.title || ''
+      this.description = this.topic.description || ''
+      this.targetGroup = this.topic.targetGroup || ''
+      this.speaker = this.topic.speaker || ''
+      this.speakerEmail = this.topic.speakerEmail
     }
   },
   methods: {
+    checkAssignedTopic (userKey, param = 'speaker') {
+      const userData = this.allUsers.find(user => user.uid === userKey)
+      for (var i in userData.topics) {
+        if (userData.topics[i].topicId === this.topic['.key'] && userData.topics[i][param] === 'yes') {
+          return i
+        }
+      }
+    },
     debounceInput () {
       debounce(function (e) {
         this.input = e.target.value
@@ -189,30 +200,108 @@ export default {
       } else {
         this.loading = true
         this.submitStatus = 'PENDING'
-        this.$store.dispatch('editTopic', {
+        const dataUpdated = {
           title: this.title,
           description: this.description,
-          targetGroup: this.targetGroup,
-          authorRole: this.authorRole,
-          id: this.id
-        }).then(() => {
-          this.$v.$reset()
-          this.loading = false
-          this.submitStatus = 'OK'
-          this.$emit('saved-edit')
-        })
+          targetGroup: this.targetGroup
+        }
+        // if speaker was changed
+        if (this.$v.speakerEmail.$dirty) {
+          if (this.allUsers) {
+            // check if provided email is assign to any registered user
+            const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
+            if (newSpeaker) {
+              // if old speaker exist, update old speaker data
+              if (this.topic.speakerEmail && (this.topic.speakerEmail !== this.speakerEmail)) {
+                const oldTopicKey = this.checkAssignedTopic(this.topic.speakerId)
+                if (oldTopicKey) {
+                  const oldSpeakerData = {
+                    userId: this.topic.speakerId,
+                    topicKey: oldTopicKey,
+                    data: {
+                      speaker: 'no'
+                    }
+                  }
+                  this.$store.dispatch('updateUserTopic', oldSpeakerData)
+                    .catch((err) => {
+                      console.log(err)
+                    })
+                }
+              }
+              // update new speaker data
+              const newTopicKey = this.checkAssignedTopic(newSpeaker.uid)
+              // if topic is already assign to user
+              if (newTopicKey) {
+                const newSpeakerData = {
+                  userId: newSpeaker.uid,
+                  topicKey: newTopicKey,
+                  data: {
+                    speaker: 'yes'
+                  }
+                }
+                this.$store.dispatch('updateUserTopic', newSpeakerData)
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              } else {
+                // assign topic to user
+                const newSpeakerData = {
+                  userId: newSpeaker.uid,
+                  topicData: {
+                    author: (newSpeaker.uid === this.topic.authorId) ? 'yes' : 'no',
+                    speaker: 'yes',
+                    topicId: this.topic['.key']
+                  }
+                }
+                this.$store.dispatch('assignTopicToUser', newSpeakerData)
+              }
+              // update topic data
+              dataUpdated.speaker = this.speaker
+              dataUpdated.speakerEmail = this.speakerEmail
+              dataUpdated.speakerId = newSpeaker.uid
+              this.$store.dispatch('editTopic', {
+                topicId: this.topic['.key'],
+                topicData: dataUpdated
+              }).then(() => {
+                this.resetFormData()
+              })
+            } else {
+              // display error msg if user with provided email doesn't exist
+              this.$store.commit('notification/push', {
+                message: this.$t('add-form.user-not-exist'),
+                title: 'Error',
+                type: 'error'
+              }, { root: true })
+              this.resetFormData()
+            }
+          } else {
+            // display error msg if users list is not found
+            this.$store.commit('notification/push', {
+              message: this.$t('add-form.users-not-found'),
+              title: 'Error',
+              type: 'error'
+            }, { root: true })
+            this.resetFormData()
+          }
+        } else {
+          // update topic data
+          this.$store.dispatch('editTopic', {
+            topicId: this.topic['.key'],
+            topicData: dataUpdated
+          }).then(() => {
+            this.resetFormData()
+          })
+        }
       }
+    },
+    resetFormData () {
+      this.$v.$reset()
+      this.loading = false
+      this.submitStatus = 'OK'
+      this.$emit('saved-edit')
     },
     cancel () {
       this.$emit('cancel-edit')
-    }
-  },
-  created () {
-    if (this.topic) {
-      this.title = this.topic.title || ''
-      this.description = this.topic.description || ''
-      this.targetGroup = this.topic.targetGroup || ''
-      this.authorRole = this.topic.authorRole || ''
     }
   }
 }
