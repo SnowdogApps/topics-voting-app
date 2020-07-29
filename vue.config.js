@@ -39,7 +39,7 @@ module.exports = {
     }
   },
   pwa: {
-    name: 'Topic voting app',
+    name: 'Meet Magento PL - Vote',
     themeColor: '#fe5f15',
     msTileColor: '#FFFFFF',
     appleMobileWebAppCapable: 'yes',
