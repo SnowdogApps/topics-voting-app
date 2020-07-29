@@ -104,7 +104,6 @@ export default {
       .push(topicData)
   }),
   updateUserTopic: firebaseAction(({ state }, { userId, topicKey, data }) => {
-    console.log(userId, topicKey, data)
     // data: topicId, author, speaker
     return userRef.child(userId)
       .child('topics')

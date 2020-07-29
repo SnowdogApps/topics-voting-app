@@ -94,7 +94,7 @@
     "author-email": "Author email:",
     "created": "Created at:",
     "speaker": "Speaker:",
-    "speaker-id": "Speaker ID",
+    "speaker-id": "Speaker ID:",
     "status": "Status:",
     "approve-button": "Approve",
     "reject-button": "Reject",
@@ -107,10 +107,15 @@
     "not-approved": "not approved",
     "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
     "to-grab-info-aria": "Would you like to present this topic?<br>Contact us via contact@meetmagento.pl",
-    "language-label": "Topics language",
+    "language-label": "Topics language:",
     "add-to-approval-button": "Add to approval",
-    "topic-id": "Topic ID (db)",
-    "speaker-email": "Speaker Email"
+    "topic-id": "Topic ID (db):",
+    "speaker-email": "Speaker Email:",
+    "speaker-details": "Speaker Details",
+    "speaker-company": "Speaker company:",
+    "speaker-position": "Speaker job position:",
+    "speaker-contact-email": "Speaker contact email (additional):"
+
   },
   "topics": {
     "empty-list-user": "There is no topic propositions yet. Be the first one!",
@@ -134,8 +139,8 @@
     "email-not-received": "If you didn't receive an email:",
     "resend-email": "Resend email verification request",
     "user-dashboard": "User's Dashboard",
-    "author-topics-list-title": "Your added topics",
-    "speaker-topics-list-title": "Your proposed topic (call4papers)"
+    "author-topics-list-title": "Your proposed topics",
+    "speaker-topics-list-title": "Your topic (call4papers)"
   },
   "error": {
     "auth/invalid-email": "Email address is invalid.",

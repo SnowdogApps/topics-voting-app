@@ -1,32 +1,58 @@
 <template>
 <div class="topic-details">
-   <h4>
-      {{ $t('topic.details') }}
-    </h4>
+  <h4>{{ $t('topic.speaker-details') }}</h4>
+  <ul class="topic-details__list">
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker') }}
+      </span>
+      {{ topic.speaker }}
+    </li>
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker-id') }}
+      </span>
+      {{ topic.speakerId }}
+    </li>
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker-email') }}
+      </span>
+      {{ topic.speakerEmail }}
+    </li>
+  </ul>
+  <ul
+    v-if="speaker"
+    class="topic-details__list"
+  >
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker-company') }}
+      </span>
+      {{ speaker.company }}
+    </li>
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker-position') }}
+      </span>
+      {{ speaker.position }}
+    </li>
+    <li>
+      <span class="bold">
+        {{ $t('topic.speaker-contact-email') }}
+      </span>
+      {{ speaker.contactEmail }}
+    </li>
+  </ul>
+  <h4>
+    {{ $t('topic.details') }}
+  </h4>
     <ul class="topic-details__list">
       <li>
         <span class="bold">
           {{ $t('topic.topic-id') }}
         </span>
         {{ topic['.key'] }}
-      </li>
-      <li>
-        <span class="bold">
-          {{ $t('topic.speaker') }}
-        </span>
-        {{ topic.speaker }}
-      </li>
-      <li>
-        <span class="bold">
-          {{ $t('topic.speaker-email') }}
-        </span>
-        {{ topic.speakerEmail }}
-      </li>
-      <li>
-        <span class="bold">
-          {{ $t('topic.speaker-id') }}
-        </span>
-        {{ topic.speakerId }}
       </li>
       <li>
         <span class="bold">
@@ -63,6 +89,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   props: {
     id: {
@@ -71,8 +98,14 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      allUsers: 'allUsers'
+    }),
     topic () {
       return this.$store.getters.topicById(this.id)
+    },
+    speaker () {
+      return this.allUsers.find(user => user.uid === this.topic.speakerId)
     }
   }
 }

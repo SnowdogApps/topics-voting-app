@@ -51,6 +51,25 @@
           maxlength="150"
           autocomplete="off"
         />
+        <div class="select">
+          <label
+            for="topic-language"
+            class="select__label"
+          >
+            {{ $t('topic.language-label') }}
+          </label>
+          <select
+            class="select__field"
+            id="topic-language"
+            v-model="language"
+          >
+            <option
+              v-for="(language, i) in languages"
+              :key="`language-${i}`"
+              :value="language"
+            >{{ language }}</option>
+          </select>
+        </div>
         <form-input-field
           v-model="speaker"
           :validator="$v.speaker"
@@ -69,12 +88,54 @@
           maxlength="150"
           autocomplete="off"
         />
-        <div>
+        <p>
           <span class="bold">
             {{ $t('topic.speaker-id') }}
           </span>
           {{ topic.speakerId }}
-        </div>
+        </p>
+        <form-input-field
+          v-model="company"
+          :validator="$v.company"
+          id="company"
+          :label="$t('add-form.company-field-label')"
+          :placeholder="$t('add-form.company-field-placeholder')"
+          maxlength="150"
+          autocomplete="organization"
+        />
+        <form-input-field
+          v-model="position"
+          :validator="$v.position"
+          id="position"
+          :label="$t('add-form.position-field-label')"
+          :placeholder="$t('add-form.position-field-placeholder')"
+          maxlength="150"
+          autocomplete="organization-title"
+        />
+        <form-input-field
+          v-model="contactEmail"
+          :validator="$v.contactEmail"
+          id="contactEmail"
+          :label="$t('add-form.contact-email-field-label')"
+          :placeholder="$t('add-form.contact-email-field-placeholder')"
+          maxlength="150"
+          autocomplete="email"
+        >
+          <template #validation>
+            <div
+              v-if="!$v.contactEmail.required"
+              class="error"
+            >
+              {{ $t('form.required-field') }}
+            </div>
+            <div
+              v-if="!$v.contactEmail.email"
+              class="error"
+            >
+              {{ $t('form.invalid-email-address')}}
+            </div>
+          </template>
+        </form-input-field>
         <div class="form-section__action">
           <v-button
             class="button--secondary button--with-margin"
@@ -101,7 +162,7 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 import { mapState } from 'vuex'
 import debounce from 'lodash.debounce'
@@ -123,17 +184,20 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      allUsers: 'allUsers'
+    }),
     topic () {
       return this.$store.getters.topicById(this.id)
+    },
+    topicSpeaker () {
+      return this.allUsers.find(user => user.uid === this.topic.speakerId)
     },
     charactersLeft () {
       const char = this.description.length
       const limit = 700
       return `${(limit - char)} / ${limit}`
-    },
-    ...mapState({
-      allUsers: 'allUsers'
-    })
+    }
   },
   data () {
     return {
@@ -142,6 +206,11 @@ export default {
       targetGroup: '',
       speaker: '',
       speakerEmail: '',
+      company: '',
+      position: '',
+      contactEmail: '',
+      language: 'pl',
+      languages: ['pl', 'en'],
       loading: false,
       submitStatus: null
     }
@@ -166,17 +235,31 @@ export default {
       },
       speakerEmail: {
         required: false
+      },
+      company: {
+        required: false
+      },
+      position: {
+        required: false
+      },
+      contactEmail: {
+        required: false,
+        email
       }
     }
   },
   created () {
-    this.$store.dispatch('bindAllUsers')
     if (this.topic) {
       this.title = this.topic.title || ''
       this.description = this.topic.description || ''
       this.targetGroup = this.topic.targetGroup || ''
       this.speaker = this.topic.speaker || ''
       this.speakerEmail = this.topic.speakerEmail
+    }
+    if (this.topicSpeaker) {
+      this.company = this.topicSpeaker.company || ''
+      this.position = this.topicSpeaker.position || ''
+      this.contactEmail = this.topicSpeaker.contactEmail || this.topicSpeaker.email || ''
     }
   },
   methods: {
@@ -203,7 +286,13 @@ export default {
         const dataUpdated = {
           title: this.title,
           description: this.description,
-          targetGroup: this.targetGroup
+          targetGroup: this.targetGroup,
+          lang: this.language
+        }
+        const speakerDetails = {
+          company: this.company,
+          position: this.position,
+          contactEmail: this.contactEmail
         }
         // if speaker was changed
         if (this.$v.speakerEmail.$dirty) {
@@ -259,11 +348,18 @@ export default {
               dataUpdated.speaker = this.speaker
               dataUpdated.speakerEmail = this.speakerEmail
               dataUpdated.speakerId = newSpeaker.uid
+              dataUpdated.authorRole = (newSpeaker.uid === this.topic.authorId) ? 'speaker' : 'observer'
               this.$store.dispatch('editTopic', {
                 topicId: this.topic['.key'],
                 topicData: dataUpdated
               }).then(() => {
                 this.resetFormData()
+              })
+              this.$store.dispatch('updateUserData', {
+                userId: newSpeaker.uid,
+                userData: speakerDetails
+              }).catch((err) => {
+                console.log(err)
               })
             } else {
               // display error msg if user with provided email doesn't exist
@@ -291,6 +387,12 @@ export default {
           }).then(() => {
             this.resetFormData()
           })
+          if (this.topic.speakerId) {
+            this.$store.dispatch('updateUserData', {
+              userId: this.topic.speakerId,
+              speakerDetails
+            })
+          }
         }
       }
     },
