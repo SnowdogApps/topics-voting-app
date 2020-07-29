@@ -45,11 +45,35 @@
                   @click="showMenu = false"
                 >
                   <a
-                    href="https://meetmagento-pl-test.now.sh/#pricing"
+                    href="https://meetmagento.pl/#pricing"
                     class="nav-link nav-link--external"
                     target="_blank"
                   >
                     {{ $t('home.buy-ticket') }}
+                  </a>
+                </li>
+                <li
+                  class="nav-item"
+                  @click="showMenu = false"
+                >
+                  <a
+                    href="https://meetmagento.pl/#faq"
+                    class="nav-link"
+                    target="_blank"
+                  >
+                    {{ $t('home.faq-link') }}
+                  </a>
+                </li>
+                <li
+                  class="nav-item"
+                  @click="showMenu = false"
+                >
+                  <a
+                    href="https://meetmagento.pl/#contactSection"
+                    class="nav-link"
+                    target="_blank"
+                  >
+                    {{ $t('home.contact-link') }}
                   </a>
                 </li>
                 <li>

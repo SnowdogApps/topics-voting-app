@@ -38,7 +38,7 @@
               </div>
             </div>
             <span class="col-xs form-section__field-tip">
-              {{ charactersLeft }}
+              {{ charactersCount }}
             </span>
           </div>
         </div>
@@ -51,6 +51,25 @@
           maxlength="150"
           autocomplete="off"
         />
+        <div class="select">
+          <label
+            for="topic-language"
+            class="select__label"
+          >
+            {{ $t('topic.language-label') }}
+          </label>
+          <select
+            class="select__field"
+            id="topic-language"
+            v-model="language"
+          >
+            <option
+              v-for="(language, i) in languages"
+              :key="`language-${i}`"
+              :value="language"
+            >{{ language }}</option>
+          </select>
+        </div>
         <form-input-field
           v-model="speaker"
           :validator="$v.speaker"
@@ -69,12 +88,54 @@
           maxlength="150"
           autocomplete="off"
         />
-        <div>
+        <p>
           <span class="bold">
             {{ $t('topic.speaker-id') }}
           </span>
           {{ topic.speakerId }}
-        </div>
+        </p>
+        <form-input-field
+          v-model="company"
+          :validator="$v.company"
+          id="company"
+          :label="$t('add-form.company-field-label')"
+          :placeholder="$t('add-form.company-field-placeholder')"
+          maxlength="150"
+          autocomplete="organization"
+        />
+        <form-input-field
+          v-model="position"
+          :validator="$v.position"
+          id="position"
+          :label="$t('add-form.position-field-label')"
+          :placeholder="$t('add-form.position-field-placeholder')"
+          maxlength="150"
+          autocomplete="organization-title"
+        />
+        <form-input-field
+          v-model="contactEmail"
+          :validator="$v.contactEmail"
+          id="contactEmail"
+          :label="$t('add-form.contact-email-field-label')"
+          :placeholder="$t('add-form.contact-email-field-placeholder')"
+          maxlength="150"
+          autocomplete="email"
+        >
+          <template #validation>
+            <div
+              v-if="!$v.contactEmail.required"
+              class="error"
+            >
+              {{ $t('form.required-field') }}
+            </div>
+            <div
+              v-if="!$v.contactEmail.email"
+              class="error"
+            >
+              {{ $t('form.invalid-email-address')}}
+            </div>
+          </template>
+        </form-input-field>
         <div class="form-section__action">
           <v-button
             class="button--secondary button--with-margin"
@@ -101,7 +162,7 @@
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { required, email } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 import { mapState } from 'vuex'
 import debounce from 'lodash.debounce'
@@ -123,17 +184,20 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      allUsers: 'allUsers'
+    }),
     topic () {
       return this.$store.getters.topicById(this.id)
     },
-    charactersLeft () {
+    topicSpeaker () {
+      return this.allUsers.find(user => user.id === this.topic.speakerId)
+    },
+    charactersCount () {
       const char = this.description.length
       const limit = 700
-      return `${(limit - char)} / ${limit}`
-    },
-    ...mapState({
-      allUsers: 'allUsers'
-    })
+      return `${char} / ${limit}`
+    }
   },
   data () {
     return {
@@ -142,6 +206,11 @@ export default {
       targetGroup: '',
       speaker: '',
       speakerEmail: '',
+      company: '',
+      position: '',
+      contactEmail: '',
+      language: 'pl',
+      languages: ['pl', 'en'],
       loading: false,
       submitStatus: null
     }
@@ -166,11 +235,20 @@ export default {
       },
       speakerEmail: {
         required: false
+      },
+      company: {
+        required: false
+      },
+      position: {
+        required: false
+      },
+      contactEmail: {
+        required: false,
+        email
       }
     }
   },
   created () {
-    this.$store.dispatch('bindAllUsers')
     if (this.topic) {
       this.title = this.topic.title || ''
       this.description = this.topic.description || ''
@@ -178,10 +256,15 @@ export default {
       this.speaker = this.topic.speaker || ''
       this.speakerEmail = this.topic.speakerEmail
     }
+    if (this.topicSpeaker) {
+      this.company = this.topicSpeaker.company || ''
+      this.position = this.topicSpeaker.position || ''
+      this.contactEmail = this.topicSpeaker.contactEmail || this.topicSpeaker.email || ''
+    }
   },
   methods: {
     checkAssignedTopic (userKey, param = 'speaker') {
-      const userData = this.allUsers.find(user => user.uid === userKey)
+      const userData = this.allUsers.find(user => user.id === userKey)
       for (var i in userData.topics) {
         if (userData.topics[i].topicId === this.topic['.key'] && userData.topics[i][param] === 'yes') {
           return i
@@ -203,7 +286,13 @@ export default {
         const dataUpdated = {
           title: this.title,
           description: this.description,
-          targetGroup: this.targetGroup
+          targetGroup: this.targetGroup,
+          lang: this.language
+        }
+        const speakerDetails = {
+          company: this.company,
+          position: this.position,
+          contactEmail: this.contactEmail
         }
         // if speaker was changed
         if (this.$v.speakerEmail.$dirty) {
@@ -229,11 +318,11 @@ export default {
                 }
               }
               // update new speaker data
-              const newTopicKey = this.checkAssignedTopic(newSpeaker.uid)
+              const newTopicKey = this.checkAssignedTopic(newSpeaker.id)
               // if topic is already assign to user
               if (newTopicKey) {
                 const newSpeakerData = {
-                  userId: newSpeaker.uid,
+                  userId: newSpeaker.id,
                   topicKey: newTopicKey,
                   data: {
                     speaker: 'yes'
@@ -246,9 +335,9 @@ export default {
               } else {
                 // assign topic to user
                 const newSpeakerData = {
-                  userId: newSpeaker.uid,
+                  userId: newSpeaker.id,
                   topicData: {
-                    author: (newSpeaker.uid === this.topic.authorId) ? 'yes' : 'no',
+                    author: (newSpeaker.id === this.topic.authorId) ? 'yes' : 'no',
                     speaker: 'yes',
                     topicId: this.topic['.key']
                   }
@@ -258,12 +347,19 @@ export default {
               // update topic data
               dataUpdated.speaker = this.speaker
               dataUpdated.speakerEmail = this.speakerEmail
-              dataUpdated.speakerId = newSpeaker.uid
+              dataUpdated.speakerId = newSpeaker.id
+              dataUpdated.authorRole = (newSpeaker.id === this.topic.authorId) ? 'speaker' : 'observer'
               this.$store.dispatch('editTopic', {
                 topicId: this.topic['.key'],
                 topicData: dataUpdated
               }).then(() => {
                 this.resetFormData()
+              })
+              this.$store.dispatch('updateUserData', {
+                userId: newSpeaker.id,
+                userData: speakerDetails
+              }).catch((err) => {
+                console.log(err)
               })
             } else {
               // display error msg if user with provided email doesn't exist
@@ -291,6 +387,12 @@ export default {
           }).then(() => {
             this.resetFormData()
           })
+          if (this.topic.speakerId) {
+            this.$store.dispatch('updateUserData', {
+              userId: this.topic.speakerId,
+              speakerDetails
+            })
+          }
         }
       }
     },

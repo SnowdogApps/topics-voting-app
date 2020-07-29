@@ -19,7 +19,9 @@
     "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
     "back-to-top": "Do góry",
-    "buy-ticket": "Kup bilet"
+    "buy-ticket": "Kup bilet",
+    "faq-link": "FAQ",
+    "contact-link": "Kontakt"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
@@ -95,7 +97,7 @@
     "author-email": "Email autora:",
     "created": "Data utworzenia:",
     "speaker": "Prelegent:",
-    "speaker-id": "ID Prelegenta",
+    "speaker-id": "ID Prelegenta:",
     "status": "Status:",
     "approve-button": "Zaakceptuj",
     "reject-button": "Odrzuć",
@@ -107,10 +109,15 @@
     "approved": "zaakceptowano",
     "not-approved": "nie zaakceptowano",
     "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
+    "to-grab-info-aria": "Jesteś zainteresowany zaprezentowaniem tego tematu? Skontaktuj się z nami przez email: meetmagento@snow.dog",
     "language-label": "Język prezentacji",
     "add-to-approval-button": "Do Akceptacji",
-    "topic-id": "ID Tematu (db)",
-    "speaker-email": "Email Prelegenta"
+    "topic-id": "ID Tematu (db):",
+    "speaker-email": "Email Prelegenta:",
+    "speaker-details": "Prelegent - szczlocaegóły",
+    "speaker-company": "Prelegent Firma:",
+    "speaker-position": "Pelegent stanowisko:",
+    "speaker-contact-email": "Prelegent email do kontaktu (dodatkowy):"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
@@ -134,8 +141,8 @@
     "email-not-received": "Jeśli nie otrzymałeś wiadomości:",
     "resend-email": "Ponownie wyślij prośbę o weryfikację",
     "user-dashboard": "Panel użytkownika",
-    "author-topics-list-title": "Twoje dodane tematy",
-    "speaker-topics-list-title": "Twoja zgłoszona prezentacja (call4papers)"
+    "author-topics-list-title": "Twoje propozycje tematów",
+    "speaker-topics-list-title": "Twoje zgłoszone prezentacje (call4papers)"
   },
   "error": {
     "auth/invalid-email-address": "Adres email jest niepoprawny.",

@@ -33,11 +33,11 @@
                 class="topic-item__lang-icon"
               />
               <button
-                v-if="topic.authorRole === 'observer'"
+                v-if="!topic.speakerId"
                 type="button"
                 class="topic-item__badge"
                 v-tooltip="{
-                  content: $t('topic.to-grab-info', {email: 'contact@meetmagento.pl'}),
+                  content: $t('topic.to-grab-info', {email: 'meetmagento@snow.dog'}),
                   trigger: 'focus click',
                   classes: 'tooltip--light'
                 }"
@@ -46,7 +46,7 @@
                 {{ $t("topic.to-grab") }}
               </button>
               <div
-                v-if="topic.authorRole === 'speaker' && isAdmin"
+                v-if="topic.speakerId && adminView"
                 class="
                   topic-item__badge
                   topic-item__badge--c4p

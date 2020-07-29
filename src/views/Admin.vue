@@ -51,6 +51,9 @@ export default {
     rejectedListTitle () {
       return this.$t('admin.rejected-list-title')
     }
+  },
+  created () {
+    this.$store.dispatch('bindAllUsers')
   }
 }
 </script>

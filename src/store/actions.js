@@ -89,7 +89,7 @@ export default {
     return userRef.child(user.uid).update({
       name: user.displayName,
       email: user.email,
-      uid: user.uid,
+      id: user.uid,
       photo: user.photoURL
     }).catch((err) => {
       console.log(err)
@@ -104,7 +104,6 @@ export default {
       .push(topicData)
   }),
   updateUserTopic: firebaseAction(({ state }, { userId, topicKey, data }) => {
-    console.log(userId, topicKey, data)
     // data: topicId, author, speaker
     return userRef.child(userId)
       .child('topics')

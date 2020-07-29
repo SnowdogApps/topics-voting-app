@@ -27,28 +27,28 @@
     text-align: right;
   }
 
-  .input,
-  .radio {
-    .error {
-      display: none;
-      text-align: left;
-      margin-top: 4px;
-      font-size: $font-size-small;
-      color: $error;
-    }
-
-    &--error {
-      .error {
-        display: block;
-      }
-    }
-  }
-
-  .label {
-    font-weight: $font-weight-bold;
-  }
-
   .form__label {
     @extend .label;
   }
+}
+
+.input,
+.radio {
+  .error {
+    display: none;
+    text-align: left;
+    margin-top: 4px;
+    font-size: $font-size-small;
+    color: $error;
+  }
+
+  &--error {
+    .error {
+      display: block;
+    }
+  }
+}
+
+.label {
+  font-weight: $font-weight-bold;
 }
