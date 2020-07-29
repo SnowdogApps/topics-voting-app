@@ -105,7 +105,7 @@ export default {
       return this.$store.getters.topicById(this.id)
     },
     speaker () {
-      return this.allUsers.find(user => user.uid === this.topic.speakerId)
+      return this.allUsers.find(user => user.id === this.topic.speakerId)
     }
   }
 }

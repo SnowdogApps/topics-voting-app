@@ -277,7 +277,7 @@ export default {
           }).then(() => {
             const user = auth.currentUser
             // if is a new user, save data in db
-            self.$store.dispatch('assignUserData', result.user)
+            self.$store.dispatch('assignUserData', user)
             self.$store.commit('SET_AUTH_USER', { user })
           })
         }).catch((err) => {

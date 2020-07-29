@@ -191,7 +191,7 @@ export default {
       return this.$store.getters.topicById(this.id)
     },
     topicSpeaker () {
-      return this.allUsers.find(user => user.uid === this.topic.speakerId)
+      return this.allUsers.find(user => user.id === this.topic.speakerId)
     },
     charactersCount () {
       const char = this.description.length
@@ -264,7 +264,7 @@ export default {
   },
   methods: {
     checkAssignedTopic (userKey, param = 'speaker') {
-      const userData = this.allUsers.find(user => user.uid === userKey)
+      const userData = this.allUsers.find(user => user.id === userKey)
       for (var i in userData.topics) {
         if (userData.topics[i].topicId === this.topic['.key'] && userData.topics[i][param] === 'yes') {
           return i
@@ -318,11 +318,11 @@ export default {
                 }
               }
               // update new speaker data
-              const newTopicKey = this.checkAssignedTopic(newSpeaker.uid)
+              const newTopicKey = this.checkAssignedTopic(newSpeaker.id)
               // if topic is already assign to user
               if (newTopicKey) {
                 const newSpeakerData = {
-                  userId: newSpeaker.uid,
+                  userId: newSpeaker.id,
                   topicKey: newTopicKey,
                   data: {
                     speaker: 'yes'
@@ -335,9 +335,9 @@ export default {
               } else {
                 // assign topic to user
                 const newSpeakerData = {
-                  userId: newSpeaker.uid,
+                  userId: newSpeaker.id,
                   topicData: {
-                    author: (newSpeaker.uid === this.topic.authorId) ? 'yes' : 'no',
+                    author: (newSpeaker.id === this.topic.authorId) ? 'yes' : 'no',
                     speaker: 'yes',
                     topicId: this.topic['.key']
                   }
@@ -347,8 +347,8 @@ export default {
               // update topic data
               dataUpdated.speaker = this.speaker
               dataUpdated.speakerEmail = this.speakerEmail
-              dataUpdated.speakerId = newSpeaker.uid
-              dataUpdated.authorRole = (newSpeaker.uid === this.topic.authorId) ? 'speaker' : 'observer'
+              dataUpdated.speakerId = newSpeaker.id
+              dataUpdated.authorRole = (newSpeaker.id === this.topic.authorId) ? 'speaker' : 'observer'
               this.$store.dispatch('editTopic', {
                 topicId: this.topic['.key'],
                 topicData: dataUpdated
@@ -356,7 +356,7 @@ export default {
                 this.resetFormData()
               })
               this.$store.dispatch('updateUserData', {
-                userId: newSpeaker.uid,
+                userId: newSpeaker.id,
                 userData: speakerDetails
               }).catch((err) => {
                 console.log(err)

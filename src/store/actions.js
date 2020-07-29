@@ -89,7 +89,7 @@ export default {
     return userRef.child(user.uid).update({
       name: user.displayName,
       email: user.email,
-      uid: user.uid,
+      id: user.uid,
       photo: user.photoURL
     }).catch((err) => {
       console.log(err)
