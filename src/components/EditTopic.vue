@@ -38,7 +38,7 @@
               </div>
             </div>
             <span class="col-xs form-section__field-tip">
-              {{ charactersLeft }}
+              {{ charactersCount }}
             </span>
           </div>
         </div>
@@ -193,10 +193,10 @@ export default {
     topicSpeaker () {
       return this.allUsers.find(user => user.uid === this.topic.speakerId)
     },
-    charactersLeft () {
+    charactersCount () {
       const char = this.description.length
       const limit = 700
-      return `${(limit - char)} / ${limit}`
+      return `${char} / ${limit}`
     }
   },
   data () {
