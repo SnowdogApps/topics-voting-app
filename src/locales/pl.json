@@ -19,7 +19,9 @@
     "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
     "back-to-top": "Do góry",
-    "buy-ticket": "Kup bilet"
+    "buy-ticket": "Kup bilet",
+    "faq-link": "FAQ",
+    "contact-link": "Kontakt"
   },
   "login": {
     "login-create-button": "Zaloguj się lub utwórz konto",
