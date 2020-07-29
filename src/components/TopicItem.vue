@@ -37,7 +37,7 @@
                 type="button"
                 class="topic-item__badge"
                 v-tooltip="{
-                  content: $t('topic.to-grab-info', {email: 'contact@meetmagento.pl'}),
+                  content: $t('topic.to-grab-info', {email: 'meetmagento@snow.dog'}),
                   trigger: 'focus click',
                   classes: 'tooltip--light'
                 }"

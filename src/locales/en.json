@@ -106,7 +106,7 @@
     "approved": "approved",
     "not-approved": "not approved",
     "to-grab-info": "Would you like to present this topic?<br>Contact us via <a href='mailto:{email}' class='link link--invert'>{email}</a>",
-    "to-grab-info-aria": "Would you like to present this topic?<br>Contact us via contact@meetmagento.pl",
+    "to-grab-info-aria": "Would you like to present this topic? Contact us via meetmagento@snow.dog",
     "language-label": "Topics language:",
     "add-to-approval-button": "Add to approval",
     "topic-id": "Topic ID (db):",
