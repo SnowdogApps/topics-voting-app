@@ -62,7 +62,7 @@ export default {
       topicsLoaded: state => state.topicsLoaded
     }),
     adminView () {
-      return this.$router.currentRoute.path.includes('admin-dashboard')
+      return this.$router.currentRoute.path.includes('admin')
     }
   }
 }

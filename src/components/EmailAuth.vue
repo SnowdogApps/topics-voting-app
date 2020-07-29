@@ -60,30 +60,32 @@
       >
         {{ $t('login.reset-password-info') }}
       </p>
-      <v-button
-        v-if="login && resetPassword"
-        type="submit"
-        :disabled="$v.$invalid"
-        @btn-event="sendPasswordResetEmail"
-      >
-        {{ $t('login.send-reset-password-email') }}
-      </v-button>
-      <v-button
-        v-else-if="login && !resetPassword"
-        type="submit"
-        :disabled="$v.$invalid"
-        @btn-event="signIn"
-      >
-        {{ $t('login.log-in') }}
-      </v-button>
-      <v-button
-        v-else-if="!isLinkingProviderPassword"
-        type="submit"
-        :disabled="$v.$invalid"
-        @btn-event="createUser"
-      >
-        {{ $t('login.create-account') }}
-      </v-button>
+      <div class="form-section__action">
+        <v-button
+          v-if="login && resetPassword"
+          type="submit"
+          :disabled="$v.$invalid"
+          @btn-event="sendPasswordResetEmail"
+        >
+          {{ $t('login.send-reset-password-email') }}
+        </v-button>
+        <v-button
+          v-else-if="login && !resetPassword"
+          type="submit"
+          :disabled="$v.$invalid"
+          @btn-event="signIn"
+        >
+          {{ $t('login.log-in') }}
+        </v-button>
+        <v-button
+          v-else-if="!isLinkingProviderPassword"
+          type="submit"
+          :disabled="$v.$invalid"
+          @btn-event="createUser"
+        >
+          {{ $t('login.create-account') }}
+        </v-button>
+      </div>
     </form>
     <template v-if="!isLinkingProviderPassword">
       <p
@@ -227,7 +229,6 @@ export default {
           this.formData.password
         ).then((result) => {
           const user = result.user
-          console.log(result)
           if (this.isLinkingProviderPassword) {
             this.linkAccountCreds(user, this.linkCreds)
           }
@@ -324,7 +325,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .login__action {
   margin: $spacer--xs;
   font-size: $font-size-extra-small;

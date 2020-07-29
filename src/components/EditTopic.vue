@@ -180,6 +180,14 @@ export default {
     }
   },
   methods: {
+    checkAssignedTopic (userKey, param = 'speaker') {
+      const userData = this.allUsers.find(user => user.uid === userKey)
+      for (var i in userData.topics) {
+        if (userData.topics[i].topicId === this.topic['.key'] && userData.topics[i][param] === 'yes') {
+          return i
+        }
+      }
+    },
     debounceInput () {
       debounce(function (e) {
         this.input = e.target.value
@@ -203,32 +211,54 @@ export default {
             // check if provided email is assign to any registered user
             const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
             if (newSpeaker) {
-              // if new speaker exist, update old speaker data
+              // if old speaker exist, update old speaker data
               if (this.topic.speakerEmail && (this.topic.speakerEmail !== this.speakerEmail)) {
-                const oldSpeakerData = {
-                  authorId: this.topic.authorId,
-                  oldSpeakerId: this.topic.speakerId,
-                  topicId: this.topic['.key']
+                const oldTopicKey = this.checkAssignedTopic(this.topic.speakerId)
+                if (oldTopicKey) {
+                  const oldSpeakerData = {
+                    userId: this.topic.speakerId,
+                    topicKey: oldTopicKey,
+                    data: {
+                      speaker: 'no'
+                    }
+                  }
+                  this.$store.dispatch('updateUserTopic', oldSpeakerData)
+                    .catch((err) => {
+                      console.log(err)
+                    })
                 }
-                this.$store.dispatch('updateUserTopic', oldSpeakerData)
+              }
+              // update new speaker data
+              const newTopicKey = this.checkAssignedTopic(newSpeaker.uid)
+              // if topic is already assign to user
+              if (newTopicKey) {
+                const newSpeakerData = {
+                  userId: newSpeaker.uid,
+                  topicKey: newTopicKey,
+                  data: {
+                    speaker: 'yes'
+                  }
+                }
+                this.$store.dispatch('updateUserTopic', newSpeakerData)
                   .catch((err) => {
                     console.log(err)
                   })
+              } else {
+                // assign topic to user
+                const newSpeakerData = {
+                  userId: newSpeaker.uid,
+                  topicData: {
+                    author: (newSpeaker.uid === this.topic.authorId) ? 'yes' : 'no',
+                    speaker: 'yes',
+                    topicId: this.topic['.key']
+                  }
+                }
+                this.$store.dispatch('assignTopicToUser', newSpeakerData)
               }
-              // update new speaker data
-              const newSpeakerData = {
-                authorId: this.topic.authorId,
-                newSpeakerId: newSpeaker['.key'],
-                topicId: this.topic['.key']
-              }
-              this.$store.dispatch('updateUserTopic', newSpeakerData)
-                .cathc((err) => {
-                  console.log(err)
-                })
               // update topic data
               dataUpdated.speaker = this.speaker
               dataUpdated.speakerEmail = this.speakerEmail
-              dataUpdated.speakerId = newSpeaker['.key']
+              dataUpdated.speakerId = newSpeaker.uid
               this.$store.dispatch('editTopic', {
                 topicId: this.topic['.key'],
                 topicData: dataUpdated
@@ -242,6 +272,7 @@ export default {
                 title: 'Error',
                 type: 'error'
               }, { root: true })
+              this.resetFormData()
             }
           } else {
             // display error msg if users list is not found
@@ -250,6 +281,7 @@ export default {
               title: 'Error',
               type: 'error'
             }, { root: true })
+            this.resetFormData()
           }
         } else {
           // update topic data

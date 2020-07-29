@@ -54,7 +54,16 @@ export default {
       speakerEmail: (topic.authorRole === 'speaker') ? `${state.user.email}` : null
     }).then((result) => {
       const addedTopic = result.key
-      dispatch('assignTopicToUser', { topicData: topic, topicId: addedTopic })
+      const topicData = {
+        topicId: addedTopic,
+        author: (topic.authorId === state.user.id) ? 'yes' : 'no',
+        speaker: (topic.authorRole === 'speaker') ? 'yes' : 'no'
+      }
+      dispatch('assignTopicToUser', {
+        // topicData: topicId, author, speaker
+        userId: state.user.id,
+        topicData: topicData
+      })
       if (topic.authorRole === 'speaker') {
         const userData = {
           company: topic.company,
@@ -86,28 +95,24 @@ export default {
       console.log(err)
     })
   }),
-  assignTopicToUser: firebaseAction(({ state }, { topicData, topicId }) => {
-    return userRef.child(state.user.id).child('topics').push({
-      topicId: topicId,
-      author: (topicData.authorId === state.user.id) ? 'yes' : 'no',
-      speaker: (topicData.authorRole === 'speaker') ? 'yes' : 'no'
-    })
-  }),
   updateUserData: firebaseAction(({ state }, { userId, userData }) => {
     return userRef.child(userId).update(userData)
   }),
-  updateUserTopic: firebaseAction(({ state }, data) => {
-    const speakerId = data.oldSpeakerId ? data.oldSpeakerId : data.newSpeakerId
-    const speakerPayload = {
-      topicId: data.topicId,
-      author: (speakerId === data.authorId) ? 'yes' : 'no',
-      speaker: data.oldSpeakerId ? 'no' : 'yes'
-    }
-    return userRef.child(speakerId).child('topics').push(
-      speakerPayload
-    ).catch((err) => {
-      console.log(err)
-    })
+  assignTopicToUser: firebaseAction(({ state }, { userId, topicData }) => {
+    return userRef.child(userId)
+      .child('topics')
+      .push(topicData)
+  }),
+  updateUserTopic: firebaseAction(({ state }, { userId, topicKey, data }) => {
+    console.log(userId, topicKey, data)
+    // data: topicId, author, speaker
+    return userRef.child(userId)
+      .child('topics')
+      .child(topicKey)
+      .update(data)
+      .catch((err) => {
+        console.log(err)
+      })
   }),
   editTopic: firebaseAction(({ state, commit }, { topicId, topicData }) => {
     return topicRef.child(topicId).update(

@@ -12,11 +12,17 @@
           class="
             auth-section
             col-xs-12
-            col-lg-7
+            col-lg-8
             m-auto
           "
         >
-          <h2 class="uppercase heading--h3">
+          <h2
+            class="
+              uppercase
+              heading--h3
+              auth-section__heading-name
+            "
+          >
             {{ $t('user.hi', { name: user.displayName || user.email}) }}
           </h2>
           <p>{{ $t('user.welcome-msg') }}</p>

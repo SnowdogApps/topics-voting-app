@@ -1,6 +1,6 @@
 <template>
   <div class="row center-xs">
-    <h1>{{ $t('user.user-dashboard') }}</h1>
+    <h2 class="m-0">{{ $t('user.user-dashboard') }}</h2>
     <topic-list
       :topics="speakerTopics"
       :title="speakerTopicsTitle"
@@ -29,7 +29,8 @@ export default {
     }),
     userTopics () {
       return this.$store.state.topics.filter(topic => {
-        return topic.authorId === this.$store.state.user.id && !topic.speakerId
+        return topic.authorId === this.$store.state.user.id &&
+          topic.speakerId !== this.$store.state.user.id
       })
     },
     userTopicsTitle () {

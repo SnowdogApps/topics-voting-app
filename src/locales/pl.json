@@ -109,7 +109,8 @@
     "to-grab-info": "Jesteś zainteresowany zaprezentowaniem tego tematu?<br>Skontaktuj się z nami przez <a href='mailto:{email}' class='link link--invert'>{email}</a>",
     "language-label": "Język prezentacji",
     "add-to-approval-button": "Do Akceptacji",
-    "topic-id": "ID Tematu (db)"
+    "topic-id": "ID Tematu (db)",
+    "speaker-email": "Email Prelegenta"
   },
   "topics": {
     "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",

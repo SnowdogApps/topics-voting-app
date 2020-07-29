@@ -100,7 +100,7 @@ export default {
         },
         {
           title: this.$t('admin.admin-dashboard'),
-          to: '/admin-dashboard',
+          to: '/admin',
           show: this.isAdmin
         }
       ]

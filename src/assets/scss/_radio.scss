@@ -34,6 +34,10 @@ $radio-dot-size: 10px;
         transform: scale(1);
       }
     }
+
+    &:focus + .radio__label {
+      border: 2px solid $preset;
+    }
   }
 
   &__label {

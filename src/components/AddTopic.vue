@@ -278,7 +278,6 @@ export default {
   ],
   validations () {
     return {
-
       title: {
         required
       },

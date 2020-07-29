@@ -18,6 +18,12 @@
       </li>
       <li>
         <span class="bold">
+          {{ $t('topic.speaker-email') }}
+        </span>
+        {{ topic.speakerEmail }}
+      </li>
+      <li>
+        <span class="bold">
           {{ $t('topic.speaker-id') }}
         </span>
         {{ topic.speakerId }}

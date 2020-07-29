@@ -2,4 +2,8 @@
     padding: $spacer--xl;
     text-align: center;
     box-shadow: $box-shadow;
+
+    &__heading-name {
+        word-break: break-word;
+    }
 }
