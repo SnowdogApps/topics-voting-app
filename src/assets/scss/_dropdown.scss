@@ -20,29 +20,28 @@
     outline: none;
     cursor: pointer;
 
-    @include mq($max-screen: $screen-md-max) {
-      padding: 0;
-    }
-
     &:after {
-      content: "";
-      top: 50%;
-      right: 0;
+      content: '';
       position: absolute;
       display: block;
-      width: 0;
-      height: 0;
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-bottom: 6px solid $gray-light;
-      color: $font-color-base;
+      top: 40%;
+      right: -12px;
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid $gray-darker;
+      border-bottom: 2px solid $gray-darker;
+      transform: rotate(45deg);
       transition: transform 0.3s ease-in-out;
-      transform: translateY(-50%) rotate(180deg);
+    }
+    @include mq($screen-md-min) {
+      &:after {
+        right: 8px;
+      }
     }
 
     &--active {
       &:after {
-        transform: translateY(-50%) rotate(0);
+        transform: translateY(50%) rotate(225deg);
       }
     }
 
