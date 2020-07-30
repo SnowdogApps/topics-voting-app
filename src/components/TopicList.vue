@@ -20,10 +20,7 @@
       </ul>
       <transition name="fade">
         <p v-if="topicsLoaded === 1 && topics.length === 0">
-          {{ adminView
-            ? $t('topics.empty-list')
-            : $t('topics.empty-list-user')
-          }}
+          {{ $t(emtyMessage) }}
         </p>
         <p v-if="topicsLoaded === 2 && topics.length === 0">
           {{ $t('error.error-occured') }}
@@ -51,6 +48,10 @@ export default {
     editable: {
       type: Boolean,
       default: false
+    },
+    emtyMessage: {
+      type: String,
+      default: 'topics.empty-list'
     }
   },
   components: {
