@@ -152,12 +152,6 @@
   transition: all 0.3s ease-in-out;
   position: relative;
   text-decoration: none;
-
-  @include mq($min-screen: $screen-md-min) {
-    &--external {
-      border: 1px solid $preset;
-    }
-  }
 }
 
 .navbar-header {

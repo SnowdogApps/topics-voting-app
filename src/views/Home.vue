@@ -13,6 +13,7 @@
     <topic-list
       :topics="topics"
       :title="$t('home.list-items-title')"
+      :emtyMessage="$t('topics.empty-list-home')"
       class="col-xs-12"
     />
     <add-topic

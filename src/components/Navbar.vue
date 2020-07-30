@@ -46,7 +46,7 @@
                 >
                   <a
                     href="https://meetmagento.pl/#pricing"
-                    class="nav-link nav-link--external"
+                    class="nav-link"
                     target="_blank"
                   >
                     {{ $t('home.buy-ticket') }}
