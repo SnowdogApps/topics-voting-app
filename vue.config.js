@@ -32,8 +32,8 @@ module.exports = {
       openAnalyzer: true
     },
     i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
+      locale: 'pl',
+      fallbackLocale: 'pl',
       localeDir: 'locales',
       enableInSFC: true
     }
