@@ -19,7 +19,7 @@
     "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
     "back-to-top": "Do góry",
-    "buy-ticket": "Kup bilet",
+    "buy-ticket": "Bilety",
     "faq-link": "FAQ",
     "contact-link": "Kontakt"
   },
@@ -114,13 +114,13 @@
     "add-to-approval-button": "Do Akceptacji",
     "topic-id": "ID Tematu (db):",
     "speaker-email": "Email Prelegenta:",
-    "speaker-details": "Prelegent - szczlocaegóły",
+    "speaker-details": "Prelegent - szczegóły",
     "speaker-company": "Prelegent Firma:",
     "speaker-position": "Pelegent stanowisko:",
     "speaker-contact-email": "Prelegent email do kontaktu (dodatkowy):"
   },
   "topics": {
-    "empty-list-user": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
+    "empty-list-home": "Nie ma jeszcze żadnych propozycji. Bądź pierwszy!",
     "empty-list": "Nie ma żadnych propozycji."
   },
   "admin": {
