@@ -1,6 +1,7 @@
 {
   "name": "topics-voting-app",
   "version": 2,
+  "alias": ["vote.meetmagento.pl"],
   "builds": [
     {
       "src": "package.json",
