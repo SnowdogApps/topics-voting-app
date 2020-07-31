@@ -11,7 +11,7 @@
       {{ fb.label }}
     </v-button>
     <v-button
-    v-if="!linkProvider || linkProvider === 'google.com'"
+      v-if="!linkProvider || linkProvider === 'google.com'"
       :class="google.btnClass"
       @btn-event="singInWithProvider('google.com')"
     >
@@ -31,7 +31,7 @@
       {{ github.label }}
     </v-button>
     <v-button
-      v-if="!linkProvider || linkProvider === 'twitter.com'"
+      v-if="twitterShow"
       :class="twitter.btnClass"
       @btn-event="singInWithProvider('twitter.com')"
     >
@@ -89,6 +89,11 @@ export default {
         btnClass: 'button--login button--twitter',
         label: this.$t('login.sign-in-with', { social: 'Twitter' })
       }
+    }
+  },
+  data () {
+    return {
+      twitterShow: false
     }
   },
   methods: {
