@@ -229,7 +229,7 @@ export default {
   },
   data () {
     return {
-      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`,
+      shareUrl: `${location.origin}/topic/${this.id}`,
       editMode: false
     }
   },
