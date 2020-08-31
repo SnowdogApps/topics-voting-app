@@ -70,72 +70,116 @@
             >{{ language }}</option>
           </select>
         </div>
-        <form-input-field
-          v-model="speaker"
-          :validator="$v.speaker"
-          id="speaker"
-          :label="$t('add-form.speaker-name-field-label')"
-          :placeholder="$t('add-form.speaker-name-field-label')"
-          maxlength="150"
-          autocomplete="off"
-        />
-        <form-input-field
-          v-model="speakerEmail"
-          :validator="$v.speakerEmail"
-          id="speakerEmail"
-          :label="$t('add-form.speaker-email-field-label')"
-          :placeholder="$t('add-form.speaker-email-field-placeholder')"
-          maxlength="150"
-          autocomplete="off"
-        />
-        <p>
-          <span class="bold">
-            {{ $t('topic.speaker-id') }}
-          </span>
-          {{ topic.speakerId }}
-        </p>
-        <form-input-field
-          v-model="company"
-          :validator="$v.company"
-          id="company"
-          :label="$t('add-form.company-field-label')"
-          :placeholder="$t('add-form.company-field-placeholder')"
-          maxlength="150"
-          autocomplete="organization"
-        />
-        <form-input-field
-          v-model="position"
-          :validator="$v.position"
-          id="position"
-          :label="$t('add-form.position-field-label')"
-          :placeholder="$t('add-form.position-field-placeholder')"
-          maxlength="150"
-          autocomplete="organization-title"
-        />
-        <form-input-field
-          v-model="contactEmail"
-          :validator="$v.contactEmail"
-          id="contactEmail"
-          :label="$t('add-form.contact-email-field-label')"
-          :placeholder="$t('add-form.contact-email-field-placeholder')"
-          maxlength="150"
-          autocomplete="email"
-        >
-          <template #validation>
-            <div
-              v-if="!$v.contactEmail.required"
-              class="error"
-            >
-              {{ $t('form.required-field') }}
+        <div :class="['radio', { 'radio--error': $v.c4p.$error }]">
+          <fieldset class="fieldset" aria-labelledby="radio-legend">
+            <legend id="radio-legend" class="fieldset__legend">
+              {{ $t('add-form.c4p-radio-legend') }}
+            </legend>
+            <div class="radio__handler">
+              <input
+                type="radio"
+                id="c4p-false"
+                class="radio__field"
+                v-model="c4p"
+                value="false"
+              >
+              <label for="c4p-false" class="radio__label">
+                <span class="radio__text" :class="{'selected': $v.c4p.$model === 'false'}">
+                  {{ $t('add-form.radio-c4p-false') }}
+                </span>
+              </label>
             </div>
-            <div
-              v-if="!$v.contactEmail.email"
-              class="error"
-            >
-              {{ $t('form.invalid-email-address')}}
+            <div class="radio__handler">
+              <input
+                type="radio"
+                id="c4p-true"
+                class="radio__field"
+                v-model="c4p"
+                value="true"
+              >
+              <label for="c4p-true" class="radio__label">
+                <span class="radio__text" :class="{'selected': $v.c4p.$model === 'true'}">
+                  {{ $t('add-form.radio-c4p-true') }}
+                </span>
+              </label>
             </div>
-          </template>
-        </form-input-field>
+          </fieldset>
+          <div
+            v-if="!$v.c4p.required"
+            class="error"
+          >
+            {{ $t('form.required-field') }}
+          </div>
+        </div>
+        <template v-if="this.c4p === 'true'">
+
+          <form-input-field
+            v-model="speaker"
+            :validator="$v.speaker"
+            id="speaker"
+            :label="$t('add-form.speaker-name-field-label')"
+            :placeholder="$t('add-form.speaker-name-field-label')"
+            maxlength="150"
+            autocomplete="off"
+          />
+          <form-input-field
+            v-model="speakerEmail"
+            :validator="$v.speakerEmail"
+            id="speakerEmail"
+            :label="$t('add-form.speaker-email-field-label')"
+            :placeholder="$t('add-form.speaker-email-field-placeholder')"
+            maxlength="150"
+            autocomplete="off"
+          />
+          <p>
+            <span class="bold">
+              {{ $t('topic.speaker-id') }}
+            </span>
+            {{ topic.speakerId }}
+          </p>
+          <form-input-field
+            v-model="company"
+            :validator="$v.company"
+            id="company"
+            :label="$t('add-form.company-field-label')"
+            :placeholder="$t('add-form.company-field-placeholder')"
+            maxlength="150"
+            autocomplete="organization"
+          />
+          <form-input-field
+            v-model="position"
+            :validator="$v.position"
+            id="position"
+            :label="$t('add-form.position-field-label')"
+            :placeholder="$t('add-form.position-field-placeholder')"
+            maxlength="150"
+            autocomplete="organization-title"
+          />
+          <form-input-field
+            v-model="contactEmail"
+            :validator="$v.contactEmail"
+            id="contactEmail"
+            :label="$t('add-form.contact-email-field-label')"
+            :placeholder="$t('add-form.contact-email-field-placeholder')"
+            maxlength="150"
+            autocomplete="email"
+          >
+            <template #validation>
+              <div
+                v-if="!$v.contactEmail.required"
+                class="error"
+              >
+                {{ $t('form.required-field') }}
+              </div>
+              <div
+                v-if="!$v.contactEmail.email"
+                class="error"
+              >
+                {{ $t('form.invalid-email-address')}}
+              </div>
+            </template>
+          </form-input-field>
+        </template>
         <div class="form-section__action">
           <v-button
             class="button--secondary button--with-margin"
@@ -162,7 +206,7 @@
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators'
+import { required, email, requiredIf } from 'vuelidate/lib/validators'
 import { validationMixin } from 'vuelidate'
 import { mapState } from 'vuex'
 import debounce from 'lodash.debounce'
@@ -211,6 +255,7 @@ export default {
       contactEmail: '',
       language: 'pl',
       languages: ['pl', 'en'],
+      c4p: 'false',
       loading: false,
       submitStatus: null
     }
@@ -230,20 +275,33 @@ export default {
       targetGroup: {
         required
       },
+      c4p: {
+        required: true
+      },
       speaker: {
-        required: false
+        required: requiredIf(() => {
+          return this.c4p === 'true'
+        })
       },
       speakerEmail: {
-        required: false
+        required: requiredIf(() => {
+          return this.c4p === 'true'
+        })
       },
       company: {
-        required: false
+        required: requiredIf(() => {
+          return this.c4p === 'true'
+        })
       },
       position: {
-        required: false
+        required: requiredIf(() => {
+          return this.c4p === 'true'
+        })
       },
       contactEmail: {
-        required: false,
+        required: requiredIf(() => {
+          return this.c4p === 'true'
+        }),
         email
       }
     }
@@ -253,6 +311,7 @@ export default {
       this.title = this.topic.title || ''
       this.description = this.topic.description || ''
       this.targetGroup = this.topic.targetGroup || ''
+      this.c4p = this.topic.c4p || false
       this.speaker = this.topic.speaker || ''
       this.speakerEmail = this.topic.speakerEmail
     }
@@ -263,10 +322,10 @@ export default {
     }
   },
   methods: {
-    checkAssignedTopic (userKey, param = 'speaker') {
+    checkAssignedTopic (userKey) {
       const userData = this.allUsers.find(user => user.id === userKey)
       for (var i in userData.topics) {
-        if (userData.topics[i].topicId === this.topic['.key'] && userData.topics[i][param] === 'yes') {
+        if (userData.topics[i].topicId === this.topic['.key']) {
           return i
         }
       }
@@ -287,88 +346,76 @@ export default {
           title: this.title,
           description: this.description,
           targetGroup: this.targetGroup,
-          lang: this.language
+          lang: this.language,
+          c4p: this.c4p
         }
-        const speakerDetails = {
-          company: this.company,
-          position: this.position,
-          contactEmail: this.contactEmail
-        }
-        // if speaker was changed
-        if (this.$v.speakerEmail.$dirty) {
+        if (this.c4p === 'true') {
+          const speakerDetails = {
+            company: this.company,
+            position: this.position,
+            contactEmail: this.contactEmail
+          }
           if (this.allUsers) {
-            // check if provided email is assign to any registered user
-            const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
-            if (newSpeaker) {
-              // if old speaker exist, update old speaker data
-              if (this.topic.speakerEmail && (this.topic.speakerEmail !== this.speakerEmail)) {
-                const oldTopicKey = this.checkAssignedTopic(this.topic.speakerId)
-                if (oldTopicKey) {
-                  const oldSpeakerData = {
-                    userId: this.topic.speakerId,
-                    topicKey: oldTopicKey,
+            // if speaker doesn't changed
+            if (this.speakerEmail && (this.topic.speakerEmail === this.speakerEmail)) {
+              // update speaker data
+              this.updateUserData(speakerDetails, this.topic.speakerId)
+              // update topic data
+              this.updateTopicData(dataUpdated)
+            } else if (this.topic.speakerEmail !== this.speakerEmail) { // if speaker changed or speaker assigned
+              // check if provided email is assign to any registered user
+              const newSpeaker = this.allUsers.find(item => item.email === this.speakerEmail)
+              if (newSpeaker) {
+                // update new speaker data
+                const newTopicKey = this.checkAssignedTopic(newSpeaker.id)
+                // if topic is already assign to user
+                if (newTopicKey) {
+                  const newSpeakerData = {
+                    userId: newSpeaker.id,
+                    topicKey: newTopicKey,
                     data: {
-                      speaker: 'no'
+                      speaker: 'yes'
                     }
                   }
-                  this.$store.dispatch('updateUserTopic', oldSpeakerData)
+                  this.$store.dispatch('updateUserTopic', newSpeakerData)
                     .catch((err) => {
                       console.log(err)
                     })
-                }
-              }
-              // update new speaker data
-              const newTopicKey = this.checkAssignedTopic(newSpeaker.id)
-              // if topic is already assign to user
-              if (newTopicKey) {
-                const newSpeakerData = {
-                  userId: newSpeaker.id,
-                  topicKey: newTopicKey,
-                  data: {
-                    speaker: 'yes'
+                } else {
+                  // assign topic to user
+                  const newSpeakerData = {
+                    userId: newSpeaker.id,
+                    topicData: {
+                      author: (newSpeaker.id === this.topic.authorId) ? 'yes' : 'no',
+                      speaker: 'yes',
+                      topicId: this.topic['.key']
+                    }
                   }
+                  this.$store.dispatch('assignTopicToUser', newSpeakerData)
                 }
-                this.$store.dispatch('updateUserTopic', newSpeakerData)
-                  .catch((err) => {
-                    console.log(err)
-                  })
+                // update old speaker exist, update his topic data
+                if (this.topic.speakerId) {
+                  const oldSpeakerTopicKey = this.checkAssignedTopic(this.topic.speakerId)
+                  this.updateOldSpeakerData(this.topicSpeaker.id, oldSpeakerTopicKey)
+                }
+                // update topic data
+                dataUpdated.speaker = this.speaker
+                dataUpdated.speakerEmail = this.speakerEmail
+                dataUpdated.speakerId = newSpeaker.id
+                dataUpdated.authorRole = (newSpeaker.id === this.topic.authorId) ? 'speaker' : 'observer'
+                this.updateTopicData(dataUpdated)
+                // update user data
+                this.updateUserData(speakerDetails, newSpeaker.id)
               } else {
-                // assign topic to user
-                const newSpeakerData = {
-                  userId: newSpeaker.id,
-                  topicData: {
-                    author: (newSpeaker.id === this.topic.authorId) ? 'yes' : 'no',
-                    speaker: 'yes',
-                    topicId: this.topic['.key']
-                  }
-                }
-                this.$store.dispatch('assignTopicToUser', newSpeakerData)
+                // display error msg if user with provided email doesn't exist in db
+                this.$store.commit('notification/push', {
+                  message: this.$t('add-form.user-not-exist'),
+                  title: 'Error',
+                  type: 'error'
+                }, { root: true })
+                this.loading = false
+                this.speakerEmail = ''
               }
-              // update topic data
-              dataUpdated.speaker = this.speaker
-              dataUpdated.speakerEmail = this.speakerEmail
-              dataUpdated.speakerId = newSpeaker.id
-              dataUpdated.authorRole = (newSpeaker.id === this.topic.authorId) ? 'speaker' : 'observer'
-              this.$store.dispatch('editTopic', {
-                topicId: this.topic['.key'],
-                topicData: dataUpdated
-              }).then(() => {
-                this.resetFormData()
-              })
-              this.$store.dispatch('updateUserData', {
-                userId: newSpeaker.id,
-                userData: speakerDetails
-              }).catch((err) => {
-                console.log(err)
-              })
-            } else {
-              // display error msg if user with provided email doesn't exist
-              this.$store.commit('notification/push', {
-                message: this.$t('add-form.user-not-exist'),
-                title: 'Error',
-                type: 'error'
-              }, { root: true })
-              this.resetFormData()
             }
           } else {
             // display error msg if users list is not found
@@ -380,21 +427,49 @@ export default {
             this.resetFormData()
           }
         } else {
-          // update topic data
-          this.$store.dispatch('editTopic', {
-            topicId: this.topic['.key'],
-            topicData: dataUpdated
-          }).then(() => {
-            this.resetFormData()
-          })
+          // if user was, update old speaker info
           if (this.topic.speakerId) {
-            this.$store.dispatch('updateUserData', {
-              userId: this.topic.speakerId,
-              speakerDetails
-            })
+            const oldSpeakerTopicKey = this.checkAssignedTopic(this.topic.speakerId)
+            this.updateOldSpeakerData(this.topic.speakerId, oldSpeakerTopicKey)
           }
+
+          // clear speaker info if topic != c4p
+          dataUpdated.speaker = ''
+          dataUpdated.speakerEmail = ''
+          dataUpdated.speakerId = ''
+          // update topic data
+          this.updateTopicData(dataUpdated)
         }
       }
+    },
+    updateUserData (data, userId) {
+      this.$store.dispatch('updateUserData', {
+        userId: userId,
+        userData: data
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+    updateTopicData (data) {
+      this.$store.dispatch('editTopic', {
+        topicId: this.topic['.key'],
+        topicData: data
+      }).then(() => {
+        this.resetFormData()
+      })
+    },
+    updateOldSpeakerData (oldSepakerId, userTopicKey) {
+      const oldSpeakerData = {
+        userId: oldSepakerId,
+        topicKey: userTopicKey,
+        data: {
+          speaker: 'no'
+        }
+      }
+      this.$store.dispatch('updateUserTopic', oldSpeakerData)
+        .catch((err) => {
+          console.log(err)
+        })
     },
     resetFormData () {
       this.$v.$reset()
