@@ -14,19 +14,5 @@
     },
     { "handle": "filesystem" },
     { "src": ".*", "dest": "/" }
-  ],
-  "build": {
-    "env": {
-      "VUE_APP_API_KEY": "@topics-voting-app-api-key",
-      "VUE_APP_AUTH_DOMAIN": "@topics-voting-app-auth-domain",
-      "VUE_APP_DB_URL": "@topics-voting-app-db-url",
-      "VUE_APP_PROJECT_ID": "@topics-voting-app-project-id",
-      "VUE_APP_STORAGE_BUCKET": "@topics-voting-app-storage-bucket",
-      "VUE_APP_MESSAGING_SENDER_ID": "@topics-voting-app-messaging-sender-id",
-      "VUE_APP_APP_ID": "@topics-voting-app-app-id",
-      "VUE_APP_FB_APP_ID": "@topics-voting-app-fb-app-id",
-      "VUE_APP_I18N_LOCALE": "en",
-      "VUE_APP_I18N_FALLBACK_LOCALE": "en"
-    }
-  }
+  ]
 }
