@@ -9,6 +9,7 @@ import VueIziToast from 'vue-izitoast'
 import VueSocialSharing from 'vue-social-sharing'
 import i18n from './i18n'
 import focusVisible from 'focus-visible'
+import VueMeta from 'vue-meta'
 const rtdbPlugin = ({ rtdbPlugin }) => import('vuefire')
 
 const options = {
@@ -17,6 +18,7 @@ const options = {
 }
 
 Vue.use(rtdbPlugin)
+Vue.use(VueMeta)
 Vue.use(VueIziToast, options)
 Vue.use(VueSocialSharing)
 
