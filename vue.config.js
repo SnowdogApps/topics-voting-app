@@ -23,7 +23,9 @@ module.exports = {
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = 'Topic voting app'
+        args[0].title = 'Meet Magento Poland - Głosuj na prelegentów'
+        args[0].description = 'Zgłaszaj własne pomysły, głosuj na prezentacje i twórz agendę razem z nami.'
+        args[0].url = 'https://vote.meetmagento.pl/' // url for meta tags image
         return args
       })
   },
@@ -39,7 +41,7 @@ module.exports = {
     }
   },
   pwa: {
-    name: 'Meet Magento PL - Vote',
+    name: 'Meet Magento Poland - Głosuj na prelegentów',
     themeColor: '#fe5f15',
     msTileColor: '#FFFFFF',
     appleMobileWebAppCapable: 'yes',

@@ -33,7 +33,7 @@
                 class="topic-item__lang-icon"
               />
               <button
-                v-if="!topic.speakerId"
+                v-if="topic.c4p === 'false'"
                 type="button"
                 class="topic-item__badge"
                 v-tooltip="{
@@ -46,7 +46,7 @@
                 {{ $t("topic.to-grab") }}
               </button>
               <div
-                v-if="topic.speakerId && adminView"
+                v-if="topic.c4p === 'true' && adminView"
                 class="
                   topic-item__badge
                   topic-item__badge--c4p
@@ -229,7 +229,7 @@ export default {
   },
   data () {
     return {
-      shareUrl: `${process.env.VUE_APP_URL}topic/${this.id}`,
+      shareUrl: `${location.origin}/topic/${this.id}`,
       editMode: false
     }
   },

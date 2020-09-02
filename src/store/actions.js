@@ -51,7 +51,8 @@ export default {
       lang: topic.lang,
       speaker: (topic.authorRole === 'speaker') ? `${state.user.displayName} / ${state.user.email}` : 'none',
       speakerId: (topic.authorRole === 'speaker') ? `${topic.authorId}` : null,
-      speakerEmail: (topic.authorRole === 'speaker') ? `${state.user.email}` : null
+      speakerEmail: (topic.authorRole === 'speaker') ? `${state.user.email}` : null,
+      c4p: (topic.authorRole === 'speaker') ? 'true' : 'false'
     }).then((result) => {
       const addedTopic = result.key
       const topicData = {

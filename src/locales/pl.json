@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Meet Magento Polska - Głosuj na prelegentów",
+    "description": "Zgłaszaj własne pomysły, głosuj na prezentacje i twórz agendę razem z nami."
+  },
   "global": {
     "yes": "tak",
     "no": "nie",
@@ -86,7 +90,10 @@
     "speaker-email-field-label": "Speaker Email (Email uzytkownika podany przy rejestracji. Jeśli user nie istnieje, utwórz proszę konto dla niego uzywajac email/pass)",
     "speaker-email-field-placeholder": "Speaker email",
     "user-not-exist": "Uzytwkonik z podanym emailem nie istnieje, prosze stworz konto",
-    "users-not-found": "Lista uzytwkonikow nie zostala znaleziona, odswiez strone i sprobuj ponownie lub skontaktuj sie z supportem :)"
+    "users-not-found": "Lista uzytwkonikow nie zostala znaleziona, odswiez strone i sprobuj ponownie lub skontaktuj sie z supportem :)",
+    "c4p-radio-legend": "Wybierz call 4 papers albo to grab",
+    "radio-c4p-false": "To grab",
+    "radio-c4p-true": "Call4Papers"
   },
   "topic": {
     "to-grab": "To grab",
