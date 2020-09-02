@@ -31,7 +31,74 @@ export default {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
       isAdmin: 'isAdmin'
-    })
+    }),
+    metaTitle () {
+      return this.$t('meta.title')
+    },
+    metaDescription () {
+      return this.$t('meta.description')
+    }
+  },
+  metaInfo () {
+    const locale = this.$i18n.locale
+    return {
+      title: this.metaTitle,
+      htmlAttrs: {
+        lang: locale
+      },
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.metaDescription
+        },
+        {
+          vmid: 'og:title',
+          name: 'og:title',
+          content: this.metaTitle
+        },
+        {
+          vmid: 'og:description',
+          name: 'og:description',
+          content: this.metaTitle
+        },
+        {
+          vmid: 'og:type',
+          name: 'og:type',
+          content: 'website'
+        },
+        {
+          vmid: 'og:url',
+          name: 'og:url',
+          content: 'https://vote.meetmagento.pl/'
+        },
+        {
+          vmid: 'og:image',
+          name: 'og:image',
+          content: `${location.origin}/img/meet-magento-meta-${locale}.png`
+        },
+        {
+          vmid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image'
+        },
+        {
+          vmid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.metaTitle
+        },
+        {
+          vmid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.metaTitle
+        },
+        {
+          vmid: 'twitter:image',
+          name: 'twitter:image',
+          content: `${location.origin}/img/meet-magento-meta-${locale}.png`
+        }
+      ]
+    }
   },
   methods: {
     setLanguage () {

@@ -19,6 +19,7 @@
     "vue": "^2.6.11",
     "vue-i18n": "^8.17.3",
     "vue-izitoast": "^1.2.1",
+    "vue-meta": "^2.4.0",
     "vue-router": "^3.2.0",
     "vue-social-sharing": "^3.0.0-beta.11",
     "vuefire": "^2.2.2",
