@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Meet Magento Polska - Głosuj na prelegentów",
+    "description": "Zgłaszaj własne pomysły, głosuj na prezentacje i twórz agendę razem z nami."
+  },
   "global": {
     "yes": "tak",
     "no": "nie",
