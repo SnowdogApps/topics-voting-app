@@ -63,24 +63,9 @@ export default {
           content: this.metaTitle
         },
         {
-          vmid: 'og:type',
-          name: 'og:type',
-          content: 'website'
-        },
-        {
-          vmid: 'og:url',
-          name: 'og:url',
-          content: 'https://vote.meetmagento.pl/'
-        },
-        {
           vmid: 'og:image',
           name: 'og:image',
           content: `${location.origin}/img/meet-magento-meta-${locale}.png`
-        },
-        {
-          vmid: 'twitter:card',
-          name: 'twitter:card',
-          content: 'summary_large_image'
         },
         {
           vmid: 'twitter:title',
