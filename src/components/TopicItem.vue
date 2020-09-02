@@ -112,6 +112,7 @@
           :url="shareUrl"
           :title="topic.title"
           :description="topic.description"
+          :media="shareImg"
         />
         <topic-item-details v-if="isAdmin && adminView" :id="id">
         </topic-item-details>
@@ -230,6 +231,7 @@ export default {
   data () {
     return {
       shareUrl: `${location.origin}/topic/${this.id}`,
+      shareImg: `${location.origin}/img/${this.$i18n.locale}`,
       editMode: false
     }
   },
