@@ -86,7 +86,10 @@
     "speaker-email-field-label": "Speaker Email (provide user's email used for registration, if user doesn't exist in db, please create an email/pass account for him)",
     "speaker-email-field-placeholder": "Speaker email",
     "user-not-exist": "User with this email does not exist in db, please create an account",
-    "users-not-found": "Users not found, please refresh the page and try again or contact support team :)"
+    "users-not-found": "Users not found, please refresh the page and try again or contact support team :)",
+    "c4p-radio-legend": "choose Call for papers or to grab",
+    "radio-c4p-false": "To grab",
+    "radio-c4p-true": "Call4Papers"
   },
   "topic": {
     "to-grab": "To grab",
