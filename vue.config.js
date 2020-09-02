@@ -23,7 +23,8 @@ module.exports = {
     config
       .plugin('html')
       .tap(args => {
-        args[0].title = 'Topic voting app'
+        args[0].title = 'Meet Magento Poland - Głosuj na prelegentów'
+        args[0].description = 'Zgłaszaj własne pomysły, głosuj na prezentacje i twórz agendę razem z nami.'
         return args
       })
   },
@@ -32,14 +33,14 @@ module.exports = {
       openAnalyzer: true
     },
     i18n: {
-      locale: 'en',
-      fallbackLocale: 'en',
+      locale: 'pl',
+      fallbackLocale: 'pl',
       localeDir: 'locales',
       enableInSFC: true
     }
   },
   pwa: {
-    name: 'Meet Magento PL - Vote',
+    name: 'Meet Magento Poland - Głosuj na prelegentów',
     themeColor: '#fe5f15',
     msTileColor: '#FFFFFF',
     appleMobileWebAppCapable: 'yes',
