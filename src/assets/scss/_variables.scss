@@ -65,3 +65,11 @@ $transition-fade          : opacity 0.25s linear !default;
 
 $box-shadow               : 0 3px 12px rgba(0, 0, 0, 0.1);
 $button-box-shadow        : 0 9px 12px rgba(0, 0, 0, 0.19);
+
+// Z-index
+$z-index-lowest              : -1 !default;
+$z-index-initial             : auto !default;
+$z-index-low                 : 1 !default;
+$z-index-normal              : 10 !default;
+$z-index-high                : 50 !default;
+$z-index-highest             : 99 !default; // reserved for modals
