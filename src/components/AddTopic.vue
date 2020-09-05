@@ -11,7 +11,10 @@
       <h2 class="heading--underline">
         {{ $t('add-form.form-title') }}
       </h2>
-      <loader v-if="loading" class="loader--overlay" />
+      <loader
+        v-if="loading"
+        class="loader--overlay"
+      />
       <form
         v-if="submitStatus !== 'OK'"
         class="form-section__form"
@@ -38,7 +41,9 @@
                 class="link"
                 href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet"
                 target="_blank"
-              >markdown</a>
+              >
+                markdown
+              </a>
             </template>
           </i18n>
           <textarea
@@ -99,8 +104,14 @@
           </select>
         </div>
         <div :class="['radio', { 'radio--error': $v.description.$error }]">
-          <fieldset class="fieldset" aria-labelledby="radio-legend">
-            <legend id="radio-legend" class="fieldset__legend">
+          <fieldset
+            class="fieldset"
+            aria-labelledby="radio-legend"
+          >
+            <legend
+              id="radio-legend"
+              class="fieldset__legend"
+            >
               {{ $t('add-form.activity-radio-legend') }}
             </legend>
             <div class="radio__handler">
@@ -111,8 +122,13 @@
                 v-model="$v.authorRole.$model"
                 value="observer"
               >
-              <label for="observer" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'observer'}">
+              <label
+                for="observer"
+                class="radio__label"
+              >
+                <span
+                  :class="['radio__text', {'selected': $v.authorRole.$model === 'observer'}]"
+                >
                   {{ $t('add-form.radio-author-observer') }}
                 </span>
               </label>
@@ -125,8 +141,13 @@
                 v-model="authorRole"
                 value="speaker"
               >
-              <label for="speaker" class="radio__label">
-                <span class="radio__text" :class="{'selected': $v.authorRole.$model === 'speaker'}">
+              <label
+                for="speaker"
+                class="radio__label"
+              >
+                <span
+                  :class="['radio__text', {'selected': $v.authorRole.$model === 'speaker'}]"
+                >
                   {{ $t('add-form.radio-author-speaker') }}
                 </span>
               </label>
@@ -142,7 +163,10 @@
             <div>
               {{ $t('add-form.radio-speaker-info') }}
             </div>
-            <fieldset class="fieldset" aria-labelledby="speaker-additional">
+            <fieldset
+              class="fieldset"
+              aria-labelledby="speaker-additional"
+            >
               <legend class="fieldset__legend-visible">
                 {{ $t('add-form.speaker-additional-title') }}
               </legend>
