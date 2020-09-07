@@ -35,8 +35,8 @@ $radio-dot-size: 10px;
       }
     }
 
-    &:focus + .radio__label {
-      border: 2px solid $preset;
+    &.focus-visible + .radio__label {
+      outline: $outline-focus;
     }
   }
 

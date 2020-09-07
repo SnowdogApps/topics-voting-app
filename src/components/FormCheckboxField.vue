@@ -68,6 +68,10 @@ export default {
     position: absolute;
     opacity: 0;
 
+    &.focus-visible + .checkbox__label {
+      outline: $outline-focus;
+    }
+
     &:checked + .checkbox__label {
       .checkbox__icon-wrapper {
         background-color: $orange;

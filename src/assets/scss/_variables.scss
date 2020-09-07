@@ -73,3 +73,6 @@ $z-index-low                 : 1 !default;
 $z-index-normal              : 10 !default;
 $z-index-high                : 50 !default;
 $z-index-highest             : 99 !default; // reserved for modals
+
+// Focus
+$outline-focus                : 2px solid $preset;
