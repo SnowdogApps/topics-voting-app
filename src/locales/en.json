@@ -170,6 +170,17 @@
     "email-verification-sent": "An email verification request was sent to {email}"
   },
   "lang-switcher": {
-    "lang-switcher-label": "Zmień język"
+    "lang-switcher-label": "Switch language"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "benefit-1": "stay up to date",
+    "benefit-2": "be the first to receive updates",
+    "benefit-3": "conference in a nutshell",
+    "benefit-4": "we promise not to spam your mailbox",
+    "button": "Subscribe",
+    "call-to-action": "to our newsletter and stay up to date.",
+    "success-msg": "Thanks, your subscription has been confirmed. You've been added to our list and will hear from us soon.",
+    "error-msg": "😢"
   }
 }

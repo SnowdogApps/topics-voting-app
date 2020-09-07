@@ -170,5 +170,16 @@
   },
   "lang-switcher": {
     "lang-switcher-label": "Zmień język"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "benefit-1": "bądź na bieżąco",
+    "benefit-2": "informacje z pierwszej ręki",
+    "benefit-3": "konferencja w pigułce",
+    "benefit-4": "obiecujemy, że nie spamujemy",
+    "button": "Zapisz się",
+    "call-to-action": "do newslettera i bądź na bieżąco!",
+    "success-msg": "Thanks, your subscription has been confirmed. You've been added to our list and will hear from us soon.",
+    "error-msg": "😢"
   }
 }

@@ -2,6 +2,19 @@
   <div id="app">
     <page-header />
     <scroll-top/>
+    <transition name="fade">
+      <newsletter-sticky
+        v-if="showNewsletterSticky"
+        :show-newsletter-modal.sync="showNewsletterModal"
+        @close="showNewsletterSticky = false"
+      />
+    </transition>
+    <transition name="fade">
+      <newsletter-modal
+        v-if="showNewsletterModal"
+        @close="showNewsletterModal = false"
+      />
+    </transition>
     <main class="container">
       <router-view/>
     </main>
@@ -12,14 +25,24 @@
 import { mapGetters } from 'vuex'
 import notification from '@/mixins/notification.js'
 import fb from '@/mixins/facebook.js'
+import { auth } from '@/db'
 import ScrollTop from '@/components/ScrollTop.vue'
 import PageHeader from '@/components/PageHeader.vue'
-import { auth } from '@/db'
+import NewsletterSticky from '@/components/NewsletterSticky.vue'
+import NewsletterModal from '@/components/NewsletterModal.vue'
 
 export default {
   components: {
     ScrollTop,
-    PageHeader
+    PageHeader,
+    NewsletterSticky,
+    NewsletterModal
+  },
+  data () {
+    return {
+      showNewsletterModal: false,
+      showNewsletterSticky: true
+    }
   },
   created () {
     this.$store.dispatch('bindTopics')
