@@ -51,7 +51,8 @@
     "reset-password": "Resetuj tutaj",
     "send-reset-password-email": "Wyślij email resetujący hasło",
     "reset-password-email-sent": "Email resetujący hasło został wysłany. Sprawdź skrzynkę pocztową.",
-    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem."
+    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem.",
+    "subscribe-to-newsletter": "Zapisz się do newslettera"
   },
   "form": {
     "required-field": "Pole jest wymagane",

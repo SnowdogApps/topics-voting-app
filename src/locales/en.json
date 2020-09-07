@@ -51,7 +51,8 @@
     "reset-password": "Reset here",
     "send-reset-password-email": "Send a password reset email",
     "reset-password-email-sent": "Password reset email has been sent. Check your mailbox.",
-    "reset-password-info": "If you have any other accounts linked with current credentials, after reset you may need to confirm them with a new password."
+    "reset-password-info": "If you have any other accounts linked with current credentials, after reset you may need to confirm them with a new password.",
+    "subscribe-to-newsletter": "Subscribe to our newsletter"
   },
   "form": {
     "required-field": "Field is required",

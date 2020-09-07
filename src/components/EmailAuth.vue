@@ -60,6 +60,12 @@
       >
         {{ $t('login.reset-password-info') }}
       </p>
+      <form-checkbox-field
+        v-if="!login"
+        v-model="formData.newsletter"
+        id="newsletter"
+        :label="$t('login.subscribe-to-newsletter')"
+      />
       <div class="form-section__action">
         <v-button
           v-if="login && resetPassword"
@@ -133,11 +139,13 @@ import linkAccount from '@/mixins/linkAccount.js'
 import errorMsgProvider from '@/mixins/errorMsgProvider.js'
 import VButton from '@/components/Button.vue'
 import FormInputField from '@/components/FormInputField.vue'
+import FormCheckboxField from '@/components/FormCheckboxField.vue'
 
 export default {
   components: {
     VButton,
-    FormInputField
+    FormInputField,
+    FormCheckboxField
   },
   computed: {
     ...mapGetters({
@@ -156,7 +164,8 @@ export default {
         firstname: '',
         lastname: '',
         email: '',
-        password: ''
+        password: '',
+        newsletter: false
       },
       login: true,
       submitStatus: null,
