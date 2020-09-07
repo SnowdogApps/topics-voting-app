@@ -34,6 +34,7 @@ export default {
   z-index: $z-index-low;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 
   > span {
     display: block;
