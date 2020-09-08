@@ -166,7 +166,8 @@
     "proposition-added": "Twoja propozycja została wysłana do weryfikacji",
     "topic-changes-saved": "Zmiany w temacie zostały zapisane",
     "logged-in-successfull": "Zalogowano pomyślnie",
-    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}"
+    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}",
+    "subscirption-added": "Twoja subskrypcja została potwierdzona"
   },
   "lang-switcher": {
     "lang-switcher-label": "Zmień język"
@@ -179,7 +180,7 @@
     "benefit-4": "obiecujemy, że nie spamujemy",
     "button": "Zapisz się",
     "call-to-action": "do newslettera i bądź na bieżąco!",
-    "success-msg": "Thanks, your subscription has been confirmed. You've been added to our list and will hear from us soon.",
+    "success-msg": "Dzięki, Twoja subskrypcja została potwierdzona. Zostałeś dodany do naszej listy, wkrótce się odezwiemy.",
     "error-msg": "😢"
   }
 }

@@ -169,8 +169,12 @@ export default {
       },
       login: true,
       submitStatus: null,
-      resetPassword: false
+      resetPassword: false,
+      language: ''
     }
+  },
+  mounted () {
+    this.language = this.$i18n.locale
   },
   validations () {
     if (this.resetPassword) {
@@ -288,8 +292,16 @@ export default {
             // if is a new user, save data in db
             self.$store.dispatch('assignUserData', user)
             self.$store.commit('SET_AUTH_USER', { user })
+
+            if (this.formData.newsletter) {
+              this.$store.dispatch('addSubscription', {
+                lang: this.language
+              })
+              self.$store.commit('SET_NEWSLETTER')
+            }
           })
         }).catch((err) => {
+          console.log(err)
           this.$store.commit('notification/push', {
             message: this.getErrMessage(err.code),
             title: this.$t('global.error'),

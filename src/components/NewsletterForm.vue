@@ -5,7 +5,7 @@
       v-else-if="message"
       class="heading text-center"
     >
-      {{ message }}
+      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
     </div>
     <form
       v-else
@@ -61,6 +61,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import errorMsgProvider from '@/mixins/errorMsgProvider.js'
+import { mapGetters } from 'vuex'
 import Loader from '@/components/Loader.vue'
 import FormInputField from '@/components/FormInputField.vue'
 import VButton from '@/components/Button.vue'
@@ -80,11 +81,17 @@ export default {
       loading: false,
       message: null,
       language: '',
+      submitStatus: null,
       formData: {
         firstname: '',
         email: ''
       }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'user'
+    ])
   },
   validations () {
     return {
@@ -101,15 +108,33 @@ export default {
   },
   mounted () {
     this.language = this.$i18n.locale
+    this.formData.firstname = this.user.displayName
+    this.formData.email = this.user.email
   },
   methods: {
-    async submit () {
+    submit () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
+        this.loading = true
+        this.submitStatus = 'PENDING'
+        this.$store.dispatch('addSubscription', {
+          lang: this.language
+        }).then(() => {
+          this.$v.$reset()
+          this.loading = false
+          this.message = true
+          this.submitStatus = 'OK'
+          this.$store.commit('SET_NEWSLETTER')
+        })
+      }
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .newsletter-form {
   display: flex;
   justify-content: stretch;
