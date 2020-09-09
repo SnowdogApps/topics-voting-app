@@ -6,7 +6,7 @@
       <newsletter-sticky
         v-if="showNewsletterSticky"
         :show-newsletter-modal.sync="showNewsletterModal"
-        @close="showNewsletterSticky = false"
+        @close="closeNewsletterSticky = true"
       />
     </transition>
     <transition name="fade">
@@ -41,7 +41,7 @@ export default {
   data () {
     return {
       showNewsletterModal: false,
-      showNewsletterSticky: true
+      closeNewsletterSticky: false
     }
   },
   created () {
@@ -53,8 +53,12 @@ export default {
   computed: {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
-      isAdmin: 'isAdmin'
+      topics: 'getApprovedTopics',
+      isSubscribed: 'isSubscribed'
     }),
+    showNewsletterSticky () {
+      return this.isLoggedIn && !this.isSubscribed && !this.closeNewsletterSticky
+    },
     metaTitle () {
       return this.$t('meta.title')
     },
