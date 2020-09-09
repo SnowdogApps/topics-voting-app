@@ -150,7 +150,10 @@
     "resend-email": "Ponownie wyślij prośbę o weryfikację",
     "user-dashboard": "Panel użytkownika",
     "author-topics-list-title": "Twoje propozycje tematów",
-    "speaker-topics-list-title": "Twoje zgłoszone prezentacje (call4papers)"
+    "speaker-topics-list-title": "Twoje zgłoszone prezentacje (call4papers)",
+    "newsletter-status": "Twój status subsckrupcji newslettera:",
+    "newsletter-subscribed": "zapisany",
+    "newsletter-not-subscribed": "nie zapisany"
   },
   "error": {
     "auth/invalid-email-address": "Adres email jest niepoprawny.",

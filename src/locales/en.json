@@ -151,7 +151,10 @@
     "resend-email": "Resend email verification request",
     "user-dashboard": "User's Dashboard",
     "author-topics-list-title": "Your proposed topics",
-    "speaker-topics-list-title": "Your topic (call4papers)"
+    "speaker-topics-list-title": "Your topic (call4papers)",
+    "newsletter-status": "Your newsletter subscirption status:",
+    "newsletter-subscribed": "subscibed",
+    "newsletter-not-subscribed": "not subscibed"
   },
   "error": {
     "auth/invalid-email": "Email address is invalid.",
