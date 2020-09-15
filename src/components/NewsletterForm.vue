@@ -5,7 +5,7 @@
       v-else-if="message"
       class="heading text-center"
     >
-      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
+      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('error-occured') }}
     </div>
     <form
       v-else
@@ -61,6 +61,7 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import errorMsgProvider from '@/mixins/errorMsgProvider.js'
+import newsletter from '@/mixins/newsletter.js'
 import { mapGetters } from 'vuex'
 import Loader from '@/components/Loader.vue'
 import FormInputField from '@/components/FormInputField.vue'
@@ -74,13 +75,14 @@ export default {
   },
   mixins: [
     validationMixin,
-    errorMsgProvider
+    errorMsgProvider,
+    newsletter
   ],
   data () {
     return {
       loading: false,
       message: null,
-      language: '',
+      lang: '',
       submitStatus: null,
       formData: {
         firstname: '',
@@ -107,27 +109,40 @@ export default {
     }
   },
   mounted () {
-    this.language = this.$i18n.locale
+    this.lang = this.$i18n.locale
     this.formData.firstname = this.user.displayName
     this.formData.email = this.user.email
   },
   methods: {
-    submit () {
+    async submit () {
       this.$v.$touch()
-      if (this.$v.$invalid) {
+
+      try {
+        if (this.$v.$invalid) {
+          this.submitStatus = 'ERROR'
+        } else {
+          this.loading = true
+          this.submitStatus = 'PENDING'
+          this.subscribe({
+            name: this.formData.firstname,
+            email: this.formData.email,
+            lang: this.lang
+          })
+          this.$store.dispatch('addSubscription', {
+            lang: this.lang
+          }).then(() => {
+            this.$v.$reset()
+            this.loading = false
+            this.message = true
+            this.submitStatus = 'OK'
+            this.$store.commit('SET_NEWSLETTER')
+          })
+        }
+      } catch (err) {
+        console.error(err)
+        this.loading = false
+        this.message = true
         this.submitStatus = 'ERROR'
-      } else {
-        this.loading = true
-        this.submitStatus = 'PENDING'
-        this.$store.dispatch('addSubscription', {
-          lang: this.language
-        }).then(() => {
-          this.$v.$reset()
-          this.loading = false
-          this.message = true
-          this.submitStatus = 'OK'
-          this.$store.commit('SET_NEWSLETTER')
-        })
       }
     }
   }

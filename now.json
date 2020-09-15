@@ -14,5 +14,8 @@
     },
     { "handle": "filesystem" },
     { "src": ".*", "dest": "/" }
-  ]
+  ],
+  "env": {
+    "CM_API_KEY": "@campain-monitor-api-key"
+  }
 }

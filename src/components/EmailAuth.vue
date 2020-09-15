@@ -170,11 +170,11 @@ export default {
       login: true,
       submitStatus: null,
       resetPassword: false,
-      language: ''
+      lang: ''
     }
   },
   mounted () {
-    this.language = this.$i18n.locale
+    this.lang = this.$i18n.locale
   },
   validations () {
     if (this.resetPassword) {
@@ -295,9 +295,8 @@ export default {
 
             if (this.formData.newsletter) {
               this.$store.dispatch('addSubscription', {
-                lang: this.language
+                lang: this.lang
               })
-              self.$store.commit('SET_NEWSLETTER')
             }
           })
         }).catch((err) => {
