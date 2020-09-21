@@ -50,8 +50,5 @@ module.exports = {
     manifestOptions: {
       background_color: '#FFFFFF'
     }
-  },
-  devServer: {
-    proxy: 'https://api.createsend.com/'
   }
 }

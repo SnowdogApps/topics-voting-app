@@ -5,7 +5,7 @@
       v-else-if="message"
       class="heading text-center"
     >
-      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('error-occured') }}
+      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
     </div>
     <form
       v-else
@@ -61,8 +61,8 @@
 import { validationMixin } from 'vuelidate'
 import { required, email } from 'vuelidate/lib/validators'
 import errorMsgProvider from '@/mixins/errorMsgProvider.js'
-import newsletter from '@/mixins/newsletter.js'
 import { mapGetters } from 'vuex'
+import axios from 'axios'
 import Loader from '@/components/Loader.vue'
 import FormInputField from '@/components/FormInputField.vue'
 import VButton from '@/components/Button.vue'
@@ -75,8 +75,7 @@ export default {
   },
   mixins: [
     validationMixin,
-    errorMsgProvider,
-    newsletter
+    errorMsgProvider
   ],
   data () {
     return {
@@ -123,11 +122,17 @@ export default {
         } else {
           this.loading = true
           this.submitStatus = 'PENDING'
-          this.subscribe({
-            name: this.formData.firstname,
-            email: this.formData.email,
-            lang: this.lang
+
+          await axios({
+            method: 'post',
+            url: `${process.env.VUE_APP_URL}subscribe`,
+            data: {
+              name: this.formData.firstname,
+              email: this.formData.email,
+              lang: this.lang
+            }
           })
+
           this.$store.dispatch('addSubscription', {
             lang: this.lang
           }).then(() => {

@@ -137,6 +137,7 @@ import { required, email } from 'vuelidate/lib/validators'
 import { mapGetters } from 'vuex'
 import linkAccount from '@/mixins/linkAccount.js'
 import errorMsgProvider from '@/mixins/errorMsgProvider.js'
+import axios from 'axios'
 import VButton from '@/components/Button.vue'
 import FormInputField from '@/components/FormInputField.vue'
 import FormCheckboxField from '@/components/FormCheckboxField.vue'
@@ -157,7 +158,11 @@ export default {
       return this.linkProvider === 'password'
     }
   },
-  mixins: [validationMixin, linkAccount, errorMsgProvider],
+  mixins: [
+    validationMixin,
+    linkAccount,
+    errorMsgProvider
+  ],
   data () {
     return {
       formData: {
@@ -274,6 +279,30 @@ export default {
         })
       }
     },
+    async subscribe () {
+      try {
+        await axios({
+          method: 'post',
+          url: `${process.env.VUE_APP_URL}subscribe`,
+          data: {
+            name: this.formData.firstname,
+            email: this.formData.email,
+            lang: this.lang
+          }
+        })
+
+        this.$store.dispatch('addSubscription', {
+          lang: this.lang
+        })
+      } catch (err) {
+        console.error(err)
+        this.$store.commit('notification/push', {
+          message: this.$t('newsletter.error-msg'),
+          title: this.$t('global.error'),
+          type: 'error'
+        }, { root: true })
+      }
+    },
     createUser () {
       this.$v.$touch()
       if (this.$v.$invalid) {
@@ -289,15 +318,14 @@ export default {
             displayName: `${this.formData.firstname} ${this.formData.lastname}`
           }).then(() => {
             const user = auth.currentUser
+
+            if (this.formData.newsletter) {
+              this.subscribe()
+            }
+
             // if is a new user, save data in db
             self.$store.dispatch('assignUserData', user)
             self.$store.commit('SET_AUTH_USER', { user })
-
-            if (this.formData.newsletter) {
-              this.$store.dispatch('addSubscription', {
-                lang: this.lang
-              })
-            }
           })
         }).catch((err) => {
           console.log(err)
