@@ -30,9 +30,9 @@ function cors (request, response) {
   const origin = request.headers.origin
   const allowedOrigins = [
     'http://localhost:8080',
-    'https://topics-voting-app-*.vercel.app/',
-    'https://topics-voting-app-test.vercel.app/',
-    'https://vote.meetmagento.pl/'
+    'https://topics-voting-app-*.vercel.app',
+    'https://topics-voting-app-test.vercel.app',
+    'https://vote.meetmagento.pl'
   ]
 
   if (allowedOrigins.includes(origin)) {
