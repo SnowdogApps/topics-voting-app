@@ -19,7 +19,7 @@ $radio-dot-size: 10px;
     height: $radio-size;
     width: $radio-size;
     opacity: 0;
-    z-index: -1;
+    z-index: $z-index-lowest;
 
     &:checked + .radio__label {
       color: $gray-darker;
@@ -35,8 +35,8 @@ $radio-dot-size: 10px;
       }
     }
 
-    &:focus + .radio__label {
-      border: 2px solid $preset;
+    &.focus-visible + .radio__label {
+      outline: $outline-focus;
     }
   }
 

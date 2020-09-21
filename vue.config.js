@@ -25,7 +25,7 @@ module.exports = {
       .tap(args => {
         args[0].title = 'Meet Magento Poland - Głosuj na prelegentów'
         args[0].description = 'Zgłaszaj własne pomysły, głosuj na prezentacje i twórz agendę razem z nami.'
-        args[0].url = 'https://topics-voting-app-test.vercel.app/' // url for meta tags image
+        args[0].url = 'https://vote.meetmagento.pl/' // url for meta tags image
         return args
       })
   },

@@ -12,7 +12,11 @@
       "src": "/(js|css|img)/.*",
       "headers": { "cache-control": "max-age=31536000, immutable" }
     },
+    { "src": "/subscribe", "dest": "/api/campaign-monitor.subscribe.js", "methods": ["POST", "OPTIONS"] },
     { "handle": "filesystem" },
     { "src": ".*", "dest": "/" }
-  ]
+  ],
+  "env": {
+    "CM_API_KEY": "@campain-monitor-api-key"
+  }
 }

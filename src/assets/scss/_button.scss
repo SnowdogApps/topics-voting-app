@@ -77,4 +77,13 @@
   &--with-margin {
       margin: $spacer--xs;
   }
+
+  &--fluid {
+      width: 100%;
+  }
+
+  &--inline {
+      padding: 0;
+      min-height: auto;
+  }
 }
