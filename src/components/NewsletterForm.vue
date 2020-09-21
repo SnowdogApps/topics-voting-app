@@ -125,7 +125,7 @@ export default {
 
           await axios({
             method: 'post',
-            url: `${process.env.VUE_APP_URL}subscribe`,
+            url: '/subscribe',
             data: {
               name: this.formData.firstname,
               email: this.formData.email,
