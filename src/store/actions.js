@@ -1,5 +1,5 @@
 import { firebaseAction } from 'vuexfire'
-import { auth, topicRef, userRef, newsletterRef } from '../db'
+import { auth, topicRef, userRef } from '../db'
 import { checkSocialLogin } from '../helpers'
 import i18n from '../i18n'
 
@@ -315,44 +315,6 @@ export default {
   setLinkingAccount ({ commit }, payload) {
     commit('SET_LINK_ACCOUNT', payload)
   },
-  assignSubscriptionToUser: firebaseAction(({ state }, { userId, subscriptionData }) => {
-    return userRef.child(userId)
-      .child('newsletter')
-      .push(subscriptionData)
-  }),
-  addSubscription: firebaseAction(({ state, commit, dispatch }, { lang }) => {
-    return newsletterRef.push({
-      userId: state.user.id,
-      email: state.user.email,
-      name: state.user.displayName,
-      lang
-    }).then((result) => {
-      const addedSubscription = result.key
-      const subscriptionData = {
-        subscriptionId: addedSubscription
-      }
-      dispatch('assignSubscriptionToUser', {
-        userId: state.user.id,
-        subscriptionData: subscriptionData
-      })
-      const userData = {
-        newsletter: true
-      }
-      dispatch('updateUserData', { userId: state.user.id, userData })
-      commit('notification/push', {
-        message: i18n.t('alert.subscirption-added'),
-        title: i18n.t('global.success'),
-        type: 'success'
-      }, { root: true })
-    }).catch((err) => {
-      console.log(err)
-      commit('notification/push', {
-        message: err.message,
-        title: i18n.t('global.error'),
-        type: 'error'
-      }, { root: true })
-    })
-  }),
   async checkSubscription ({ commit, state }) {
     try {
       await userRef
