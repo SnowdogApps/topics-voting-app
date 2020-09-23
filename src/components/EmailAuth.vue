@@ -8,7 +8,7 @@
         id="firstname"
         :label="$t('login.first-name')"
         :placeholder="$t('login.first-name')"
-        autocomplete="username"
+        autocomplete="name"
       />
       <form-input-field
         v-if="!login"
@@ -283,7 +283,7 @@ export default {
       try {
         await axios({
           method: 'post',
-          url: '/subscribe',
+          url: `${process.env.VUE_APP_CM_API}/subscribe`,
           data: {
             name: this.formData.firstname,
             email: this.formData.email,
@@ -291,8 +291,13 @@ export default {
           }
         })
 
-        this.$store.dispatch('addSubscription', {
-          lang: this.lang
+        this.$store.dispatch('updateUserData', {
+          userId: this.$store.state.user.id,
+          userData: {
+            newsletter: this.lang
+          }
+        }).then(() => {
+          this.$store.commit('SET_NEWSLETTER')
         })
       } catch (err) {
         console.error(err)

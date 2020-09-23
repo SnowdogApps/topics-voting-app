@@ -3,7 +3,10 @@
     <loader v-if="loading"/>
     <div
       v-else-if="message"
-      class="heading text-center"
+      class="
+        newsletter-form__message
+        text-center
+      "
     >
       {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
     </div>
@@ -122,24 +125,26 @@ export default {
         } else {
           this.loading = true
           this.submitStatus = 'PENDING'
-
           await axios({
             method: 'post',
-            url: '/subscribe',
+            url: `${process.env.VUE_APP_CM_API}/subscribe`,
             data: {
               name: this.formData.firstname,
               email: this.formData.email,
               lang: this.lang
             }
           })
-
-          this.$store.dispatch('addSubscription', {
-            lang: this.lang
+          this.$v.$reset()
+          this.loading = false
+          this.message = true
+          this.submitStatus = 'OK'
+          this.$store.commit('SET_NEWSLETTER')
+          this.$store.dispatch('updateUserData', {
+            userId: this.user.id,
+            userData: {
+              newsletter: this.lang
+            }
           }).then(() => {
-            this.$v.$reset()
-            this.loading = false
-            this.message = true
-            this.submitStatus = 'OK'
             this.$store.commit('SET_NEWSLETTER')
           })
         }
@@ -159,10 +164,14 @@ export default {
   display: flex;
   justify-content: stretch;
   align-items: center;
-  height: 320px;
 
   &__form {
     width: 100%;
+  }
+
+  &__message {
+    padding: $spacer--s;
+    border: 1px solid $gray-darker;
   }
 }
 </style>

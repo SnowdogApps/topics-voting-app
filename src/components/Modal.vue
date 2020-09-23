@@ -65,9 +65,9 @@ export default {
     display: block;
     min-width: 320px;
     height: auto;
-    padding: 24px;
+    padding: $spacer--m;
     overflow: auto;
-    background-color: #fff;
+    background-color: $white;
     border: none;
     transition: all 0.3s ease;
   }
@@ -101,10 +101,7 @@ export default {
   }
 }
 
-.modal-enter {
-  opacity: 0;
-}
-
+.modal-enter,
 .modal-leave-active {
   opacity: 0;
 }
