@@ -8,7 +8,7 @@
         text-center
       "
     >
-      {{ this.submitStatus === 'OK' ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
+      {{ (this.submitStatus === 'OK') ? $t('newsletter.success-msg') : $t('newsletter.error-msg') }}
     </div>
     <form
       v-else
@@ -89,7 +89,8 @@ export default {
       formData: {
         firstname: '',
         email: ''
-      }
+      },
+      submitErrorMsg: this.$t('newsletter.error-msg')
     }
   },
   computed: {
@@ -133,20 +134,31 @@ export default {
               email: this.formData.email,
               lang: this.lang
             }
+          }).then((res) => {
+            if (res.data.status === 400) {
+              this.message = true
+              this.submitStatus = 'ERROR'
+            } else {
+              this.message = true
+              this.submitStatus = 'OK'
+            }
+          }).catch((error) => {
+            console.log(error)
+            this.message = true
+            this.submitStatus = 'ERROR'
           })
+          if (this.formData.email === this.user.email) {
+            this.$store.dispatch('updateUserData', {
+              userId: this.user.id,
+              userData: {
+                newsletter: this.lang
+              }
+            }).then(() => {
+              this.$store.commit('SET_NEWSLETTER')
+            })
+          }
           this.$v.$reset()
           this.loading = false
-          this.message = true
-          this.submitStatus = 'OK'
-          this.$store.commit('SET_NEWSLETTER')
-          this.$store.dispatch('updateUserData', {
-            userId: this.user.id,
-            userData: {
-              newsletter: this.lang
-            }
-          }).then(() => {
-            this.$store.commit('SET_NEWSLETTER')
-          })
         }
       } catch (err) {
         console.error(err)
@@ -170,6 +182,7 @@ export default {
   }
 
   &__message {
+    width: 100%;
     padding: $spacer--s;
     border: 1px solid $gray-darker;
   }
