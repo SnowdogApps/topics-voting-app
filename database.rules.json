@@ -21,10 +21,6 @@
       "user": {
         ".validate": "newData.val() === auth.uid"
       }
-    },
-    "newsletter": {
-      ".read": "auth.uid == auth.uid",
-      ".write": "auth.uid == auth.uid"
     }
   }
 }
