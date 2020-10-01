@@ -1,12 +1,19 @@
 <template>
-  <div v-if="topic" :id="id" class="topic-item">
+  <div
+    v-if="topic"
+    :id="id"
+    class="topic-item"
+  >
     <edit-topic
       v-if="adminView && editMode"
       :id="id"
       @cancel-edit="editMode = false"
       @saved-edit="editMode = false"
     />
-    <div v-else class="topic-item__content">
+    <div
+      v-else
+      class="topic-item__content"
+    >
       <div class="topic-item__topic">
         <div class="topic-item__info">
           <div class="topic-item__header">
@@ -20,7 +27,10 @@
             >
               {{ topic.title }}
             </h2>
-            <h3 v-else class="topic-item__title justified uppercase">
+            <h3
+              v-else
+              class="topic-item__title justified uppercase"
+            >
               {{ topic.title }}
             </h3>
             <div class="topic-item__header-top">
@@ -61,12 +71,14 @@
             v-html="compiledMarkdown(topic.description)"
             class="topic-item__description justified"
           ></div>
-          <div v-if="topic.targetGroup" class="topic-item__target-group">
-            <span class="bold">{{
-              $t("add-form.target-group-field-placeholder")
-            }}</span
-            >:
-            <span>{{ topic.targetGroup }}</span>
+          <div
+            v-if="topic.targetGroup"
+            class="topic-item__target-group"
+          >
+            <span class="bold">
+              {{$t("add-form.target-group-field-placeholder")}}
+            </span>
+            : {{ topic.targetGroup }}
           </div>
           <div v-if="userView">
             <span class="bold">

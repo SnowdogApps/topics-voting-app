@@ -31,9 +31,10 @@ export default {
   display: none;
   position: relative;
   padding: $spacer--xs;
-  z-index: 1;
+  z-index: $z-index-low;
   border: none;
   background-color: transparent;
+  cursor: pointer;
 
   > span {
     display: block;
