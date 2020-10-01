@@ -1,6 +1,7 @@
 <template>
-  <div :class="['input', { 'input--error': validator.$error }]">
-    <label class="label"
+  <div :class="['input', { 'input--error': validator && validator.$error }]">
+    <label
+      class="label"
       :for="id"
     >
       {{ label }}
@@ -12,7 +13,7 @@
       :type="type"
       :placeholder="placeholder"
       :maxlength="maxlength"
-      @input="validator.$touch()"
+      @input="validator && validator.$touch()"
       :autocomplete="autocomplete"
     >
     <slot name="validation">

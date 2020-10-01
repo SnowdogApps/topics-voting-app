@@ -10,10 +10,15 @@
   >
     <div class="nav-container">
       <div class="navbar-header">
-        <a href="https://meetmagento.pl/" class="navbar-brand">
+        <a href="https://meetmagento.pl/"
+          class="navbar-brand"
+        >
           <logo-svg />
         </a>
-        <toggle @click="toggleMenu" :show="showMenu"></toggle>
+        <toggle
+          @click="toggleMenu"
+          :show="showMenu"
+        ></toggle>
       </div>
       <transition name="slide">
         <div

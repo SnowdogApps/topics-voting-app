@@ -51,7 +51,8 @@
     "reset-password": "Reset here",
     "send-reset-password-email": "Send a password reset email",
     "reset-password-email-sent": "Password reset email has been sent. Check your mailbox.",
-    "reset-password-info": "If you have any other accounts linked with current credentials, after reset you may need to confirm them with a new password."
+    "reset-password-info": "If you have any other accounts linked with current credentials, after reset you may need to confirm them with a new password.",
+    "subscribe-to-newsletter": "Subscribe to our newsletter"
   },
   "form": {
     "required-field": "Field is required",
@@ -150,7 +151,10 @@
     "resend-email": "Resend email verification request",
     "user-dashboard": "User's Dashboard",
     "author-topics-list-title": "Your proposed topics",
-    "speaker-topics-list-title": "Your topic (call4papers)"
+    "speaker-topics-list-title": "Your topic (call4papers)",
+    "newsletter-status": "Your newsletter subscirption status:",
+    "newsletter-subscribed": "subscibed",
+    "newsletter-not-subscribed": "not subscibed"
   },
   "error": {
     "auth/invalid-email": "Email address is invalid.",
@@ -166,9 +170,21 @@
     "proposition-added": "Your proposition was added to verification",
     "topic-changes-saved": "Topic changes were saved",
     "logged-in-successfull": "You have logged in successfully",
-    "email-verification-sent": "An email verification request was sent to {email}"
+    "email-verification-sent": "An email verification request was sent to {email}",
+    "subscirption-added": "Your subscription has been confirmed"
   },
   "lang-switcher": {
-    "lang-switcher-label": "Zmień język"
+    "lang-switcher-label": "Switch language"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "benefit-1": "stay up to date",
+    "benefit-2": "be the first to receive updates",
+    "benefit-3": "conference in a nutshell",
+    "benefit-4": "we promise not to spam your mailbox",
+    "button": "Subscribe",
+    "call-to-action": "to our newsletter and stay up to date.",
+    "success-msg": "Thanks, your subscription has been confirmed. You've been added to our list and will hear from us soon.",
+    "error-msg": "Something went wrong. Please contact us to check subscription problem."
   }
 }

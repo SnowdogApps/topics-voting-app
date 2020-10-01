@@ -143,6 +143,7 @@ export default {
         if (user.emailVerified || checkSocialLogin(provider)) {
           commit('SET_AUTH_USER', { user })
           dispatch('checkAdmin')
+          dispatch('checkSubscription')
           dispatch('bindUser')
           commit('notification/push', {
             message: i18n.t('alert.logged-in-successfull'),
@@ -313,5 +314,21 @@ export default {
   }),
   setLinkingAccount ({ commit }, payload) {
     commit('SET_LINK_ACCOUNT', payload)
+  },
+  async checkSubscription ({ commit, state }) {
+    try {
+      await userRef
+        .child(state.user.id)
+        .once('value', snapshot => {
+          if (snapshot.exists()) {
+            const snap = snapshot.val()
+            if (snap.newsletter) {
+              commit('SET_NEWSLETTER')
+            }
+          }
+        })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }

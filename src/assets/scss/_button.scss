@@ -20,7 +20,8 @@
 
   &:focus,
   &:hover,
-  &:active {
+  &:active,
+  &.focus-visible {
     box-shadow: $button-box-shadow;
     outline: none;
   }
@@ -76,5 +77,17 @@
 
   &--with-margin {
       margin: $spacer--xs;
+  }
+
+  &--fluid {
+      width: 100%;
+  }
+
+  &--inline {
+      padding: 0;
+      min-height: auto;
+      &.focus-visible {
+        outline: $outline-focus;
+      }
   }
 }

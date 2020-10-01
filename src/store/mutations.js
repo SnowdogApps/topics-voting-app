@@ -6,6 +6,7 @@ export default {
   RESET_USER_DATA: (state) => {
     state.user = null
     state.admin = false
+    state.newsletter = false
   },
 
   RESET_VOTES_DATA: (state) => {
@@ -24,6 +25,10 @@ export default {
 
   SET_ADMIN: (state) => {
     state.admin = true
+  },
+
+  SET_NEWSLETTER: (state) => {
+    state.newsletter = true
   },
 
   INIT_EMAIL_SENT: (state) => {

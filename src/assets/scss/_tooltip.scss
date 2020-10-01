@@ -1,6 +1,6 @@
 .tooltip {
   display: block !important;
-  z-index: 1000;
+  z-index: $z-index-normal;
 
   .tooltip-inner {
     background: $gray-darker;
@@ -17,7 +17,7 @@
     position: absolute;
     margin: $spacer--xs;
     border-color: $gray-dark;
-    z-index: 1;
+    z-index: $z-index-low;
   }
 
   &[x-placement^="top"] {
