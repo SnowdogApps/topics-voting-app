@@ -15,5 +15,4 @@ const app = firebase.initializeApp({
 export const db = app.database()
 export const topicRef = db.ref('topics')
 export const userRef = db.ref('users')
-export const newsletterRef = db.ref('newsletter')
 export const auth = app.auth()
