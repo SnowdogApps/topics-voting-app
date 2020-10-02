@@ -3,12 +3,33 @@
     <h2 class="heading--underline">
       {{ title }}
     </h2>
+      <div
+        v-if="adminView"
+        class="filters"
+      >
+        <button
+          class="button filters__button"
+          :class="{ 'button--secondary': !votesAsc }"
+          @click="votesAsc = !votesAsc, votesDesc = false"
+        >
+          Votes Ascending
+          <arrow-svg/>
+        </button>
+        <button
+          class="button"
+          :class="{ 'button--secondary': !votesDesc }"
+          @click="votesDesc = !votesDesc, votesAsc = false"
+        >
+          Votes Descending
+          <arrow-svg/>
+        </button>
+      </div>
       <ul
-        v-if="topics.length"
+        v-if="sortedTopics.length"
         class="topics-list"
       >
         <li
-          v-for="(item) in topics"
+          v-for="(item) in sortedTopics"
           :key="item['.key']"
         >
           <topic-item
@@ -64,6 +85,28 @@ export default {
     }),
     adminView () {
       return this.$router.currentRoute.path.includes('admin')
+    },
+    sortedTopics () {
+      return this.sortTopics() || this.topics
+    }
+  },
+  data () {
+    return {
+      votesAsc: false,
+      votesDesc: false
+    }
+  },
+  methods: {
+    sortTopics () {
+      if (this.votesAsc) {
+        return this.topics.slice().sort((a, b) => {
+          return a.votes - b.votes
+        })
+      } else if (this.votesDesc) {
+        return this.topics.slice().sort((a, b) => {
+          return b.votes - a.votes
+        })
+      }
     }
   }
 }
@@ -72,5 +115,15 @@ export default {
 .topics-list {
   list-style: none;
   padding: 0;
+}
+
+.filters {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+
+  &__button {
+    margin-right: $spacer--m;
+  }
 }
 </style>
