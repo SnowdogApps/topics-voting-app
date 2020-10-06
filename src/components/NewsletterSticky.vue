@@ -38,12 +38,8 @@ export default {
 
 <style lang="scss" scoped>
 $newsletter-sticky-height: 85px;
-
 $newsletter-sticky__close-btn-size: 48px;
-
 $newsletter-sticky-padding: 0 calc(#{$newsletter-sticky__close-btn-size} + #{$spacer--s});
-
-// $newsletter-sticky__close-btn-top: calc((#{$newsletter-sticky-height} - #{$newsletter-sticky__close-btn-size)} * 0.5);
 
 .newsletter-sticky {
   position: fixed;

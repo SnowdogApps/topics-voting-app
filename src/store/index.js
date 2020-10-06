@@ -19,7 +19,8 @@ export default new Vuex.Store({
     topicsLoaded: 0,
     admin: false,
     linkAccount: null,
-    newsletter: false
+    newsletter: false,
+    voteFinished: true
   },
   mutations,
   actions,
