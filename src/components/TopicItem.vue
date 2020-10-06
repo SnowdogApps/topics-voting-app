@@ -89,7 +89,7 @@
         </div>
         <div class="topic-item__vote">
           <v-button
-            v-if="!adminView"
+            v-if="!adminView && !voteFinished"
             :class="[
               'topic-item__upvote',
               {
@@ -202,7 +202,8 @@ export default {
   mixins: [markdown],
   computed: {
     ...mapState({
-      userVotes: state => state.userVotes
+      userVotes: state => state.userVotes,
+      voteFinished: state => state.voteFinished
     }),
     ...mapGetters({
       user: 'user',

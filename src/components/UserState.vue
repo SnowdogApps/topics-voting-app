@@ -25,11 +25,13 @@
           >
             {{ $t('user.hi', { name: user.displayName || user.email}) }}
           </h2>
-          <p>{{ $t('user.welcome-msg') }}</p>
-          <a class="button" href="#add-topic">
-              {{ $t('user.add-your-topic') }}
-          </a>
-          <br>
+          <template v-if="!voteFinished">
+            <p>{{ $t('user.welcome-msg') }}</p>
+            <a class="button" href="#add-topic">
+                {{ $t('user.add-your-topic') }}
+            </a>
+            <br>
+          </template>
           <v-button
             class="button--link"
             @btn-event="logout"
@@ -90,7 +92,7 @@
 </template>
 <script>
 import { auth } from './../db'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { checkSocialLogin } from '../helpers'
 import VButton from '@/components/Button.vue'
 import AuthUser from '@/components/AuthUser.vue'
@@ -101,6 +103,9 @@ export default {
     VButton
   },
   computed: {
+    ...mapState({
+      voteFinished: state => state.voteFinished
+    }),
     ...mapGetters([
       'isLoggedIn',
       'user'
