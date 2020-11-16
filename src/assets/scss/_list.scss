@@ -1,0 +1,14 @@
+.list {
+  margin: 0 0 $spacer--m;
+  padding-left: 0;
+
+  &__item {
+    display: flex;
+    margin-bottom: $spacer--xs;
+  }
+
+  &__icon {
+    margin-right: $spacer--xs;
+    fill: $preset;
+  }
+}

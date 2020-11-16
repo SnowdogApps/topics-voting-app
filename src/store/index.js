@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    notification: notification
+    notification
   },
   state: {
     topics: [],
@@ -18,9 +18,11 @@ export default new Vuex.Store({
     allUsers: [],
     topicsLoaded: 0,
     admin: false,
-    linkAccount: null
+    linkAccount: null,
+    newsletter: false,
+    voteFinished: true
   },
-  mutations: mutations,
+  mutations,
   actions,
   getters
 })

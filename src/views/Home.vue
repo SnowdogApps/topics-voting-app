@@ -1,11 +1,17 @@
 <template>
   <div class="row center-xs">
     <div class="col-xs-12 col-md-8">
-      <h2>
-        {{ $t('home.home-top-description-title') }}
-      </h2>
-      <p v-html="$t('home.home-top-description')"></p>
-      <p v-if="!isLoggedIn">
+      <template v-if="voteFinished">
+        <h2 v-html="$t('home.home-top-description-title-finished')"></h2>
+        <p v-html="$t('home.home-top-description-finished')"></p>
+      </template>
+      <template v-else>
+        <h2>
+          {{ $t('home.home-top-description-title') }}
+        </h2>
+        <p v-html="$t('home.home-top-description')"></p>
+      </template>
+      <p v-if="!isLoggedIn && !voteFinished">
         {{ $t('home.login-info') }}
       </p>
     </div>
@@ -17,14 +23,14 @@
       class="col-xs-12"
     />
     <add-topic
-      v-if="isLoggedIn"
+      v-if="isLoggedIn && !voteFinished"
       class="col-xs-12"
     />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import TopicList from '@/components/TopicList.vue'
 import UserState from '@/components/UserState.vue'
 
@@ -39,6 +45,9 @@ export default {
     ...mapGetters({
       isLoggedIn: 'isLoggedIn',
       topics: 'getApprovedTopics'
+    }),
+    ...mapState({
+      voteFinished: state => state.voteFinished
     })
   }
 }

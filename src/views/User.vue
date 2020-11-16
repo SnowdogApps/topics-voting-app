@@ -1,6 +1,16 @@
 <template>
   <div class="row center-xs">
-    <h2 class="m-0">{{ $t('user.user-dashboard') }}</h2>
+    <h2 class="m-0">
+      {{ $t('user.user-dashboard') }}
+    </h2>
+    <section class="col-xs-12">
+      <p>
+        <span class="bold">
+          {{ $t('user.newsletter-status') }}
+        </span>
+        {{ isSubscribed ? $t('user.newsletter-subscribed') : $t('user.newsletter-not-subscribed') }}
+      </p>
+    </section>
     <topic-list
       :topics="speakerTopics"
       :title="speakerTopicsTitle"
@@ -25,7 +35,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      isLoggedIn: 'isLoggedIn'
+      isLoggedIn: 'isLoggedIn',
+      isSubscribed: 'isSubscribed'
     }),
     userTopics () {
       return this.$store.state.topics.filter(topic => {

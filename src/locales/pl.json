@@ -20,6 +20,8 @@
     "home-subtitle": " - Prezentacje",
     "home-top-description-title": "Głosuj na tematy innych, zgłaszaj własne propozycje lub zostań prelegentem.",
     "home-top-description": "Możesz głosować na każdy z dostępnych tematów pod kątem ich atrakcyjności. Jeśli chcesz zostać prelegentem - zgłoś swój temat i oznacz go jako <b>„call4papers”</b> - skontaktujemy się z Tobą, aby ustalić szczegóły. Coś Cię interesuje, ale nie masz wystarczającej wiedzy? Zgłoś temat i oznacz go <b>„to grab”</b>, aby ktoś inny ze specjalistyczną wiedzą, mógł wybrać go z listy i zgłosić się jako prelegent - wystarczy, że klikniesz na etykietę <b>„to grab”</b>.",
+    "home-top-description-title-finished": "Głosowanie zakończone!<br> Dziękujemy za Wasze głosy i pomysły!",
+    "home-top-description-finished": "Teraz pracujemy nad agendą, aby jak najszybciej ją opublikować.",
     "login-info": "Głosowanie i zgłaszanie tematów wymaga zalogowania.",
     "list-items-title": "Lista proponowanych tematów",
     "back-to-top": "Do góry",
@@ -51,7 +53,8 @@
     "reset-password": "Resetuj tutaj",
     "send-reset-password-email": "Wyślij email resetujący hasło",
     "reset-password-email-sent": "Email resetujący hasło został wysłany. Sprawdź skrzynkę pocztową.",
-    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem."
+    "reset-password-info": "Jeśli masz inne konta powiązane z aktualnymi danymi logowania, po zresetowaniu może być konieczne potwierdzenie ich nowym hasłem.",
+    "subscribe-to-newsletter": "Zapisz się do newslettera"
   },
   "form": {
     "required-field": "Pole jest wymagane",
@@ -149,7 +152,10 @@
     "resend-email": "Ponownie wyślij prośbę o weryfikację",
     "user-dashboard": "Panel użytkownika",
     "author-topics-list-title": "Twoje propozycje tematów",
-    "speaker-topics-list-title": "Twoje zgłoszone prezentacje (call4papers)"
+    "speaker-topics-list-title": "Twoje zgłoszone prezentacje (call4papers)",
+    "newsletter-status": "Twój status subsckrupcji newslettera:",
+    "newsletter-subscribed": "zapisany",
+    "newsletter-not-subscribed": "nie zapisany"
   },
   "error": {
     "auth/invalid-email-address": "Adres email jest niepoprawny.",
@@ -165,9 +171,21 @@
     "proposition-added": "Twoja propozycja została wysłana do weryfikacji",
     "topic-changes-saved": "Zmiany w temacie zostały zapisane",
     "logged-in-successfull": "Zalogowano pomyślnie",
-    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}"
+    "email-verification-sent": "Email z prośbą o weryfikację został wysłany na adres {email}",
+    "subscirption-added": "Twoja subskrypcja została potwierdzona"
   },
   "lang-switcher": {
     "lang-switcher-label": "Zmień język"
+  },
+  "newsletter": {
+    "title": "Newsletter",
+    "benefit-1": "bądź na bieżąco",
+    "benefit-2": "informacje z pierwszej ręki",
+    "benefit-3": "konferencja w pigułce",
+    "benefit-4": "obiecujemy, że nie spamujemy",
+    "button": "Zapisz się",
+    "call-to-action": "do newslettera i bądź na bieżąco!",
+    "success-msg": "Dzięki, Twoja subskrypcja została potwierdzona. Zostałeś dodany do naszej listy, wkrótce się odezwiemy.",
+    "error-msg": "Wystąpił błąd podczas zapisu do newslettera. Skontaktuj sie z nami aby rozwiązać problem."
   }
 }

@@ -22,6 +22,13 @@ export default {
       return false
     }
   },
+  isSubscribed: (state) => {
+    try {
+      return state.newsletter === true
+    } catch {
+      return false
+    }
+  },
   topicById: (state) => (id) => {
     try {
       return state.topics.find(item => item['.key'] === id)
