@@ -9,11 +9,11 @@
       <img
         v-if="isHome"
         class="header__img"
-        src="@/assets/images/header.png"
+        :src="this.image"
       />
       <h1 class="header__title">
         <span class="header__title-text">
-          {{ $t("home.home-title") }}
+          {{ title }}
         </span>
         <span
           class="
@@ -21,7 +21,7 @@
             header__title-text--light
           "
         >
-          {{ $t("home.home-subtitle") }}
+          {{ subtitle }}
         </span>
       </h1>
     </div>
@@ -32,6 +32,20 @@
 import Navbar from '@/components/Navbar.vue'
 
 export default {
+  props: {
+    title: {
+      type: String,
+      required: false
+    },
+    subtitle: {
+      type: String,
+      required: false
+    },
+    image: {
+      type: String,
+      required: false
+    }
+  },
   components: {
     Navbar
   },

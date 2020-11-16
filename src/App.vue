@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <page-header />
+    <page-header v-bind="global.header"/>
     <scroll-top/>
     <transition name="fade">
       <newsletter-sticky
@@ -26,6 +26,7 @@ import { mapGetters } from 'vuex'
 import notification from '@/mixins/notification.js'
 import fb from '@/mixins/facebook.js'
 import { auth } from '@/db'
+import axios from 'axios'
 import ScrollTop from '@/components/ScrollTop.vue'
 import PageHeader from '@/components/PageHeader.vue'
 import NewsletterSticky from '@/components/NewsletterSticky.vue'
@@ -41,13 +42,30 @@ export default {
   data () {
     return {
       showNewsletterModal: false,
-      closeNewsletterSticky: false
+      closeNewsletterSticky: false,
+      global: {}
     }
   },
-  created () {
+  async created () {
     this.$store.dispatch('bindTopics')
     this.$store.dispatch('onAuthStateChanged')
     this.setLanguage()
+
+    const lang = this.$i18n.locale
+    try {
+      const res = await axios.get(
+        `${process.env.VUE_APP_API_URL}entity`, {
+          params: {
+            name: 'global',
+            lang
+          }
+        }
+      )
+
+      this.global = res.data
+    } catch (err) {
+      console.error(err)
+    }
   },
   mixins: [notification, fb],
   computed: {

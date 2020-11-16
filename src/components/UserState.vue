@@ -23,12 +23,17 @@
               auth-section__heading-name
             "
           >
-            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+            {{ `${hi}, ${user.displayName || user.email}!`}}
           </h2>
           <template v-if="!voteFinished">
-            <p>{{ $t('user.welcome-msg') }}</p>
-            <a class="button" href="#add-topic">
-                {{ $t('user.add-your-topic') }}
+            <p>
+                {{ welcomeMsg }}
+            </p>
+            <a
+                class="button"
+                href="#add-topic"
+            >
+                {{ addYourTopic }}
             </a>
             <br>
           </template>
@@ -50,20 +55,20 @@
           "
         >
           <h2 class="uppercase heading--h3">
-            {{ $t('user.hi', { name: user.displayName || user.email}) }}
+            {{ `${hi}, ${user.displayName || user.email}!`}}
           </h2>
           <p>
-            {{ $t('user.email-not-verified') }}
+            {{ email.notVerified }}
             <br>
-            {{ $t('user.verification-email-info') }}
+            {{ email.verificationInfo }}
           </p>
           <p>
-            {{ $t('user.email-not-received') }}
+            {{ email.notReceived }}
             <v-button
               class="button--link"
               @btn-event="resendEmailVerification"
             >
-              {{ $t('user.resend-email') }}
+              {{ email.resend }}
             </v-button>
           </p>
           <v-button
@@ -101,6 +106,24 @@ export default {
   components: {
     AuthUser,
     VButton
+  },
+  props: {
+    hi: {
+      type: String,
+      required: false
+    },
+    addYourTopic: {
+      type: String,
+      required: false
+    },
+    welcomeMsg: {
+      type: String,
+      required: false
+    },
+    email: {
+      type: Object,
+      required: false
+    }
   },
   computed: {
     ...mapState({
